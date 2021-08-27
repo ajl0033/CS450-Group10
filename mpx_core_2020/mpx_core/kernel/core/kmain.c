@@ -1,4 +1,3 @@
-// Hello there, I'm Will Ferrell!
 /*
   ----- kmain.c -----
 
