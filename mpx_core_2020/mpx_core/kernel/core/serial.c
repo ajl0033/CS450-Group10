@@ -46,7 +46,7 @@ int serial_println(const char *msg)
     outb(serial_port_out,*(i+msg));
   }
   outb(serial_port_out,'\r');
-  outb(serial_port_out,'\n');  
+  outb(serial_port_out,'\n');
   return NO_ERROR;
 }
 
@@ -93,10 +93,19 @@ int *polling(char *buffer, int *count){
 // You must validat each key and handle special keys such as delete, back space, and
 // arrow keys
 
+while(1)
+{
+  if (inb(COM1+5))
+  {
+    char letter = inb(COM1);
+    serial_print(&letter);
+  }
+
+}
+
 // remove the following line after implementing your module, this is present
 // just to allow the program to compile before R1 is complete
-strlen(buffer);
+//strlen(buffer);
 
 return count;
 }
-
