@@ -8,7 +8,6 @@
       Initial Kernel -- by Forrest Desjardin, 2013,
       Modifications by:    Andrew Duncan 2014,  John Jacko 2017
       				Ben Smith 2018, and Alex Wilson 2019
-              Hello
 */
 
 #include <stdint.h>
