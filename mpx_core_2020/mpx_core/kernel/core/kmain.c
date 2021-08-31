@@ -85,9 +85,7 @@ void kmain(void)
    char buffer[100];
    int count = 1;
 
-   //int* j = polling(buffer, &count);
-
-   int i = sys_req(READ, DEFAULT_DEVICE, buffer, &count);
+   sys_req(READ, DEFAULT_DEVICE, buffer, &count);
 
    // 7) System Shutdown on return from your command handler
    klogv("Starting system shutdown procedure...");

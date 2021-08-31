@@ -95,10 +95,11 @@ int *polling(char *buffer, int *count){
 
 while(1)
 {
-  if (inb(COM1+5))
+  if (inb(COM1+5) & 1)
   {
     char letter = inb(COM1);
-    serial_print(&letter);
+    buffer = &letter;
+    serial_print(buffer);
   }
 
 }
