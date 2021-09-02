@@ -98,8 +98,8 @@ while(1)
   if (inb(COM1+5) & 1)
   {
     char letter = inb(COM1);
-    buffer = &letter;
-    serial_print(buffer);
+    buffer[0] = letter;
+    serial_print(&letter);
   }
 
 }
