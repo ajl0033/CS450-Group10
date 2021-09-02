@@ -105,7 +105,7 @@ while(1)
 
     serial_print(&(buffer[counter-1]));
     //serial_println(buffer);
-    
+
   }
 
 }
