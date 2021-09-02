@@ -92,14 +92,20 @@ int *polling(char *buffer, int *count){
 // insert your code to gather keyboard input via the technique of polling.
 // You must validat each key and handle special keys such as delete, back space, and
 // arrow keys
-
+int counter = 0;
 while(1)
 {
+
   if (inb(COM1+5) & 1)
   {
+
     char letter = inb(COM1);
-    buffer[0] = letter;
-    serial_print(&letter);
+    buffer[counter] = letter;
+    counter++;
+
+    serial_print(&(buffer[counter-1]));
+    //serial_println(buffer);
+    
   }
 
 }
