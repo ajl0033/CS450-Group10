@@ -97,6 +97,7 @@ while(1)
 {
   if (inb(COM1+5) & 1)
   {
+    // Branches Test
     char letter = inb(COM1);
     buffer[0] = letter;
     serial_print(&letter);
