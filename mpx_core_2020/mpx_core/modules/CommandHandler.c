@@ -23,6 +23,9 @@ intcomhand(){
 
 //needs fixing just a start
 gettiime(){
+  //testing output
+char time[]= "12:24:10";
+timeBuffer = 8;
 
   //hours
   outb(0x70, 0x04);
@@ -35,6 +38,7 @@ gettiime(){
   //seconds
   outb(0x70, 0x00);
   inb(0x71);
+  sys_req(WRITE,DEFAULT_DEVICE,time,&timeBuffer);
 
 }
 }
