@@ -1,12 +1,16 @@
 // Command Handler Implementation
 
 #include <system.h>
-#include <kernel/core/serial.c>
+#include <core/serial.h>
 #include "CommandHandler.h"
 #include <string.h>
+#include "mpx_supt.h"
+#include "print.h"
+#include <core/io.h>
+#include "time.h"
 
-intcomhand(){
-  charcmdBuffer[100];
+int comhand(){
+  char cmdBuffer[100];
   int bufferSize;
   int quit=0;
 
@@ -19,26 +23,5 @@ intcomhand(){
 
   // process the command
   // see if quit was entered
-}
-
-//needs fixing just a start
-gettiime(){
-  //testing output
-char time[]= "12:24:10";
-timeBuffer = 8;
-
-  //hours
-  outb(0x70, 0x04);
-  inb(0x71);
-
-  //minutes
-  outb(0x70, 0x02);
-  inb(0x71);
-
-  //seconds
-  outb(0x70, 0x00);
-  inb(0x71);
-  sys_req(WRITE,DEFAULT_DEVICE,time,&timeBuffer);
-
-}
+  }
 }
