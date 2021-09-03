@@ -2,6 +2,7 @@
 #include "mpx_supt.h"
 #include "print.h"
 #include "time.h"
+#include <core/io.h>
 
 //needs fixing just a start
 int gettime(){
