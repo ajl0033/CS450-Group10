@@ -36,6 +36,6 @@ void gettime() {
 
 }
 
-void settime() {
+void settime(int hours, int minutes, int seconds) {
 
 }
