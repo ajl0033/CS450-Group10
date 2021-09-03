@@ -11,7 +11,10 @@ ASFLAGS = -f elf -g
 # add new files as you create them.
 # I'll start you off with just mpx_supt.o
 OBJFILES =\
-mpx_supt.o
+mpx_supt.o\
+CommandHandler.o\
+print.o\
+time.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
