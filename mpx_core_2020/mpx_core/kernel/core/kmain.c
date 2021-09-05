@@ -23,6 +23,10 @@
 
 #include "modules/mpx_supt.h"
 
+#include "modules/CommandHandler.h"
+
+#include "modules/print.h"
+
 
 void kmain(void)
 {
@@ -85,7 +89,10 @@ void kmain(void)
    char buffer[100];
    int count = 1;
 
+   print("Hello");
+
    sys_req(READ, DEFAULT_DEVICE, buffer, &count);
+   //intcomhand();
 
    // 7) System Shutdown on return from your command handler
    klogv("Starting system shutdown procedure...");

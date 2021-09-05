@@ -11,6 +11,8 @@
 #include <core/io.h>
 #include <core/serial.h>
 
+#include "modules/print.h"
+
 #define NO_ERROR 0
 
 // Active devices used for serial I/O
@@ -100,6 +102,16 @@ while(1)
   {
 
     char letter = inb(COM1);
+    char check = 'A';
+    if (letter == 0x0A)
+    {
+      serial_println(&check);
+      serial_println(&check);
+      serial_println(&check);
+      serial_println(&check);
+      serial_println(&check);
+    }
+
     buffer[counter] = letter;
     counter++;
 

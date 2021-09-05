@@ -16,7 +16,7 @@ int comhand(){
 
   while(!quit) {
   // get acommand
-  memset(buffer,‘\0’,   100);
+  memset(cmdBuffer,‘\0’,   100);
   bufferSize = 99;
   // reset size before each call to read
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
