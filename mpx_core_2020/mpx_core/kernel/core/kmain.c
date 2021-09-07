@@ -93,6 +93,7 @@ void kmain(void)
    //intcomhand();
 
    // 7) System Shutdown on return from your command handler
+   println("");
    klogv("Starting system shutdown procedure...");
 
    /* Shutdown Procedure */

@@ -95,6 +95,7 @@ int *polling(char *buffer, int *count){
 // You must validat each key and handle special keys such as delete, back space, and
 // arrow keys
 int counter = 0;
+print(">> ");
 while(1)
 {
 
