@@ -37,12 +37,12 @@ int comhand(){
     //settime();
   }
   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 7) {
-    //shutdown();
+    quit = shutdown();
   }
   // process the command
   // see if quit was entered
   }
-  return 1;
+  return 0;
 }
 
 
@@ -59,14 +59,14 @@ void help() {
   println("Shutdown: Exits command handler loop, bringing the system to a halt");
 }
 
-//int shutdown() {
-  // println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
-  // int quit;
-  // scanf("%d", &quit);
-  // if (quit == 1) {
-  //   return quit;
-  // }
-  // else if (quit == 2) {
-  //   return quit;
-  // }
-//}
+int shutdown() {
+  println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
+  int quit;
+  scanf("%d", &quit);
+  if (quit == 1) {
+    return 1;
+  }
+  else if (quit == 0) {
+    return quit;
+  }
+}
