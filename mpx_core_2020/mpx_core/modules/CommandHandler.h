@@ -2,6 +2,8 @@
 
 #include <system.h>
 
+int comhand();
+
 /*
   Prints the current version of the MPX and the completion date
 */
@@ -17,10 +19,3 @@ void help();
   Execution will return to kmain() and the system will halt
 */
 void shutdown();
-
-void getdate();
-
-void setdate();
-/*
-  Returns the current
-*/
