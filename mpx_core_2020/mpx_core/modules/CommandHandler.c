@@ -44,11 +44,16 @@ intcomhand(){
   // see if quit was entered
 }
 void version() {
-  println("R1, 9/5/2021");
+  println("R1, 9/6/2021");
 }
 
 void help() {
-
+  println("Version: Prints the current version of MPX and the completion date");
+  println("Get Date: Retrieves the current date");
+  println("Set Date: Sets the current date (Hours, minutes, seconds)");
+  println("Get Time: Retrieves the current time of day");
+  println("Set Time: Sets the current time of day (Hours, minutes, seconds)");
+  println("Shutdown: Exits command handler loop, bringing the system to a halt");
 }
 
 int shutdown() {
