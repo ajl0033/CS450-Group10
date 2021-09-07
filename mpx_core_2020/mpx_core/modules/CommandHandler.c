@@ -42,6 +42,7 @@ int comhand(){
   // process the command
   // see if quit was entered
   }
+  return 1;
 }
 
 
@@ -58,7 +59,7 @@ void help() {
   println("Shutdown: Exits command handler loop, bringing the system to a halt");
 }
 
-int shutdown() {
+//int shutdown() {
   // println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
   // int quit;
   // scanf("%d", &quit);
@@ -68,5 +69,4 @@ int shutdown() {
   // else if (quit == 2) {
   //   return quit;
   // }
-  return 1;
-}
+//}
