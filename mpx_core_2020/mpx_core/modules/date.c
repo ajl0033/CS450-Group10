@@ -3,7 +3,7 @@
 #include "print.h"
 #include "date.h"
 #include <core/io.h>
-#include "bcdConversion.h
+#include "bcdConversion.h"
 
 /*
 day of week - 0x06
@@ -19,12 +19,12 @@ the way the registers are used and that we only have one char array scares
 me i dont know enough about c currently to tell if this is a problem
 */
 
-void getdate(){
+int getdate(){
 char date[12] = "0/00/00/0000";
 
 //dayofweek
 outb(0x70, 0x06);
-BCDtoStr(inb(0x71), date);
+BCDtoStr(inb(0x71), &date[0]);
 
 //Month
 outb(0x70, 0x08);
@@ -40,26 +40,27 @@ BCDtoStr(inb(0x71), &date[8]);
 
 print("Current Date formatted dayOfWeek/Month/dayOfMonth/Year is: ");
 println(date);
-return;
+return 0;
 
 }
 
 
- void setdate(){
+
+ int setdate(){
    char cmdBuffer[100];
    int bufferSize;
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
-   print("Enter a date in the form dayOfWeek/month/dayOfMonth/Year");
-   print("For day of week: Sunday = 1 -- Saturday = 7 ");
-   print("Example date could be 5/10/30/1999 - or Thursday, October 30th 1999");
+   print("\nEnter a date in the form dayOfWeek/month/dayOfMonth/Year\n");
+   print("For day of week: Sunday = 1 -- Saturday = 7\n");
+   print("Example date could be \"5/10/30/1999\" - or Thursday / October / 30th / 1999\n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   char date[12];
-  strcpy(date, cmdBuffer);
-  int count=0;
-  while(count <12){
-    count++;
 
+    int count = 0;
+    while(count < 12) {
+    date[count] = cmdBuffer[count];
+    count++;
   }
 
   if(date[1] != '/' && date[4] != '/' && date[7] != '/'){
@@ -71,7 +72,7 @@ cli();
 
 //dayofweek
 outb(0x70, 0x06);
-outb(0x71, StrtoBCD(date));
+outb(0x71, StrtoBCD(&date[0]));
 
 //month
 outb(0x70, 0x08);
@@ -88,4 +89,5 @@ outb(0x71, StrtoBCD(&date[8]));
 print("date has been set in the form dayOfWeek/Month/dayOfMonth/Year to: ");
 println(date);
 sti();
+return 0;
 }

@@ -1,7 +1,11 @@
 #include <system.h>
+#ifndef _DATE_H
 #define _DATE_H
 
-void getdate();
+int getdate();
 /*
   Allows the user to set the time
-*/void setdate();
+*/
+int setdate();
+
+#endif
