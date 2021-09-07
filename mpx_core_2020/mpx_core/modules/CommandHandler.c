@@ -1,21 +1,20 @@
 // Command Handler Implementation
 #include <system.h>
-#include <kernel/core/serial.h>
-#include <kernel/core/serial.c>
-#include <mpx_supt.c>
+#include <core/serial.h>
+#include "mpx_supt.h"
 #include "CommandHandler.h"
-#include <print.c>
+#include "print.h"
 #include <string.h>
 
-intcomhand(){
-  charcmdBuffer[100];
+int comhand(){
+  char cmdBuffer[100];
   int bufferSize;
   int quit=0;
 
   while(!quit) {
     println("Welcome to the MPX! What would you like to do?\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown");
   // get a command
-  memset(buffer,‘\0’,   100);
+  memset(cmdBuffer, '\0', 100);
   bufferSize = 99;
   // reset size before each call to read
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
@@ -26,23 +25,26 @@ intcomhand(){
     version();
   }
   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 3) {
-    getdate();
+    //getdate();
   }
   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 4) {
-    setdate();
+    //setdate();
   }
   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 5) {
-    gettime();
+    //gettime();
   }
   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 6) {
-    settime();
+    //settime();
   }
   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 7) {
-    shutdown();
+    //shutdown();
   }
   // process the command
   // see if quit was entered
+  }
 }
+
+
 void version() {
   println("R1, 9/6/2021");
 }
@@ -57,30 +59,14 @@ void help() {
 }
 
 int shutdown() {
-  println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
-  int quit;
-  scanf("%d", &quit);
-  if (quit == 1) {
-    return quit;
-  }
-  else if (quit == 2) {
-    return quit;
-  }
-}
-
-void getdate() {
-
-}
-
-void setdate() {
-
-}
-
-void gettime() {
-
-}
-
-void settime() {
-
-}
+  // println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
+  // int quit;
+  // scanf("%d", &quit);
+  // if (quit == 1) {
+  //   return quit;
+  // }
+  // else if (quit == 2) {
+  //   return quit;
+  // }
+  return 1;
 }

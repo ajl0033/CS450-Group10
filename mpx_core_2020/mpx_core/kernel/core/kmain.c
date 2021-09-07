@@ -89,7 +89,6 @@ void kmain(void)
    char buffer[100];
    int count = 1;
 
-   print("Hello");
 
    sys_req(READ, DEFAULT_DEVICE, buffer, &count);
    //intcomhand();
