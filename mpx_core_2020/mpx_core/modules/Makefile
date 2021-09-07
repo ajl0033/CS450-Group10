@@ -14,6 +14,7 @@ OBJFILES =\
 mpx_supt.o\
 CommandHandler.o\
 print.o\
+bcdConversion.o\
 time.o
 
 .c.s:

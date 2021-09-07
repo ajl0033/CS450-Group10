@@ -11,7 +11,8 @@ int BCDtoInt(int val){
  return ((val & 0xF0)>> 4)*10 + (val & 0x0F);
 }
 int BCDtoStr(int val,char* str){
-  str[0] = (val & 0xF0) + '0';
+
+  str[0] = (val >> 4) + '0';
   str[1] = (val & 0x0F) + '0';
   return 0;
 }

@@ -1,5 +1,4 @@
-#include <system.h>
-
+#ifndef _BCDCONVERSION_H
 #define _BCDCONVERSION_H
 
 

@@ -3,7 +3,7 @@
 #include "print.h"
 #include "date.h"
 #include <core/io.h>
-#include "bcdConversion.c"
+#include "bcdConversion.h
 
 /*
 day of week - 0x06
@@ -55,7 +55,7 @@ return;
    print("Example date could be 5/10/30/1999 - or Thursday, October 30th 1999");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   char date[12];
-  date = cmdBuffer;
+  strcpy(date, cmdBuffer);
   int count=0;
   while(count <12){
     count++;

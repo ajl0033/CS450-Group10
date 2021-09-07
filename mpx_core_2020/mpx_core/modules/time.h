@@ -6,6 +6,7 @@ int gettime();
   Allows the user to set the time
 */int settime(char* time);
 
+int check_time_str(char* time_str);
 
 
 #endif

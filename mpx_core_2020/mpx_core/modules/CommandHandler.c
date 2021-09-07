@@ -5,6 +5,8 @@
 #include "CommandHandler.h"
 #include "print.h"
 #include <string.h>
+#include "date.h"
+#include "time.h"
 //#include "date.h"
 
 int comhand(){
@@ -32,10 +34,15 @@ int comhand(){
     //setdate();
   }
   else if (cmdBuffer[0] == '5') {
-    //gettime();
+    gettime();
   }
   else if (cmdBuffer[0] == '6') {
-    //settime();
+    println("");
+    println("Enter the time in the form: 'hh:mm:ss' ");
+    memset(cmdBuffer, '\0', 100);
+    sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+    println("");
+    settime(cmdBuffer);
   }
   else if (cmdBuffer[0] == '7') {
     quit = shutdown();
