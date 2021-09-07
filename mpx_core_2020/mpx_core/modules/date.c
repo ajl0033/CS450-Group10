@@ -3,7 +3,7 @@
 #include "print.h"
 #include "date.h"
 #include <core/io.h>
-#include "bcdConersion.c"
+#include "bcdConversion.c"
 
 /*
 day of week - 0x06
@@ -68,6 +68,4 @@ outb(0x71, StrtoBCD(&date[8]));
 print("date has been set in the form dayOfWeek/Month/dayOfMonth/Year to: ");
 println(date);
 sti();
-
-
 }

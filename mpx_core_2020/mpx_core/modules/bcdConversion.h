@@ -1,6 +1,6 @@
 #include <system.h>
 
-#define _bcdConversion_H
+#define _BCDCONVERSION_H
 
 
 
