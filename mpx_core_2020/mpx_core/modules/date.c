@@ -19,7 +19,7 @@ the way the registers are used and that we only have one char array scares
 me i dont know enough about c currently to tell if this is a problem
 */
 
-int getdate(){
+void getdate(){
 char date[12] = "0/00/00/0000";
 
 //dayofweek
@@ -40,12 +40,12 @@ BCDtoStr(inb(0x71), &date[8]);
 
 print("Current Date formatted dayOfWeek/Month/dayOfMonth/Year is: ");
 println(date);
-return 0;
+return;
 
 }
 
 
-int setdate(char* date){
+ void setdate(char* date){
 cli();
 
 

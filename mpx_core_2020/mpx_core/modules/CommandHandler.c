@@ -25,10 +25,10 @@ int comhand(){
     version();
   }
   else if (cmdBuffer[0] == '3') {
-    //getdate();
+    getdate();
   }
   else if (cmdBuffer[0] == '4') {
-    //setdate();
+    setdate();
   }
   else if (cmdBuffer[0] == '5') {
     //gettime();

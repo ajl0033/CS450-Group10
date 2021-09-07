@@ -1,10 +1,10 @@
 #include <system.h>
 #define _DATE_H
 
-int getdate();
+void getdate();
 /*
   Allows the user to set the time
-*/int setdate(char* date);
+*/void setdate(char* date);
 
 /*
   Converts an integer to Binary Coded Decimal
