@@ -45,7 +45,27 @@ return;
 }
 
 
- void setdate(char* date){
+ void setdate(){
+   char cmdBuffer[100];
+   int bufferSize;
+   memset(cmdBuffer, '\0', 100);
+   bufferSize = 99;
+   print("Enter a date in the form dayOfWeek/month/dayOfMonth/Year");
+   print("For day of week: Sunday = 1 -- Saturday = 7 ");
+   print("Example date could be 5/10/30/1999 - or Thursday, October 30th 1999");
+  sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+  char date[12];
+  date = cmdBuffer;
+  int count=0;
+  while(count <12){
+    count++;
+
+  }
+
+  if(date[1] != '/' && date[4] != '/' && date[7] != '/'){
+    print("incorrecto formatto dumbasso");
+  }
+
 cli();
 
 
