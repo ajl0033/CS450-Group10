@@ -61,12 +61,10 @@ void help() {
 
 int shutdown() {
   println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
-  int quit;
-  scanf("%d", &quit);
-  if (quit == 1) {
+  if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 1) {
     return 1;
   }
-  else if (quit == 0) {
-    return quit;
+  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 2) {
+    return 0;
   }
 }
