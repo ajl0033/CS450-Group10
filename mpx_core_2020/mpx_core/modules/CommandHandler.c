@@ -59,11 +59,11 @@ void help() {
   println("");
   println("");
   println("-------------------------------------------------------------------------");
-  println(" Version: Prints the current version of MPX and the completion date");
+  println("Version:  Prints the current version of MPX and the completion date");
   println("Get Date: Retrieves the current date");
-  println("Set Date: Sets the current date (Month/Day/Year)");
+  println("Set Date: Sets the current date (W/MM/DD/YYYY)");
   println("Get Time: Retrieves the current time of day");
-  println("Set Time: Sets the current time of day (Hours:minuets:seconds)");
+  println("Set Time: Sets the current time of day (HH:MM:SS)");
   println("Shutdown: Exits command handler loop, bringing the system to a halt");
   println("-------------------------------------------------------------------------");
   println("");
