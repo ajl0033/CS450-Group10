@@ -11,8 +11,8 @@ day of month - 07
 month - 08
 year- 09
 
-1/06/09/2021
-dayofweek/month/dayOfMonth/year
+0402/2002/1
+dayOfMonth&Month/year/dayOfWeek
 
 
 the way the registers are used and that we only have one char array scares
@@ -20,25 +20,26 @@ me i dont know enough about c currently to tell if this is a problem
 */
 
 int getdate(){
-char date[12] = "0/00/00/0000";
+char date[12] = "0000/0000/0";
 
-//dayofweek
-outb(0x70, 0x06);
-BCDtoStr(inb(0x71), &date[0]);
+
+//dayOfMonth
+outb(0x70, 0x07);
+ BCDtoStr(inb(0x71), &date[0]);
 
 //Month
 outb(0x70, 0x08);
 BCDtoStr(inb(0x71), &date[2]);
 
-//dayOfMonth
-outb(0x70, 0x07);
- BCDtoStr(inb(0x71), &date[5]);
-
 //year
 outb(0x70, 0x09);
-BCDtoStr(inb(0x71), &date[8]);
+BCDtoStr(inb(0x71), &date[5]);
 
-print("Current Date formatted dayOfWeek/Month/dayOfMonth/Year is: ");
+//dayofweek
+outb(0x70, 0x06);
+BCDtoStr(inb(0x71), &date[10]);
+
+print("Current Date formatted dayOfMonth&Month/year/dayOfWeek is: ");
 println(date);
 return 0;
 
@@ -51,9 +52,9 @@ return 0;
    int bufferSize;
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
-   print("\nEnter a date in the form dayOfWeek/month/dayOfMonth/Year\n");
+   print("\nEnter a date in the form dayOfMonth&Month/year/dayOfWeek\n");
    print("For day of week: Sunday = 1 -- Saturday = 7\n");
-   print("Example date could be \"5/10/30/1999\" - or Thursday / October / 30th / 1999\n");
+   print("Example date could be \"0402/1999/2\" - or February 4th / 1999 / Monday \n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   char date[12];
 
@@ -70,23 +71,25 @@ return 0;
 cli();
 
 
-//dayofweek
-outb(0x70, 0x06);
+
+
+//dayOfMonth
+outb(0x70, 0x07);
 outb(0x71, StrtoBCD(&date[0]));
 
 //month
 outb(0x70, 0x08);
 outb(0x71, StrtoBCD(&date[2]));
 
-//dayOfMonth
-outb(0x70, 0x07);
-outb(0x71, StrtoBCD(&date[5]));
-
 //year
 outb(0x70, 0x09);
-outb(0x71, StrtoBCD(&date[8]));
+outb(0x71, StrtoBCD(&date[5]));
 
-print("date has been set in the form dayOfWeek/Month/dayOfMonth/Year to: ");
+//dayofweek
+outb(0x70, 0x06);
+outb(0x71, StrtoBCD(&date[10]));
+
+print("\nDate has been set in the form dayOfMonth&Month/year/dayOfWeek to: ");
 println(date);
 sti();
 return 0;
