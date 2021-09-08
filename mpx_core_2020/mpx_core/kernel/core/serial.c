@@ -103,13 +103,13 @@ while(1)
   {
     char letter = inb(COM1);
 
-    println("\n\n");
-    print("\'");
-    print(&letter);
-    print("\'");
-    println("\n\n");
+    // println("\n\n");
+    // print("\'");
+    // print(&letter);
+    // print("\'");
+    // println("\n\n");
 
-    if (letter == '\n')
+    if (letter == '\n' || letter == '\r')
     {
       return count;
     }
