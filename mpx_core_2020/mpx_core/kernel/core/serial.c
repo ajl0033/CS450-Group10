@@ -104,11 +104,11 @@ while(1)
   {
     // Assign character input to letter
     char letter = inb(COM1);
-    println("\n\n");
-    print("\'");
-    print(&letter);
-    print("\'");
-    println("\n\n");
+    // println("\n\n");
+    // print("\'");
+    // print(&letter);
+    // print("\'");
+    // println("\n\n");
     // Check if enter is pressed
     // If enter is pressed, return count
     if (letter == '\n' || letter == '\r')
@@ -134,14 +134,14 @@ while(1)
     //     }
     //   }
     // } // Check for left arrow key
-    else if (letter == '9')
-    {
-
-    } // Check for right arrow key
-    else if (letter == '8')
-    {
-
-    }
+    // else if (letter == '')
+    // {
+    //
+    // } // Check for right arrow key
+    // else if (letter == '')
+    // {
+    //
+    // }
 
 
 
