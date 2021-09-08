@@ -1,0 +1,18 @@
+Name:			R1:			R2:			R3/4:			R5:			R6:
+
+Will Ferrell:		version()
+			help()
+			shutdown()
+
+
+Jarett Hardek:		getdate()
+			setdate()
+
+
+Anthony Lowery:		Polling
+
+
+Emily Waechter:		gettime()
+			settime()
+			print()
+			println()
