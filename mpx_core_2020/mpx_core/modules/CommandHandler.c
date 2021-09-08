@@ -18,27 +18,27 @@ int comhand(){
   bufferSize = 99;
   // reset size before each call to read
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 1) {
+  if (cmdBuffer[0] == '1') {
     help();
   }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 2) {
-    version();
-  }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 3) {
-    //getdate();
-  }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 4) {
-    //setdate();
-  }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 5) {
-    //gettime();
-  }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 6) {
-    //settime();
-  }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 7) {
-    quit = shutdown();
-  }
+  // else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 2) {
+  //   version();
+  // }
+  // else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 3) {
+  //   //getdate();
+  // }
+  // else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 4) {
+  //   //setdate();
+  // }
+  // else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 5) {
+  //   //gettime();
+  // }
+  // else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 6) {
+  //   //settime();
+  // }
+  // else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 7) {
+  //   quit = shutdown();
+  // }
   // process the command
   // see if quit was entered
   }
@@ -59,12 +59,12 @@ void help() {
   println("Shutdown: Exits command handler loop, bringing the system to a halt");
 }
 
-int shutdown() {
-  println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
-  if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 1) {
-    return 1;
-  }
-  else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 2) {
-    return 0;
-  }
-}
+// int shutdown() {
+//   println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
+//   if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 1) {
+//     return 1;
+//   }
+//   else if (sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize) == 2) {
+//     return 0;
+//   }
+// }

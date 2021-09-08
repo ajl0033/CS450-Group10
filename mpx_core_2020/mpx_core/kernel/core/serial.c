@@ -103,7 +103,7 @@ while(1)
 
     char letter = inb(COM1);
     char check = 'A';
-    if (letter == 0x0A)
+    if (letter == '\n')
     {
       serial_println(&check);
       serial_println(&check);
@@ -117,7 +117,7 @@ while(1)
 
     serial_print(&(buffer[counter-1]));
     //serial_println(buffer);
-
+    return count;
   }
 
 }
