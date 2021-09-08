@@ -18,4 +18,4 @@ void help();
   Exits the command handler loop
   Execution will return to kmain() and the system will halt
 */
-void shutdown();
+int shutdown();
