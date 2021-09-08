@@ -10,9 +10,9 @@ int comhand(){
   char cmdBuffer[100];
   int bufferSize;
   int quit=0;
-
+  println("Welcome to the MPX! What would you like to do?");
   while(!quit) {
-    println("Welcome to the MPX! What would you like to do?\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown");
+    println("\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown\n");
   // get a command
   memset(cmdBuffer, '\0', 100);
   bufferSize = 99;
@@ -78,9 +78,11 @@ int shutdown() {
   println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   if (cmdBuffer[0] == '1') {
+    println("");
     return 1;
   }
   else if (cmdBuffer[0] == '2') {
+    println("");
     return 0;
   }
   else {

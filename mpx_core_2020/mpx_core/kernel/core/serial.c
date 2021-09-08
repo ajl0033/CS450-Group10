@@ -103,24 +103,17 @@ while(1)
   {
 
     char letter = inb(COM1);
-    char check = 'A';
     if (letter == '\n')
     {
-      serial_println(&check);
-      serial_println(&check);
-      serial_println(&check);
-      serial_println(&check);
-      serial_println(&check);
+      //return count;
     }
 
     buffer[counter] = letter;
     counter++;
 
     serial_print(&(buffer[counter-1]));
-    //serial_println(buffer);
     return count;
   }
-
 }
 
 // remove the following line after implementing your module, this is present
