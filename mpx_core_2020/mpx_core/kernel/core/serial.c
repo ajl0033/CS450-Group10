@@ -95,30 +95,67 @@ int *polling(char *buffer, int *count){
 // You must validat each key and handle special keys such as delete, back space, and
 // arrow keys
 int counter = 0;
+int index = 0;
 print(">> ");
 while(1)
 {
 
   if (inb(COM1+5) & 1)
   {
+    // Assign character input to letter
     char letter = inb(COM1);
-
-    // println("\n\n");
-    // print("\'");
-    // print(&letter);
-    // print("\'");
-    // println("\n\n");
-
+    println("\n\n");
+    print("\'");
+    print(&letter);
+    print("\'");
+    println("\n\n");
+    // Check if enter is pressed
+    // If enter is pressed, return count
     if (letter == '\n' || letter == '\r')
     {
       return count;
+    } // Check if backspace is pressed
+    // else if (letter == '\b')
+    // {
+    //   print("AAAHHHHHHH");
+    //   if (index == 0)
+    //   {
+    //     continue;
+    //   }
+    //   else
+    //   {
+    //     int i;
+    //     for (i = 0; i < counter; i++)
+    //     {
+    //       if (i >= index-1)
+    //       {
+    //         buffer[index] = buffer[index+1];
+    //       }
+    //     }
+    //   }
+    // } // Check for left arrow key
+    else if (letter == '9')
+    {
+
+    } // Check for right arrow key
+    else if (letter == '8')
+    {
+
     }
 
+
+
+    // Place the character (letter) in the proper index of the buffer
+    // Increment the counter
     buffer[counter] = letter;
     counter++;
 
-    serial_print(&(buffer[counter-1]));
-    //return count;
+    // Increment index
+    index++;
+
+    // Print the character that was pressed
+    print("\33[2K\r>> ");
+    print(buffer);
   }
 }
 

@@ -5,6 +5,7 @@
 #include "CommandHandler.h"
 #include "print.h"
 #include <string.h>
+//#include "date.h"
 
 int comhand(){
   char cmdBuffer[100];
@@ -25,10 +26,10 @@ int comhand(){
     version();
   }
   else if (cmdBuffer[0] == '3') {
-    getdate();
+    //getdate();
   }
   else if (cmdBuffer[0] == '4') {
-    setdate();
+    //setdate();
   }
   else if (cmdBuffer[0] == '5') {
     //gettime();
@@ -38,6 +39,9 @@ int comhand(){
   }
   else if (cmdBuffer[0] == '7') {
     quit = shutdown();
+  }
+  else {
+    println("\n\n**Invalid Command**");
   }
   // process the command
   // see if quit was entered
@@ -74,18 +78,21 @@ int shutdown() {
   int bufferSize;
   memset(cmdBuffer, '\0', 100);
   bufferSize = 99;
-  println("");
-  println("Are you sure you want to quit and shutdown? Y: 1, N: 2");
-  sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  if (cmdBuffer[0] == '1') {
-    println("");
-    return 1;
-  }
-  else if (cmdBuffer[0] == '2') {
-    println("");
-    return 0;
-  }
-  else {
-    return 0;
+
+  println("\nAre you sure you want to quit and shutdown? Y: 1, N: 2");
+  while(1)
+  {
+    sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+    if (cmdBuffer[0] == '1') {
+      println("");
+      return 1;
+    }
+    else if (cmdBuffer[0] == '2') {
+      println("");
+      return 0;
+    }
+    else {
+      println("\nInvalid Input. Do you still want to shutdown? Y: 1, N: 2");
+    }
   }
 }
