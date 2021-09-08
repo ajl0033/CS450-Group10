@@ -101,18 +101,24 @@ while(1)
 
   if (inb(COM1+5) & 1)
   {
-
     char letter = inb(COM1);
+
+    println("\n\n");
+    print("\'");
+    print(&letter);
+    print("\'");
+    println("\n\n");
+
     if (letter == '\n')
     {
-      //return count;
+      return count;
     }
 
     buffer[counter] = letter;
     counter++;
 
     serial_print(&(buffer[counter-1]));
-    return count;
+    //return count;
   }
 }
 
