@@ -52,9 +52,9 @@ return 0;
    int bufferSize;
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
-   print("\nEnter a date in the form dayOfMonth&Month/year/dayOfWeek\n");
+   print("\n\nEnter a date in the form dayOfMonth&Month/year/dayOfWeek\n");
    print("For day of week: Sunday = 01 -- Saturday = 07\n");
-   print("Example date could be \"0402/1999/02\" - or February 4th / 1999 / Monday \n");
+   print("Example date could be \"0402/1999/02\" - or February 4th / 1999 / Monday \n\n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   char date[12];
 
@@ -92,7 +92,7 @@ outb(0x70, 0x06);
 outb(0x71, StrtoBCD(&date[10]));
 
 print("\nDate has been set in the form dayOfMonth&Month/year/dayOfWeek to: ");
-println(date);
+print(date);
 sti();
 return 0;
 
@@ -108,7 +108,7 @@ int checkDate(char* date){
  || date[10] != '0' || date[11] > '7'
 )  {
 
-  print("\nincorrect time input1");
+  println("\n\nDate is invalid format...");
 return 1;
 }
 else{
