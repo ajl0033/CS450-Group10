@@ -16,7 +16,7 @@ dayOfMonth&Month/year/dayOfWeek
 */
 
 int getdate(){
-char date[12] = "0000/0000/00";
+char date[13] = "0000/0000/00";
 
 
 //dayOfMonth
@@ -28,12 +28,12 @@ outb(0x70, 0x08);
 BCDtoStr(inb(0x71), &date[2]);
 
 //century
-outb(0x70, 0x32);
-BCDtoStr(inb(0x71), &date[5]);
+// outb(0x70, 0x32);
+// BCDtoStr(inb(0x71), &date[5]);
 
 //year
 outb(0x70, 0x09);
-BCDtoStr(inb(0x71), &date[7]);
+BCDtoStr(inb(0x71), &date[5]);
 
 //dayofweek
 outb(0x70, 0x06);
@@ -56,7 +56,7 @@ return 0;
    print("For day of week: Sunday = 01 -- Saturday = 07\n");
    print("Example date could be \"0402/1999/02\" - or February 4th / 1999 / Monday \n\n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  char date[12];
+  char date[13];
 
     int count = 0;
     while(count < 12) {
@@ -80,12 +80,12 @@ outb(0x70, 0x08);
 outb(0x71, StrtoBCD(&date[2]));
 
 //century
-outb(0x70, 0x32);
-outb(0x71, StrtoBCD(&date[5]));
+// outb(0x70, 0x32);
+// outb(0x71, StrtoBCD(&date[5]));
 
 //year
 outb(0x70, 0x09);
-outb(0x71, StrtoBCD(&date[7]));
+outb(0x71, StrtoBCD(&date[5]));
 
 //dayofweek
 outb(0x70, 0x06);

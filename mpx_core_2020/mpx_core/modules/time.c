@@ -18,7 +18,7 @@ char time[9]= "00:00:00";
 
   //minutes
   outb(0x70, 0x02);
-   BCDtoStr(inb(0x71), &time[3]);
+  BCDtoStr(inb(0x71), &time[3]);
 
   //seconds
   outb(0x70, 0x00);
