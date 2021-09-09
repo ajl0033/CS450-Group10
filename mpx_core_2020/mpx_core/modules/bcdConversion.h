@@ -14,6 +14,8 @@ int BCDtoInt(int val);
 */
 int BCDtoStr(int val,char* str);
 
+int BCDtoStrYear(int val,char* str);
+
 int StrtoBCD(char* str);
 
 #endif
