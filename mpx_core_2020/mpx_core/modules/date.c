@@ -36,11 +36,7 @@ BCDtoStr(inb(0x71), &date[6]);
 outb(0x70, 0x09);
 BCDtoStr(inb(0x71), &date[8]);
 
-//dayofweek
-// outb(0x70, 0x06);
-// BCDtoStr(inb(0x71), &date[10]);
-
-print("\n\nCurrent Date formatted Month/dayOfMonth/year is: ");
+print("\n\nCurrent Date formatted MM/DD/YYYY is: ");
 println(date);
 return 0;
 
@@ -53,7 +49,7 @@ return 0;
    int bufferSize;
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
-   print("\n\nEnter a date in the form Month/dayOfMonth/year\n");
+   print("\n\nEnter a date in the form MM/DD/YYYY\n");
    print("Example date could be \"02/04/1999\" - or February 4th / 1999 \n\n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   char date[11];
@@ -88,11 +84,7 @@ outb(0x71, StrtoBCD(&date[6]));
 outb(0x70, 0x09);
 outb(0x71, StrtoBCD(&date[8]));
 
-//dayofweek
-// outb(0x70, 0x06);
-// outb(0x71, StrtoBCD(&date[10]));
-
-print("\n\nDate has been set in the form Month/dayOfMonth/year to: ");
+print("\n\nDate has been set in the form MM/DD/YYYY to: ");
 print(date);
 println("");
 sti();
@@ -104,13 +96,41 @@ return 0;
 // 01/34/6789
 // Month/dayOfMonth/year
 int checkDate(char* date){
-  if(
-     date[2] != '/' ||
-     date[5] != '/' || date[0] > '1'
-  || date[0] < '0'  || date[1] < '0'
-  || date[1] > '9'  || date[3] > '3'
-)  {
+  if (date[0] == '1')
+  {
+    if (date[1] > 2)
+    {
+      println("\n\nDate is invalid format...");
+      return 1;
+    }
+  }
 
+  if (date[4] == 3)
+  {
+    if (date[5] > 1)
+    {
+      println("\n\nDate is invalid format...");
+      return 1;
+    }
+  }
+
+  if ((date[10] >= 97 && date[10] <= 122) || (date[10] >= 44 && date[10] <= 59) || (date[10] >= 65 && date[10] <= 90) || (date[10] == 92))
+  {
+    println("\n\nDate is invalid format...");
+    return 1;
+  }
+
+  if(
+        date[2] != '/' || date[5] != '/' ||
+        date[0] > '1' || date[0] < '0' ||
+        date[1] < '0' || date[1] > '9' ||
+        date[3] < '0' || date[3] > '3' ||
+        date[4] < '0' || date[4] > '9' ||
+        date[6] < '0' || date[6] > '9' ||
+        date[7] < '0' || date[7] > '9' ||
+        date[8] < '0' || date[8] > '9' ||
+        date[9] < '0' || date[9] > '9'
+)  {
   println("\n\nDate is invalid format...");
 return 1;
 }

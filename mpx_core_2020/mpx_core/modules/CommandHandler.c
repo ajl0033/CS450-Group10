@@ -65,7 +65,6 @@ void version() {
   println("------------------------------");
   println("Current Version: R1 - 9/9/2021");
   println("------------------------------");
-  println("");
 }
 
 void help() {
@@ -79,7 +78,6 @@ void help() {
   println("Set Time: Sets the current time of day (HH:MM:SS)");
   println("Shutdown: Exits command handler loop, bringing the system to a halt");
   println("-------------------------------------------------------------------------");
-  println("");
 }
 
 int shutdown() {

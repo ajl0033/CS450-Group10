@@ -56,15 +56,22 @@ int settime(char* time){
 
 }
 int check_time_str(char* time_str){
-
+if (time_str[0] == '2')
+{
+  if (time_str[1] > '3')
+  {
+    println("\nTime is invalid format...");
+    return 1;
+  }
+}
 if(strlen(time_str)> 8 ||
    time_str[0]  <  '0' || time_str[0] > '2' ||
    time_str[1]  <  '0' || time_str[1] > '9' ||
    time_str[2]  != ':' ||
-   time_str[3]  <  '0' || time_str[3] > '6' ||
+   time_str[3]  <  '0' || time_str[3] > '5' ||
    time_str[4]  <  '0' || time_str[4] > '9' ||
    time_str[5]  != ':' ||
-   time_str[6]  <  '0' || time_str[6] > '6' ||
+   time_str[6]  <  '0' || time_str[6] > '5' ||
    time_str[7]  <  '0' || time_str[7] > '9'){
   println("\nTime is invalid format...");
   return 1;
