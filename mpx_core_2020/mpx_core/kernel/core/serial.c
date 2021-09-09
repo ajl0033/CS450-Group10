@@ -135,6 +135,12 @@ while(1)
         counter--;
         print("\33[2K\ruser@MPX:~/$ ");
         print(buffer);
+        int j;
+        int diff = counter-index;
+        for(j = 0; j < diff; j++)
+        {
+          print("\033[1D");
+        }
         continue;
       }
       else
@@ -153,6 +159,12 @@ while(1)
         index--;
         print("\33[2K\ruser@MPX:~/$ ");
         print(buffer);
+        int j;
+        int diff = counter-index;
+        for(j = 0; j < diff; j++)
+        {
+          print("\033[1D");
+        }
         continue;
       }
     }  // Check arrow keys
@@ -181,6 +193,12 @@ while(1)
               counter--;
               print("\33[2K\ruser@MPX:~/$ ");
               print(buffer);
+              int j;
+              int diff = counter-index;
+              for(j = 0; j < diff; j++)
+              {
+                print("\033[1D");
+              }
               continue;
             }
             else
@@ -199,6 +217,12 @@ while(1)
               index--;
               print("\33[2K\ruser@MPX:~/$ ");
               print(buffer);
+              int j;
+              int diff = counter-index;
+              for(j = 0; j < diff; j++)
+              {
+                print("\033[1D");
+              }
               continue;
             }
             checker = 0;
@@ -281,7 +305,7 @@ while(1)
         }
       continue;
     } // Check for letter or number
-    else if ((letter >= 97 && letter <= 122) || (letter >= 48 && letter <= 57) || (letter >= 65 && letter <= 90) || (letter == 47) || (letter == 92))
+    else if ((letter >= 97 && letter <= 122) || (letter >= 44 && letter <= 59) || (letter >= 65 && letter <= 90) || (letter == 92))
     {
       if (index < counter)
       {
