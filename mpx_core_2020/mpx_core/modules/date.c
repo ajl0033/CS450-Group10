@@ -36,7 +36,7 @@ BCDtoStr(inb(0x71), &date[6]);
 outb(0x70, 0x09);
 BCDtoStr(inb(0x71), &date[8]);
 
-print("\n\nCurrent Date formatted MM/DD/YYYY is: ");
+print("\n\nCurrent Date (MM/DD/YYYY): ");
 println(date);
 return 0;
 
