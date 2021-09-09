@@ -20,7 +20,7 @@ me i dont know enough about c currently to tell if this is a problem
 */
 
 int getdate(){
-char date[13] = "0000/0000/00";
+char date[12] = "0000/0000/00";
 
 
 //dayOfMonth
@@ -31,9 +31,13 @@ outb(0x70, 0x07);
 outb(0x70, 0x08);
 BCDtoStr(inb(0x71), &date[2]);
 
+//century
+outb(0x70, 0x32);
+BCDtoStr(inb(0x71), &date[5]);
+
 //year
 outb(0x70, 0x09);
-BCDtoStr(inb(0x71), &date[5]);
+BCDtoStr(inb(0x71), &date[7]);
 
 //dayofweek
 outb(0x70, 0x06);
@@ -56,23 +60,20 @@ return 0;
    print("For day of week: Sunday = 01 -- Saturday = 07\n");
    print("Example date could be \"0402/1999/02\" - or February 4th / 1999 / Monday \n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  char date[13];
+  char date[12];
 
     int count = 0;
-    while(count < 13) {
+    while(count < 12) {
     date[count] = cmdBuffer[count];
     count++;
   }
-
+//0402/2002/01
+//0123/5678/10,11
 //need to add more error checking
-  if(date[4] != '/' && date[9] != '/'){
-    print("incorrecto formatto dumbasso");
-  }
-
-cli();
-
-
-
+if(checkDate(date)){
+  return 1;
+}else{
+  cli();
 
 //dayOfMonth
 outb(0x70, 0x07);
@@ -82,9 +83,13 @@ outb(0x71, StrtoBCD(&date[0]));
 outb(0x70, 0x08);
 outb(0x71, StrtoBCD(&date[2]));
 
+//century
+outb(0x70, 0x32);
+outb(0x71, StrtoBCD(&date[5]));
+
 //year
 outb(0x70, 0x09);
-outb(0x71, StrtoBCD(&date[5]));
+outb(0x71, StrtoBCD(&date[7]));
 
 //dayofweek
 outb(0x70, 0x06);
@@ -94,4 +99,23 @@ print("\nDate has been set in the form dayOfMonth&Month/year/dayOfWeek to: ");
 println(date);
 sti();
 return 0;
+
+}
+}
+
+int checkDate(char* date){
+  if(
+     date[4] != '/' || date[9] != '/'
+ || date[0] > '3'   || date[0] < '0'
+ || date[1] < '0'   || date[1] > '9'
+ || date[2] > '1'
+ || date[10] != '0' || date[11] > '7'
+)  {
+
+  print("incorrect time input1");
+return 1;
+}
+else{
+  return 0;
+}
 }
