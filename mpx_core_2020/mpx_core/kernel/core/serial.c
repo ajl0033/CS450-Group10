@@ -96,7 +96,7 @@ int *polling(char *buffer, int *count){
 // arrow keys
 int counter = 0;
 int index = 0;
-print(">> ");
+print("user@MPX:~/$ ");
 while(1)
 {
 
@@ -133,7 +133,7 @@ while(1)
           buffer[i] = buffer[i+1];
         }
         counter--;
-        print("\33[2K\r>> ");
+        print("\33[2K\ruser@MPX:~/$ ");
         print(buffer);
         continue;
       }
@@ -151,18 +151,13 @@ while(1)
         // Print buffer
         counter--;
         index--;
-        print("\33[2K\r>> ");
+        print("\33[2K\ruser@MPX:~/$ ");
         print(buffer);
         continue;
       }
-    } // Check for delete key
-    // else if (letter == '')
-    // {
-    //   print("AAAHHHHH");
-    // } // Check arrow keys
+    }  // Check arrow keys
     else if (letter == '[')
     {
-      //print("AAAHHHHH");
       int checker = 1;
       while(checker == 1)
       {
@@ -184,7 +179,7 @@ while(1)
                 buffer[i] = buffer[i+1];
               }
               counter--;
-              print("\33[2K\r>> ");
+              print("\33[2K\ruser@MPX:~/$ ");
               print(buffer);
               continue;
             }
@@ -202,11 +197,34 @@ while(1)
               // Print buffer
               counter--;
               index--;
-              print("\33[2K\r>> ");
+              print("\33[2K\ruser@MPX:~/$ ");
               print(buffer);
               continue;
             }
             checker = 0;
+          }
+          // home key
+          if (letter2 == 'H')
+          {
+            checker = 0;
+            int j;
+            for(j = 0; j < index; j++)
+            {
+              print("\033[1D");
+            }
+            index = 0;
+          }
+          // end key
+          if (letter2 == 'F')
+          {
+            checker = 0;
+            int j;
+            int diff = counter-index;
+            for(j = 0; j < diff; j++)
+            {
+              print("\033[1C");
+            }
+            index = counter;
           }
           // up arrow
           if (letter2 == 'A')
@@ -226,15 +244,18 @@ while(1)
               {
                 index--;
                 checker = 0;
+                print("\033[1D");
               }
               else
               {
                 checker = 0;
+                print("\033[1D");
               }
             }
             else
             {
               checker = 0;
+              print("\033[1D");
             }
           }
             // right arrow
@@ -244,10 +265,12 @@ while(1)
               {
                 index++;
                 checker = 0;
+                print("\033[C");
               }
               else
               {
                 checker = 0;
+                print("\033[C");
               }
             }
             else
@@ -274,8 +297,13 @@ while(1)
       counter++;
 
       // Print buffer
-      print("\33[2K\r>> ");
+      print("\33[2K\ruser@MPX:~/$ ");
       print(buffer);
+      int j;
+      for(j = counter; j > index; j--)
+      {
+        print("\033[1D");
+      }
       continue;
     }
   }
