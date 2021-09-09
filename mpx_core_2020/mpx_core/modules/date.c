@@ -66,7 +66,8 @@ return 0;
 
 //need to add more error checking
   if(date[4] != '/' && date[9] != '/'){
-    print("incorrecto formatto dumbasso");
+    println("\n\nDate is invalid format...");
+    return 1;
   }
 
 cli();
