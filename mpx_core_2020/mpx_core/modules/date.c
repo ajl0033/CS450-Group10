@@ -11,7 +11,7 @@ day of month - 07
 month - 08
 year- 09
 
-0402/2002/1
+0402/2002/01
 dayOfMonth&Month/year/dayOfWeek
 
 
@@ -20,7 +20,7 @@ me i dont know enough about c currently to tell if this is a problem
 */
 
 int getdate(){
-char date[12] = "0000/0000/0";
+char date[13] = "0000/0000/00";
 
 
 //dayOfMonth
@@ -39,7 +39,7 @@ BCDtoStr(inb(0x71), &date[5]);
 outb(0x70, 0x06);
 BCDtoStr(inb(0x71), &date[10]);
 
-print("Current Date formatted dayOfMonth&Month/year/dayOfWeek is: ");
+print("\n\nCurrent Date formatted dayOfMonth&Month/year/dayOfWeek is: ");
 println(date);
 return 0;
 
@@ -53,18 +53,19 @@ return 0;
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
    print("\nEnter a date in the form dayOfMonth&Month/year/dayOfWeek\n");
-   print("For day of week: Sunday = 1 -- Saturday = 7\n");
-   print("Example date could be \"0402/1999/2\" - or February 4th / 1999 / Monday \n");
+   print("For day of week: Sunday = 01 -- Saturday = 07\n");
+   print("Example date could be \"0402/1999/02\" - or February 4th / 1999 / Monday \n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  char date[12];
+  char date[13];
 
     int count = 0;
-    while(count < 12) {
+    while(count < 13) {
     date[count] = cmdBuffer[count];
     count++;
   }
 
-  if(date[1] != '/' && date[4] != '/' && date[7] != '/'){
+//need to add more error checking
+  if(date[4] != '/' && date[9] != '/'){
     print("incorrecto formatto dumbasso");
   }
 
