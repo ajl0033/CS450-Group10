@@ -11,7 +11,7 @@ day of month - 07
 month - 08
 year- 09
 
-0402/2002
+04/02/2002
 01/34/6789
 dayOfMonth/Month/year/dayOfWeek
 */
@@ -99,13 +99,15 @@ return 0;
 
 }
 }
-
+// 04/02/1999
+// 01/34/6789
+//dayOfMonth/Month/year/dayOfWeek
 int checkDate(char* date){
   if(
      date[2] != '/' ||
      date[5] != '/' || date[0] > '3'
   || date[0] < '0'  || date[1] < '0'
-  || date[1] > '9'  || date[2] > '1'
+  || date[1] > '9'  || date[3] > '1'
 )  {
 
   println("\n\nDate is invalid format...");
