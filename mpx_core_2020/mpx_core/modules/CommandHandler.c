@@ -42,7 +42,7 @@ int comhand(){
   }
   else if (cmdBuffer[0] == '6') {
     println("");
-    println("\nEnter the time in the form: 'hh:mm:ss' \n");
+    println("\nEnter the time in the form: 'HH:MM:SS' \n");
     memset(cmdBuffer, '\0', 100);
     sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
     println("");
@@ -84,7 +84,7 @@ int shutdown() {
   char cmdBuffer[100];
   int bufferSize;
 
-  println("\nAre you sure you want to quit and shutdown? Y: 1, N: 2");
+  println("\n\nAre you sure you want to quit and shutdown? Y: 1, N: 2\n");
   while(1)
   {
     memset(cmdBuffer, '\0', 100);
