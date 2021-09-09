@@ -28,12 +28,12 @@ outb(0x70, 0x08);
 BCDtoStr(inb(0x71), &date[2]);
 
 //century
-// outb(0x70, 0x32);
-// BCDtoStr(inb(0x71), &date[5]);
+outb(0x70, 0x32);
+BCDtoStr(inb(0x71), &date[5]);
 
 //year
 outb(0x70, 0x09);
-BCDtoStr(inb(0x71), &date[5]);
+BCDtoStr(inb(0x71), &date[7]);
 
 //dayofweek
 outb(0x70, 0x06);
@@ -80,19 +80,20 @@ outb(0x70, 0x08);
 outb(0x71, StrtoBCD(&date[2]));
 
 //century
-// outb(0x70, 0x32);
-// outb(0x71, StrtoBCD(&date[5]));
+outb(0x70, 0x32);
+outb(0x71, StrtoBCD(&date[5]));
 
 //year
 outb(0x70, 0x09);
-outb(0x71, StrtoBCD(&date[5]));
+outb(0x71, StrtoBCD(&date[7]));
 
 //dayofweek
 outb(0x70, 0x06);
 outb(0x71, StrtoBCD(&date[10]));
 
-print("\nDate has been set in the form dayOfMonth&Month/year/dayOfWeek to: ");
+print("\n\nDate has been set in the form dayOfMonth&Month/year/dayOfWeek to: ");
 print(date);
+println("");
 sti();
 return 0;
 
