@@ -66,7 +66,7 @@ if(strlen(time_str)> 8 ||
    time_str[5]  != ':' ||
    time_str[6]  <  '0' || time_str[6] > '6' ||
    time_str[7]  <  '0' || time_str[7] > '9'){
-  println("that time is invalid dumb@$$");
+  println("\nTime is invalid format...");
   return 1;
 }
 
