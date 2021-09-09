@@ -13,10 +13,6 @@ year- 09
 
 0402/2002/01
 dayOfMonth&Month/year/dayOfWeek
-
-
-the way the registers are used and that we only have one char array scares
-me i dont know enough about c currently to tell if this is a problem
 */
 
 int getdate(){
@@ -70,22 +66,10 @@ return 0;
 //0402/2002/01
 //0123/5678/10,11
 //need to add more error checking
-<<<<<<< HEAD
 if(checkDate(date)){
   return 1;
 }else{
   cli();
-=======
-  if(date[4] != '/' && date[9] != '/'){
-    println("\n\nDate is invalid format...");
-    return 1;
-  }
-
-cli();
-
-
-
->>>>>>> da784b52bc50fd9c675d06d2ad1949e1eb80ebca
 
 //dayOfMonth
 outb(0x70, 0x07);
@@ -124,7 +108,7 @@ int checkDate(char* date){
  || date[10] != '0' || date[11] > '7'
 )  {
 
-  print("incorrect time input1");
+  print("\nincorrect time input1");
 return 1;
 }
 else{
