@@ -16,7 +16,7 @@ dayOfMonth&Month/year/dayOfWeek
 */
 
 int getdate(){
-char date[13] = "0000/0000/00";
+char date[10] = "0000/0000";
 
 
 //dayOfMonth
@@ -36,8 +36,8 @@ outb(0x70, 0x09);
 BCDtoStr(inb(0x71), &date[7]);
 
 //dayofweek
-outb(0x70, 0x06);
-BCDtoStr(inb(0x71), &date[10]);
+// outb(0x70, 0x06);
+// BCDtoStr(inb(0x71), &date[10]);
 
 print("\n\nCurrent Date formatted dayOfMonth&Month/year/dayOfWeek is: ");
 println(date);
@@ -52,14 +52,13 @@ return 0;
    int bufferSize;
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
-   print("\n\nEnter a date in the form dayOfMonth&Month/year/dayOfWeek\n");
-   print("For day of week: Sunday = 01 -- Saturday = 07\n");
-   print("Example date could be \"0402/1999/02\" - or February 4th / 1999 / Monday \n\n");
+   print("\n\nEnter a date in the form dayOfMonth&Month/year\n");
+   print("Example date could be \"0402/1999\" - or February 4th / 1999 \n\n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  char date[13];
+  char date[10];
 
     int count = 0;
-    while(count < 12) {
+    while(count < 10) {
     date[count] = cmdBuffer[count];
     count++;
   }
@@ -88,10 +87,10 @@ outb(0x70, 0x09);
 outb(0x71, StrtoBCD(&date[7]));
 
 //dayofweek
-outb(0x70, 0x06);
-outb(0x71, StrtoBCD(&date[10]));
+// outb(0x70, 0x06);
+// outb(0x71, StrtoBCD(&date[10]));
 
-print("\n\nDate has been set in the form dayOfMonth&Month/year/dayOfWeek to: ");
+print("\n\nDate has been set in the form dayOfMonth&Month/year to: ");
 print(date);
 println("");
 sti();
@@ -102,11 +101,9 @@ return 0;
 
 int checkDate(char* date){
   if(
-     date[4] != '/' || date[9] != '/'
- || date[0] > '3'   || date[0] < '0'
- || date[1] < '0'   || date[1] > '9'
- || date[2] > '1'
- || date[10] != '0' || date[11] > '7'
+     date[4] != '/' || date[0] > '3'
+  || date[0] < '0'  || date[1] < '0'
+  || date[1] > '9'  || date[2] > '1'
 )  {
 
   println("\n\nDate is invalid format...");
