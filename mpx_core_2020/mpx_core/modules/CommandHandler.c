@@ -21,7 +21,11 @@ int comhand(){
   bufferSize = 99;
   // reset size before each call to read
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  if (cmdBuffer[0] == '1') {
+  if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
+  {
+    println("\n\n**Invalid Command**");
+  }
+  else if (cmdBuffer[0] == '1') {
     help();
   }
   else if (cmdBuffer[0] == '2') {
@@ -50,8 +54,6 @@ int comhand(){
   else {
     println("\n\n**Invalid Command**");
   }
-  // process the command
-  // see if quit was entered
   }
   return 0;
 }
@@ -83,14 +85,19 @@ void help() {
 int shutdown() {
   char cmdBuffer[100];
   int bufferSize;
-  memset(cmdBuffer, '\0', 100);
-  bufferSize = 99;
 
   println("\nAre you sure you want to quit and shutdown? Y: 1, N: 2");
   while(1)
   {
+    memset(cmdBuffer, '\0', 100);
+    bufferSize = 99;
     sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-    if (cmdBuffer[0] == '1') {
+
+    if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
+    {
+      println("\nInvalid Input. Do you still want to shutdown? Y: 1, N: 2");
+    }
+    else if (cmdBuffer[0] == '1') {
       println("");
       return 1;
     }

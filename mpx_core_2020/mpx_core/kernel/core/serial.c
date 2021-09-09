@@ -104,64 +104,181 @@ while(1)
   {
     // Assign character input to letter
     char letter = inb(COM1);
+
+
     // println("\n\n");
-    // print("\'");
+    // print("===");
     // print(&letter);
-    // print("\'");
+    // print("===");
     // println("\n\n");
+
+
     // Check if enter is pressed
     // If enter is pressed, return count
     if (letter == '\n' || letter == '\r')
     {
       return count;
     } // Check if backspace is pressed
-    // else if (letter == '\b')
-    // {
-    //   print("AAAHHHHHHH");
-    //   if (index == 0)
-    //   {
-    //     continue;
-    //   }
-    //   else
-    //   {
-    //     int i;
-    //     for (i = 0; i < counter; i++)
-    //     {
-    //       if (i >= index-1)
-    //       {
-    //         buffer[index] = buffer[index+1];
-    //       }
-    //     }
-    //   }
-    // } // Check for left arrow key
+    else if (letter == 127)
+    {
+      if (counter == 0)
+      {
+        continue;
+      }
+      else if (index == 0)
+      {
+        int i;
+        for (i = 0; i < counter+1; i++)
+        {
+          buffer[i] = buffer[i+1];
+        }
+        counter--;
+        print("\33[2K\r>> ");
+        print(buffer);
+        continue;
+      }
+      else
+      {
+        int i;
+        for (i = 0; i < counter; i++)
+        {
+          if (i >= index-1)
+          {
+            buffer[i] = buffer[i+1];
+          }
+        }
+        // Decrement counter and index
+        // Print buffer
+        counter--;
+        index--;
+        print("\33[2K\r>> ");
+        print(buffer);
+        continue;
+      }
+    } // Check for delete key
     // else if (letter == '')
     // {
-    //
-    // } // Check for right arrow key
-    // else if (letter == '')
-    // {
-    //
-    // }
+    //   print("AAAHHHHH");
+    // } // Check arrow keys
+    else if (letter == '[')
+    {
+      //print("AAAHHHHH");
+      int checker = 1;
+      while(checker == 1)
+      {
+        if (inb(COM1+5) & 1)
+        {
+          char letter2 = inb(COM1);
+          // delete key
+          if (letter2 == '3')
+          {
+            if (counter == 0)
+            {
+              continue;
+            }
+            else if (index == 0)
+            {
+              int i;
+              for (i = 0; i < counter+1; i++)
+              {
+                buffer[i] = buffer[i+1];
+              }
+              counter--;
+              print("\33[2K\r>> ");
+              print(buffer);
+              continue;
+            }
+            else
+            {
+              int i;
+              for (i = 0; i < counter; i++)
+              {
+                if (i >= index-1)
+                {
+                  buffer[i] = buffer[i+1];
+                }
+              }
+              // Decrement counter and index
+              // Print buffer
+              counter--;
+              index--;
+              print("\33[2K\r>> ");
+              print(buffer);
+              continue;
+            }
+            checker = 0;
+          }
+          // up arrow
+          if (letter2 == 'A')
+          {
+            checker = 0;
+          }
+          // down arrow
+          else if (letter2 == 'B')
+          {
+            checker = 0;
+          } // left arrow
+          else if (letter2 == 'D')
+          {
+            if (counter > 0)
+            {
+              if (index > 0)
+              {
+                index--;
+                checker = 0;
+              }
+              else
+              {
+                checker = 0;
+              }
+            }
+            else
+            {
+              checker = 0;
+            }
+          }
+            // right arrow
+            else if (letter2 == 'C')
+            {
+              if (index < counter)
+              {
+                index++;
+                checker = 0;
+              }
+              else
+              {
+                checker = 0;
+              }
+            }
+            else
+            {
+              checker = 0;
+            }
+          }
+        }
+      continue;
+    } // Check for letter or number
+    else if ((letter >= 97 && letter <= 122) || (letter >= 48 && letter <= 57) || (letter >= 65 && letter <= 90) || (letter == 47) || (letter == 92))
+    {
+      if (index < counter)
+      {
+        int i;
+        for(i = counter; i > index; i--)
+        {
+          buffer[i] = buffer[i-1];
+        }
+      }
+      buffer[index] = letter;
 
+      index++;
+      counter++;
 
-
-    // Place the character (letter) in the proper index of the buffer
-    // Increment the counter
-    buffer[counter] = letter;
-    counter++;
-
-    // Increment index
-    index++;
-
-    // Print the character that was pressed
-    print("\33[2K\r>> ");
-    print(buffer);
+      // Print buffer
+      print("\33[2K\r>> ");
+      print(buffer);
+      continue;
+    }
   }
 }
-
-// remove the following line after implementing your module, this is present
-// just to allow the program to compile before R1 is complete
-//strlen(buffer);
-
 return count;
 }
