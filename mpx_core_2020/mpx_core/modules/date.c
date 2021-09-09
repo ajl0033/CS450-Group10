@@ -39,7 +39,7 @@ BCDtoStr(inb(0x71), &date[7]);
 // outb(0x70, 0x06);
 // BCDtoStr(inb(0x71), &date[10]);
 
-print("\n\nCurrent Date formatted dayOfMonth&Month/year/dayOfWeek is: ");
+print("\n\nCurrent Date formatted dayOfMonth&Month/year is: ");
 println(date);
 return 0;
 
