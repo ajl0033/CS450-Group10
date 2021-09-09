@@ -25,7 +25,7 @@ char time[9]= "00:00:00";
   BCDtoStr(inb(0x71), &time[6]);
 
 
-  print("\n\nCurrent time: ");
+  print("\n\nCurrent Time (HH:MM:SS): ");
   println(time);
   return 0;
 }

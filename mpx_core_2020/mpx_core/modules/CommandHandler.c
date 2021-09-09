@@ -42,7 +42,7 @@ int comhand(){
   }
   else if (cmdBuffer[0] == '6') {
     println("");
-    println("\nEnter the time in the form: 'hh:mm:ss' \n");
+    println("\nEnter the time in the form: 'HH:MM:SS' \n");
     memset(cmdBuffer, '\0', 100);
     sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
     println("");
