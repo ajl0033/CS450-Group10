@@ -141,20 +141,20 @@ while(1)
       }
       else if (index == 0)
       {
-        int i;
-        for (i = 0; i < counter+1; i++)
-        {
-          buffer[i] = buffer[i+1];
-        }
-        counter--;
-        print("\33[2K\ruser@MPX:~/$ ");
-        print(buffer);
-        int j;
-        int diff = counter-index;
-        for(j = 0; j < diff; j++)
-        {
-          print("\033[1D");
-        }
+        // int i;
+        // for (i = 0; i < counter+1; i++)
+        // {
+        //   buffer[i] = buffer[i+1];
+        // }
+        // counter--;
+        // print("\33[2K\ruser@MPX:~/$ ");
+        // print(buffer);
+        // int j;
+        // int diff = counter-index;
+        // for(j = 0; j < diff; j++)
+        // {
+        //   print("\033[1D");
+        // }
         continue;
       }
       else
