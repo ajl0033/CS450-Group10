@@ -5,6 +5,7 @@
     serial input and output.
 */
 
+//#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -108,6 +109,16 @@ int *polling(char *buffer, int *count){
 // insert your code to gather keyboard input via the technique of polling.
 // You must validat each key and handle special keys such as delete, back space, and
 // arrow keys
+
+// print("\033[31m"); // RED
+// print("\033[33m"); // YELLOW
+// print("\033[32m"); // GREEN
+// print("\033[34m"); // BLUE
+// print("\033[35m"); // PINK
+// print("\033[36m"); // TEAL
+// print("\033[37m"); // WHITE
+// print("\033[0m"); // RESET
+
 int counter = 0;
 int index = 0;
 print("user@MPX:~/$ ");
