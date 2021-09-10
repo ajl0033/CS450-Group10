@@ -103,8 +103,6 @@ int set_serial_in(int device)
  (this is the value that remains unchanged and returns)
  *
  * @return (integer-pointer): the value of the size of the buffer
-
-
 */
 int *polling(char *buffer, int *count){
 // insert your code to gather keyboard input via the technique of polling.
