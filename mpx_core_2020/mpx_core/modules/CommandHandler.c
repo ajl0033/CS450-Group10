@@ -14,17 +14,14 @@ int comhand(){
   int bufferSize;
   int quit=0;
   println("");
-  print("\033[36m");
+  print("\033[36m"); // TEAL
   println("*       *   * * *    *   *");
-  print("\033[36m");
   println("**     **   *    *    * * ");
-  print("\033[36m");
   println("* *   * *   * * *      *  ");
-  print("\033[36m");
   println("*  * *  *   *         * * ");
-  print("\033[36m");
   println("*   *   *   *        *   *");
   println("");
+  print("\033[37m"); // WHITE
   println("Welcome to the MPX! What would you like to do?");
   while(!quit) {
     println("\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown\n");
