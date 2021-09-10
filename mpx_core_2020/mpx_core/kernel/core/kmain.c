@@ -88,12 +88,13 @@ void kmain(void)
    klogv("Transferring control to commhand...");
    // char buffer[100];
    // int count = 1;
+   print("\033[37m");
    comhand();
-
+   print("\033[0m");
    //intcomhand();
    println("");
    // 7) System Shutdown on return from your command handler
-   print("\033[0m");
+
    klogv("Starting system shutdown procedure...");
 
    /* Shutdown Procedure */

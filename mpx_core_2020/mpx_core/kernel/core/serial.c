@@ -121,7 +121,9 @@ int *polling(char *buffer, int *count){
 
 int counter = 0;
 int index = 0;
+print("\033[34m");
 print("user@MPX:~/$ ");
+print("\033[33m");
 while(1)
 {
 
@@ -130,6 +132,7 @@ while(1)
     if (counter > 99)
     {
       print("\n\nBuffer Overflow... Redirecting to Main Menu\n");
+      print("\033[37m");
       return count;
     }
 
@@ -148,6 +151,7 @@ while(1)
     // If enter is pressed, return count
     if (letter == '\n' || letter == '\r')
     {
+      print("\033[37m");
       return count;
     } // Check if backspace is pressed
     else if (letter == 127)
@@ -188,7 +192,9 @@ while(1)
         // Print buffer
         counter--;
         index--;
+        print("\033[34m");
         print("\33[2K\ruser@MPX:~/$ ");
+        print("\033[33m");
         print(buffer);
         int j;
         int diff = counter-index;
@@ -222,7 +228,9 @@ while(1)
                 buffer[i] = buffer[i+1];
               }
               counter--;
+              print("\033[34m");
               print("\33[2K\ruser@MPX:~/$ ");
+              print("\033[33m");
               print(buffer);
               int j;
               int diff = counter-index;
@@ -250,7 +258,9 @@ while(1)
               // Print buffer
               counter--;
               index--;
+              print("\033[34m");
               print("\33[2K\ruser@MPX:~/$ ");
+              print("\033[33m");
               print(buffer);
               int j;
               int diff = counter-index;
@@ -356,7 +366,9 @@ while(1)
       counter++;
 
       // Print buffer
+      print("\033[34m");
       print("\33[2K\ruser@MPX:~/$ ");
+      print("\033[33m");
       print(buffer);
       int j;
       for(j = counter; j > index; j--)
@@ -367,5 +379,6 @@ while(1)
     }
   }
 }
+print("\033[37m");
 return count;
 }
