@@ -13,6 +13,13 @@ int comhand(){
   char cmdBuffer[100];
   int bufferSize;
   int quit=0;
+  println("");
+  println("*       *   * * *    *   *");
+  println("**     **   *    *    * * ");
+  println("* *   * *   * * *      *  ");
+  println("*  * *  *   *         * * ");
+  println("*   *   *   *        *   *");
+  println("");
   println("Welcome to the MPX! What would you like to do?");
   while(!quit) {
     println("\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown\n");
