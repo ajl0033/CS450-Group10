@@ -116,6 +116,12 @@ while(1)
 
   if (inb(COM1+5) & 1)
   {
+    if (counter > 99)
+    {
+      print("\n\nBuffer Overflow... Redirecting to Main Menu\n");
+      return count;
+    }
+
     // Assign character input to letter
     char letter = inb(COM1);
 
@@ -215,12 +221,16 @@ while(1)
               }
               continue;
             }
+            else if (index == counter)
+            {
+              continue;
+            }
             else
             {
               int i;
               for (i = 0; i < counter; i++)
               {
-                if (i >= index-1)
+                if (i >= index)
                 {
                   buffer[i] = buffer[i+1];
                 }
