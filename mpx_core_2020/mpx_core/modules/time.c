@@ -5,7 +5,12 @@
 #include "bcdConversion.h"
 #include <core/io.h>
 
-//needs fixing just a start
+/*
+get time has no arguements
+irrelvantly returns 0
+prints the time that was accessed through the outb function
+calls bcdtoStr on the time to convert from BCD to a char and place it in the time char array
+*/
 int gettime(){
   //testing output
 char time[9]= "00:00:00";
@@ -29,6 +34,15 @@ char time[9]= "00:00:00";
   println(time);
   return 0;
 }
+
+/*
+set time has the time char array pointer as an arguement
+irrelvantly return 0 or 1 if the time is invalid
+the time has aleardy been inputted after printing a prompt in the command handler
+calls check_time_str to make sure the time entered was valid
+sets the time using the outB and StrtoBCD function to convert the char to a BCD
+
+*/
 int settime(char* time){
   if(check_time_str(time)){
     return 1;
@@ -55,6 +69,13 @@ int settime(char* time){
   }
 
 }
+/*
+check_time_str recieves the time char array pointer as an arguement
+makes sure the time is of valid length and valid format in military time
+returns 0 if the time is valid and 1 if the time is invalid
+if 0 is returned the settime function continues if 1 is returned a invalid format message is returned
+
+*/
 int check_time_str(char* time_str){
 if (time_str[0] == '2')
 {
