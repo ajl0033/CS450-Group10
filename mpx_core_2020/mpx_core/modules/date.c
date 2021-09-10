@@ -121,23 +121,29 @@ int checkDate(char* date){
   {
     if (date[1] > 2)
     {
+      print("\033[31m");
       println("\n\nDate is invalid format...");
+      print("\033[37m");
       return 1;
     }
   }
 
-  if (date[4] == 3)
+  if (date[3] == '3')
   {
-    if (date[5] > 1)
+    if (date[4] > 1)
     {
+      print("\033[31m");
       println("\n\nDate is invalid format...");
+      print("\033[37m");
       return 1;
     }
   }
 
   if ((date[10] >= 97 && date[10] <= 122) || (date[10] >= 44 && date[10] <= 59) || (date[10] >= 65 && date[10] <= 90) || (date[10] == 92))
   {
+    print("\033[31m");
     println("\n\nDate is invalid format...");
+    print("\033[37m");
     return 1;
   }
 
@@ -152,7 +158,9 @@ int checkDate(char* date){
         date[8] < '0' || date[8] > '9' ||
         date[9] < '0' || date[9] > '9'
 )  {
+  print("\033[31m");
   println("\n\nDate is invalid format...");
+  print("\033[37m");
 return 1;
 }
 else{

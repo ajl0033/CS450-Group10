@@ -131,6 +131,7 @@ while(1)
   {
     if (counter > 99)
     {
+      print("\033[31m");
       print("\n\nBuffer Overflow... Redirecting to Main Menu\n");
       print("\033[37m");
       return count;

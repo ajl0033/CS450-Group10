@@ -32,7 +32,9 @@ int comhand(){
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
   {
+    print("\033[31m");
     println("\n\n**Invalid Command**");
+    print("\033[37m");
   }
   else if (cmdBuffer[0] == '1') {
     help();
@@ -61,7 +63,9 @@ int comhand(){
     quit = shutdown();
   }
   else {
+    print("\033[31m");
     println("\n\n**Invalid Command**");
+    print("\033[37m");
   }
   }
   return 0;
@@ -92,8 +96,9 @@ void help() {
 int shutdown() {
   char cmdBuffer[100];
   int bufferSize;
-
+  print("\033[31m");
   println("\n\nAre you sure you want to quit and shutdown? Y: 1, N: 2\n");
+  print("\033[37m");
   while(1)
   {
     memset(cmdBuffer, '\0', 100);
@@ -102,7 +107,9 @@ int shutdown() {
 
     if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
     {
+      print("\033[31m");
       println("\nInvalid Input. Do you still want to shutdown? Y: 1, N: 2");
+      print("\033[37m");
     }
     else if (cmdBuffer[0] == '1') {
       println("");
@@ -113,7 +120,9 @@ int shutdown() {
       return 0;
     }
     else {
+      print("\033[31m");
       println("\nInvalid Input. Do you still want to shutdown? Y: 1, N: 2");
+      print("\033[37m");
     }
   }
 }
