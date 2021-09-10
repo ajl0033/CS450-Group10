@@ -90,6 +90,22 @@ int set_serial_in(int device)
   return NO_ERROR;
 }
 
+/*
+ * Gathers keyboard input from the user and passes it into the command buffer
+ which is stored as a char pointer.
+ * It validates each keystroke including all alphanumeric characters, backslash,
+ forwardslash, comma, and period.  It also handles special keys such as backspace,
+ delete, the home and end key, and the arrow keys.
+ *
+ * @param - buffer (char-pointer): the data that is stored in the command buffer
+ (usually empty)
+ * @param - count (integer-pointer): the value of the size of the buffer
+ (this is the value that remains unchanged and returns)
+ *
+ * @return (integer-pointer): the value of the size of the buffer
+
+
+*/
 int *polling(char *buffer, int *count){
 // insert your code to gather keyboard input via the technique of polling.
 // You must validat each key and handle special keys such as delete, back space, and
