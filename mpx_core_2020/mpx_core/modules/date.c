@@ -13,9 +13,16 @@ year- 09
 
 04/02/2002
 01/34/6789
-dayOfMonth/Month/year/dayOfWeek
+dayOfMonth/Month/year
 */
 
+
+/*
+get date has no arguements
+irrelvantly returns 0
+prints the date that was accessed through the outb function
+calls bcdtoStr on the date to convert from BCD to a char and place it in the date char array
+*/
 int getdate(){
 char date[11] = "00/00/0000";
 
@@ -43,7 +50,14 @@ return 0;
 }
 
 
+/*
+set date has no arguements
+irrelvantly return 0
+reads in the date entered by the user after printing a prompt
+calls checkDate to make sure the date entered was valid
+sets the date using the outB and StrtoBCD function to convert the char to a BCD
 
+*/
  int setdate(){
    char cmdBuffer[100];
    int bufferSize;
@@ -61,7 +75,8 @@ return 0;
   }
 // 04/02/2002
 // 01/34/6789
-//need to add more error checking
+
+
 if(checkDate(date)){
   return 1;
 }else{
@@ -95,6 +110,14 @@ return 0;
 // 04/02/1999
 // 01/34/6789
 // Month/dayOfMonth/year
+
+/*
+check date recieves the date char array pointer as an arguements
+makes sure the date is valid
+returns 0 if the date is valid and 1 if the date is invalid
+if 0 is returned the setdate function continues if 1 is returned a invalid format message is returned
+
+*/
 int checkDate(char* date){
   if (date[0] == '1')
   {
