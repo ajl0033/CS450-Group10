@@ -19,7 +19,7 @@ int comhand(){
   println("**     **   *    *    * * ");
   println("* *   * *   * * *      *  ");
   println("*  * *  *   *         * * ");
-  println("*   *   *   *        *   *");
+  println("*   *   *   *        *   *   A CS 450 Group Project");
   println("");
   print("\033[37m"); // WHITE
   println("Welcome to the MPX! What would you like to do?");
