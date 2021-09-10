@@ -26,6 +26,9 @@ calls bcdtoStr on the date to convert from BCD to a char and place it in the dat
 int getdate(){
 char date[11] = "00/00/0000";
 
+//year
+outb(0x70, 0x09);
+BCDtoStr(inb(0x71), &date[8]);
 
 //Month
 outb(0x70, 0x08);
@@ -38,10 +41,6 @@ outb(0x70, 0x07);
 //century
 outb(0x70, 0x32);
 BCDtoStr(inb(0x71), &date[6]);
-
-//year
-outb(0x70, 0x09);
-BCDtoStr(inb(0x71), &date[8]);
 
 print("\n\nCurrent Date (MM/DD/YYYY): ");
 println(date);
@@ -69,7 +68,7 @@ sets the date using the outB and StrtoBCD function to convert the char to a BCD
   char date[11];
 
     int count = 0;
-    while(count < 10) {
+    while(count < 11) {
     date[count] = cmdBuffer[count];
     count++;
   }
@@ -82,6 +81,9 @@ if(checkDate(date)){
 }else{
   cli();
 
+  //year
+  outb(0x70, 0x09);
+  outb(0x71, StrtoBCD(&date[8]));
 
 //month
 outb(0x70, 0x08);
@@ -94,10 +96,6 @@ outb(0x71, StrtoBCD(&date[3]));
 //century
 outb(0x70, 0x32);
 outb(0x71, StrtoBCD(&date[6]));
-
-//year
-outb(0x70, 0x09);
-outb(0x71, StrtoBCD(&date[8]));
 
 print("\n\nDate has been set in the form MM/DD/YYYY to: ");
 print(date);
