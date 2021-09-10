@@ -14,10 +14,15 @@ int comhand(){
   int bufferSize;
   int quit=0;
   println("");
+  print("\033[36m");
   println("*       *   * * *    *   *");
+  print("\033[36m");
   println("**     **   *    *    * * ");
+  print("\033[36m");
   println("* *   * *   * * *      *  ");
+  print("\033[36m");
   println("*  * *  *   *         * * ");
+  print("\033[36m");
   println("*   *   *   *        *   *");
   println("");
   println("Welcome to the MPX! What would you like to do?");
