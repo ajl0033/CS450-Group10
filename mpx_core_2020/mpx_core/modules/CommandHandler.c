@@ -14,14 +14,32 @@ int comhand(){
   int bufferSize;
   int quit=0;
   println("");
-  print("\033[36m"); // TEAL
-  println("*       *   * * *    *   *");
-  println("**     **   *    *    * * ");
-  println("* *   * *   * * *      *  ");
-  println("*  * *  *   *         * * ");
-  println("*   *   *   *        *   *   A CS 450 Group Project");
+
+
+
+
+
+
+
+
+
+  print("\e[1;1H\e[2J");
+  print("\033[34m"); // BLUE
   println("");
-  print("\033[37m"); // WHITE
+  println("================================================");
+  print("\033[33m"); // YELLOW
+  println("      _____ ______________  ___");
+  println("     /     \\\\______   \\   \\/  /");
+  println("    /  \\ /  \\|     ___/\\     / ");
+  println("   /    Y    \\    |    /     \\    ____________");
+  println("   \\____|__  /____|   /___/\\  \\");
+  println("           \\/               \\_/    Version R1  ");
+  println("                                  ____________");
+  println("");
+  print("\033[34m"); // BLUE
+  println("================================================");
+  println("");
+  print("\033[33m"); // YELLOW
   println("Welcome to the MPX! What would you like to do?");
   while(!quit) {
     println("\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown\n");
