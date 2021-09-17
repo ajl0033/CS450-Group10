@@ -82,19 +82,19 @@ int comhand(){
       help();
     }
   }
-  else if (cmdBuffer[0] == '2') {
+  else if (cmdBuffer[0] == 'v' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'r' && cmdBuffer[3] == 's' && cmdBuffer[4] == 'i' && cmdBuffer[5] == 'o' && cmdBuffer[6] == 'n') {
     version();
   }
-  else if (cmdBuffer[0] == '3') {
+  else if ((cmdBuffer[0] == 'g' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 'd' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 't' && cmdBuffer[6] == 'e')) {
     getdate();
   }
-  else if (cmdBuffer[0] == '4') {
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 'd' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 't' && cmdBuffer[6] == 'e') {
     setdate();
   }
-  else if (cmdBuffer[0] == '5') {
+  else if (cmdBuffer[0] == 'g' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 't' && cmdBuffer[4] == 'i' && cmdBuffer[5] == 'm' && cmdBuffer[6] == 'e') {
     gettime();
   }
-  else if (cmdBuffer[0] == '6') {
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 't' && cmdBuffer[4] == 'i' && cmdBuffer[5] == 'm' && cmdBuffer[6] == 'e') {
     println("");
     println("\nEnter the time in the form: 'HH:MM:SS' \n");
     memset(cmdBuffer, '\0', 100);
@@ -102,7 +102,7 @@ int comhand(){
     println("");
     settime(cmdBuffer);
   }
-  else if (cmdBuffer[0] == '7') {
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'u' && cmdBuffer[3] == 't' && cmdBuffer[4] == 'd' && cmdBuffer[5] == 'o' && cmdBuffer[6] == 'w' && cmdBuffer[7] == 'n') {
     quit = shutdown();
   }
   else {
