@@ -32,6 +32,7 @@ char time[9]= "00:00:00";
 
   print("\n\nCurrent Time (HH:MM:SS): ");
   println(time);
+  print("\n");
   return 0;
 }
 
@@ -64,6 +65,7 @@ int settime(char* time){
 
     print("\nTime has been set to: ");
     println(time);
+    println("");
     sti();
     return 0;
   }
@@ -82,7 +84,7 @@ if (time_str[0] == '2')
   if (time_str[1] > '3')
   {
     print("\033[31m");
-    println("\nTime is invalid format...");
+    println("\nTime is invalid format...\n");
     print("\033[37m");
     return 1;
   }
@@ -97,7 +99,7 @@ if(strlen(time_str)> 8 ||
    time_str[6]  <  '0' || time_str[6] > '5' ||
    time_str[7]  <  '0' || time_str[7] > '9'){
   print("\033[31m");
-  println("\nTime is invalid format...");
+  println("\nTime is invalid format...\n");
   print("\033[37m");
   return 1;
 }

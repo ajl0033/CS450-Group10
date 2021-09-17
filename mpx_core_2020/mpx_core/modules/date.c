@@ -44,6 +44,7 @@ BCDtoStr(inb(0x71), &date[6]);
 
 print("\n\nCurrent Date (MM/DD/YYYY): ");
 println(date);
+println("");
 return 0;
 
 }
@@ -63,7 +64,6 @@ sets the date using the outB and StrtoBCD function to convert the char to a BCD
    memset(cmdBuffer, '\0', 100);
    bufferSize = 99;
    print("\n\nEnter a date in the form MM/DD/YYYY\n");
-   print("Example date could be \"02/04/1999\" - or February 4th / 1999 \n\n");
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   char date[11];
 
@@ -122,7 +122,7 @@ int checkDate(char* date){
     if (date[1] > 2)
     {
       print("\033[31m");
-      println("\n\nDate is invalid format...");
+      println("\n\nDate is invalid format...\n");
       print("\033[37m");
       return 1;
     }
@@ -133,7 +133,7 @@ int checkDate(char* date){
     if (date[4] > 1)
     {
       print("\033[31m");
-      println("\n\nDate is invalid format...");
+      println("\n\nDate is invalid format...\n");
       print("\033[37m");
       return 1;
     }
@@ -142,7 +142,7 @@ int checkDate(char* date){
   if ((date[10] >= 97 && date[10] <= 122) || (date[10] >= 44 && date[10] <= 59) || (date[10] >= 65 && date[10] <= 90) || (date[10] == 92))
   {
     print("\033[31m");
-    println("\n\nDate is invalid format...");
+    println("\n\nDate is invalid format...\n");
     print("\033[37m");
     return 1;
   }
@@ -159,7 +159,7 @@ int checkDate(char* date){
         date[9] < '0' || date[9] > '9'
 )  {
   print("\033[31m");
-  println("\n\nDate is invalid format...");
+  println("\n\nDate is invalid format...\n");
   print("\033[37m");
 return 1;
 }
