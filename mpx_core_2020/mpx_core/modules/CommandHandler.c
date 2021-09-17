@@ -43,27 +43,44 @@ int comhand(){
   println("Welcome to the MPX! What would you like to do?");
   print("\033[37m");
   while(!quit) {
-
-    int i;
-    for (i = 0; i<100; i++)
-    {
-      cmdBuffer[i] = '*';
-    }
-
     println("\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown\n");
   // get a command
   memset(cmdBuffer, '\0', 100);
   bufferSize = 99;
+
+  int i;
+  for (i = 0; i<100; i++)
+  {
+    cmdBuffer[i] = ' ';
+  }
+
   // reset size before each call to read
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-  if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
-  {
-    print("\033[31m");
-    println("\n\n**Invalid Command**");
-    print("\033[37m");
-  }
-  else if (cmdBuffer[0] == '1') {
-    help();
+  // if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
+  // {
+  //   print("\033[31m");
+  //   println("\n\n**Invalid Command**");
+  //   print("\033[37m");
+  // }
+  // else
+  if (cmdBuffer[0] == 'h' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'p') {
+    int i;
+    int check = 1;
+    for (i=4; i<100; i++)
+    {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+    }
+    if (check == 1)
+    {
+      help();
+    }
   }
   else if (cmdBuffer[0] == '2') {
     version();
