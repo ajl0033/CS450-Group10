@@ -43,6 +43,13 @@ int comhand(){
   println("Welcome to the MPX! What would you like to do?");
   print("\033[37m");
   while(!quit) {
+
+    int i;
+    for (i = 0; i<100; i++)
+    {
+      cmdBuffer[i] = '*';
+    }
+
     println("\n1: Help\n2: Version\n3: Get Date\n4: Set Date\n5: Get Time\n6: Set Time\n7: Shutdown\n");
   // get a command
   memset(cmdBuffer, '\0', 100);
