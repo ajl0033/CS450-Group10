@@ -13,25 +13,25 @@ typedef struct {
   struct node *previousPCB;
 } PCB;
 
-void AllocatePCB();
+void AllocatePCB(); // Anthony
 
-void FreePCB();
+void FreePCB(); // Anthony
 
-void SetupPCB();
+void SetupPCB(); // Jarett
 
-void FindPCB();
+void FindPCB(); // Will
 
-void InsertPCB();
+void InsertPCB(); // Emily
 
-void RemovePCB();
+void RemovePCB(); // Emily
 
-PCB CreatePCB();
+PCB CreatePCB(); // Jarett
 
-void DeletePCB();
+void DeletePCB(); //Will
 
 void BlockPCB();
 
-ovid UnblockPCB();
+void UnblockPCB();
 
 void SuspendPCB();
 
