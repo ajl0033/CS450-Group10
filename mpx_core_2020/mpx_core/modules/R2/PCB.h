@@ -1,69 +1,48 @@
 // PCB Header
 #include <system.h>
 
-AllocatePCB() {
+typedef struct {
+  char [100] *processName;
+  unsigned char *processClass;
+  int *priority;
+  int *stateReady;
+  int *stateSuspended;
+  unsigned char *stackTop;
+  unsigned char *stackBase;
+  struct node *nextPCB;
+  struct node *previousPCB;
+} PCB;
 
-}
+void AllocatePCB();
 
-FreePCB() {
+void FreePCB();
 
-}
+void SetupPCB();
 
-SetupPCB() {
+void FindPCB();
 
-}
+void InsertPCB();
 
-FindPCB() {
+void RemovePCB();
 
-}
+PCB CreatePCB();
 
-InsertPCB() {
+void DeletePCB();
 
-}
+void BlockPCB();
 
-RemovePCB() {
+ovid UnblockPCB();
 
-}
+void SuspendPCB();
 
-CreatePCB() {
+void ResumePCB();
 
-}
+void SetPCBPriority();
 
-DeletePCB() {
+void ShowPCB();
 
-}
+void ShowReady();
 
-BlockPCB() {
+void ShowBlocked();
 
-}
-
-UnblockPCB() {
-
- }
-
-SuspendPCB() {
-
- }
-
-ResumePCB() {
-
- }
- SetPCBPriority() {
-
- }
-
- ShowPCB() {
-
- }
-
- ShowReady() {
-
- }
-
- ShowBlocked() {
-
- }
-
- ShowAll() {
-
- }
+void ShowAll();
