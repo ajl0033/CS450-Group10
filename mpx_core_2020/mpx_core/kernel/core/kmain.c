@@ -35,7 +35,7 @@ void kmain(void)
    // extern void *mbd;
    // char *boot_loader_name = (char*)((long*)mbd)[16];
 
-   mpx_init(MODULE_R1);
+   mpx_init(MODULE_R2);
    // 0) Initialize Serial I/O
    // functions to initialize serial I/O can be found in serial.c
    // there are 3 functions to call

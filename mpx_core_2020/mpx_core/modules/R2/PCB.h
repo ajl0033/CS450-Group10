@@ -4,16 +4,16 @@
 typedef struct {
   char [100] *processName;
   unsigned char *processClass;
-  int *priority;
-  int *stateReady;
-  int *stateSuspended;
+  int priority;
+  int stateReady;
+  int stateSuspended;
   unsigned char *stackTop;
   unsigned char *stackBase;
-  struct node *nextPCB;
-  struct node *previousPCB;
+  PCB *nextPCB;
+  PCB *previousPCB;
 } PCB;
 
-void AllocatePCB(); // Anthony
+PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony
 
