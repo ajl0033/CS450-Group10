@@ -61,13 +61,6 @@ int comhand(){
       cmdBuffer[i] = ' ';
     }
   }
-  // if ((cmdBuffer[1] >= 97 && cmdBuffer[1] <= 122) || (cmdBuffer[1] >= 48 && cmdBuffer[1] <= 57) || (cmdBuffer[1] >= 65 && cmdBuffer[1] <= 90) || (cmdBuffer[1] == 47) || (cmdBuffer[1] == 92))
-  // {
-  //   print("\033[31m");
-  //   println("\n\n**Invalid Command**");
-  //   print("\033[37m");
-  // }
-  // else
   if (cmdBuffer[0] == 'h' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'p') {
     int i;
     int check = 1;
@@ -220,7 +213,7 @@ void version() {
   println("");
   println("");
   println("------------------------------");
-  println("Current Version: R1 - 9/17/2021");
+  println("Current Version: R2 - 10/01/2021");
   println("------------------------------\n");
 }
 
