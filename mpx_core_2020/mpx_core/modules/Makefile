@@ -16,7 +16,9 @@ CommandHandler.o\
 print.o\
 bcdConversion.o\
 time.o\
-date.o
+date.o\
+PCB.o\
+queue.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
