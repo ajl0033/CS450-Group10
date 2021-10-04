@@ -13,6 +13,10 @@ typedef struct {
   PCB *previousPCB;
 } PCB;
 
+void fifo_enqueue (*pcbqueue q, PCB pcb); // Emily
+
+void priority_enqueue (*pcbqueue q, PCB pcb);// Emily
+
 PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony

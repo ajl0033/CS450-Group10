@@ -8,8 +8,3 @@ struct queue {
     pcb *head;
     pcb *tail;
 } queue;
-
-struct CreateQueue(queue *st) {
-  
-  return st;
-}
