@@ -6,13 +6,9 @@
 #include <Queue.c>
 
 Struct ready = CreateQueue();  // Is this how you do it??? Hahaha
-int readySize = 0;
 Struct blocked = CreateQueue();
-int blockedSize = 0;
 Struct SuspendedReady = CreateQueue();
-int SuspendedReadySize = 0;
 Struct SuspendedBlocked = CreatQueue();
-int SuspendedBlockedSize;
 
 PCB* AllocatePCB()
 {
