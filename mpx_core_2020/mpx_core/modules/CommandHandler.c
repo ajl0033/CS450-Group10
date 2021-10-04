@@ -5,7 +5,7 @@
 #include "CommandHandler.h"
 #include "print.h"
 #include <string.h>
-#include "date.c"
+#include "date.h"
 #include "time.h"
 //#include "date.h"
 
@@ -14,15 +14,6 @@ int comhand(){
   int bufferSize;
   int quit=0;
   println("");
-
-
-
-
-
-
-
-
-
   print("\e[1;1H\e[2J");
   print("\033[34m"); // BLUE
   println("");

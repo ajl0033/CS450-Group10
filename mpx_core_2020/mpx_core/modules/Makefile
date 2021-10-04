@@ -15,7 +15,8 @@ mpx_supt.o\
 CommandHandler.o\
 print.o\
 bcdConversion.o\
-time.o
+time.o\
+date.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
