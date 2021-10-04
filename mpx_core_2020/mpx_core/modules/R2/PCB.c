@@ -35,9 +35,21 @@ PCB* FindPCB(char* processName)
   // Search each queue for process. Null if not found, else return PCB.
   // How do you access the queues, and how are the queues initialized.
   // Will will figure this out at some point! Studying right now for 450 and 320!
-  for (int i = 0; i < readySize; i++)
+  for (int i = 0; i < ready->count; i++)
   {
-    if (ready)
+    // If process = processName, return PCB
+  }
+  for (int i = 0; i < blocked->count; i++)
+  {
+    // If process = processName, return PCB
+  }
+  for (int i = 0; i < SuspendedReady->count; i++)
+  {
+    // If process = processName, return PCB
+  }
+  for (int i = 0; i < SuspendedBlocked->count; i++)
+  {
+    // If process = processName, return PCB
   }
   return null;
 }
