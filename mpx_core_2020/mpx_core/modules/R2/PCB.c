@@ -8,13 +8,13 @@
 PCB* AllocatePCB()
 {
   sys_alloc_mem(PCB);
-  PCB* PCBlock;
-  return PCBlock;
+  PCB* pcb;
+  return pcb;
 }
 
-PCB* FreePCB()
+void FreePCB()
 {
-  int check = sys_free_mem(PCBlock);
+  int check = sys_free_mem(pcb);
   if (check == -1)
   {
     print("Error freeing memory");
@@ -28,7 +28,7 @@ PCB* FreePCB()
 PCB* FindPCB(char* processName)
 {
   // Search each queue for process. Null if not found, else return PCB.
-  // How do you access the queues, and how are the queues initialized. 
+  // How do you access the queues, and how are the queues initialized.
   // Will will figure this out at some point! Studying right now for 450 and 320!
   return null;
 }
