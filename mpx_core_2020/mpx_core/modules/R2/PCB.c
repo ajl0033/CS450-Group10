@@ -207,7 +207,21 @@ void InsertPCB(PCB* pcb){
 
 }
 void RemovePCB(PCB* pcb){
-  FindPCB(pcb->processName);
+  //if pcb to be removed is at the head, make the head now equal
+  // the next pcb
+  if(pcb = head){
+    head->nextPCB = pcb->nextPCB->nextPCB;
+    head = pcb->nextPCB;
+  }
+  //esle if it is at the tail,
+  else if(pcb = tail){
+    tail->previousPCB = pcb->previousPCB->previousPCB;
+    tail = pcb->previousPCB;
+  }
+  else{
+ pcb->previousPCB->nextPCB = pcb->nextPCB;
+ pcb->nextPCB->previousPCB = pcb->previousPCB;
+}
 }
 
 void createPCB(char* [100] processName, unsigned char processClass, int priority){
@@ -335,15 +349,6 @@ void ShowBlocked()
     showPCB(tempBlocked->processName);
     tempBlocked = tempBlocked->nextPCB;
   }
-}
-
-void ShowAll()
-{
-  println();
-  ShowReady();
-  println();
-  ShowBlocked();
-  println();
 }
 
 }
