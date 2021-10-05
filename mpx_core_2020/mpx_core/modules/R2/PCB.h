@@ -13,15 +13,15 @@ typedef struct {
   PCB *previousPCB;
 } PCB;
 
-void fifo_enqueue (*pcbqueue q, PCB pcb); // Emily
+void fifo_enqueue (*queue q, PCB pcb); // Emily
 
-void priority_enqueue (*pcbqueue q, PCB pcb);// Emily
+void priority_enqueue (*queue q, PCB pcb);// Emily
 
 PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony
 
-void SetupPCB(); // Jarett
+PCB* SetupPCB(); // Jarett
 
 void FindPCB(); // Will
 
@@ -29,7 +29,7 @@ void InsertPCB(); // Emily
 
 void RemovePCB(); // Emily
 
-PCB CreatePCB(); // Jarett
+void CreatePCB(); // Jarett
 
 void DeletePCB(); //Will
 
