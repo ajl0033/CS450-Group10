@@ -1,6 +1,7 @@
 // PCB Implementation
 #include <string.h>
 #include <system.h>
+#include "mpx_supt.h"
 #include <core/serial.h>
 #include "PCB.h"
 #include "print.h"
@@ -42,8 +43,8 @@ void fifo_enqueue (queue *q, PCB *pcb){
 }void priority_enqueue (queue *q, PCB *pcb){
   //if nothing yet in the queue
   if(q->count == 0){
-    q->nextPCB = NULL;
-    q->previousPCB = NULL;
+    q->tail->nextPCB = NULL;
+    pcb->previousPCB = NULL;
     q->head = pcb;
     q->tail = pcb;
   }
@@ -80,7 +81,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
 }
 
 
-}
+
 PCB* AllocatePCB()
 {
   sys_alloc_mem(PCB);
@@ -91,25 +92,25 @@ PCB* AllocatePCB()
 PCB* SetupPCB(char* processName, unsigned char processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
-  PCB pcb = AllocatePCB();
+  PCB* pcb = AllocatePCB();
   int nameLen = strlen(processName);
   int classLen = strlen(processClass);
   int i = 0, j = 0;
 
   while (i<nameLen){
-    pcb.processName[i] = processName[i];
-    i++
+    pcb->processName[i] = processName[i];
+    i++;
   }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
   while (j<classLen){
-    pcb.processClass[j] = processClass[j];
-    j++
+    pcb->processClass[j] = processClass[j];
+    j++;
   }
 
-  pcb.priority = priority;
+  pcb->priority = priority;
   // automatically put them in notsuspended and ready state?
-  pcb.stateReady = 0;
-  pcb.stateSuspended = 0;
+  pcb->stateReady = 0;
+  pcb->stateSuspended = 0;
 
   return pcb;
 }
