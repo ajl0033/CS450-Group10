@@ -5,6 +5,8 @@
 #include "PCB.h"
 #include <Queue.c>
 
+//stateReady = 0,1 or 2 ---- 0 = ready - 1 = running - 2 = blocked
+//stateSuspended = 0,1 ---- 0 = not suspended - 1 = suspended
 queue ready= {0,NULL,NULL};
 queue blocked = {0,NULL,NULL};
 queue SuspendedReady= {0,NULL,NULL};
@@ -79,7 +81,8 @@ PCB* AllocatePCB()
 }
 
 PCB* SetupPCB(char [100] processName, unsigned char processClass, int priority){
-  //need to figure out the correct way to insert a unsigned char and char array into a struct
+  // I'm not sure what to do with process class, stackTop, and stackBase.
+
   PCB = AllocatePCB();
   int nameLen = strlen(processName);
   int classLen = strlen(processClass);
@@ -87,10 +90,12 @@ PCB* SetupPCB(char [100] processName, unsigned char processClass, int priority){
 
   while (i<nameLen){
     PCB.processName[i] = processName[i];
+    i++
   }
-  //uhh what tf is an unsingned char
+  //so I'm not really sure what processClass is, I've read the slide a few times :(
   while (j<classLen){
     PCB.processClass[j] = processClass[j];
+    j++
   }
 
   PCB.priority = priority;
@@ -101,10 +106,18 @@ PCB* SetupPCB(char [100] processName, unsigned char processClass, int priority){
 }
 
 void createPCB(char [100] processName, unsigned char processClass, int priority){
-//need to error check that the name is unique and valid, class and priority are valid
-SetupPCB(processName,processClass,priority);
-priority_enqueue(ready*,processName);
-}
+  if(FindPCB(processName) == NULL){
+    println("not unique process name")
+  }
+  if(priority > 9 || priority < 1){
+    println("not a valid priority")
+  }
+//how do you check if processname and class are valid?
+
+  SetupPCB(processName,processClass,priority);
+//always put into ready queue because you never get the chance to change it at this point
+    priority_enqueue(ready*,processName);
+  }
 
 void FreePCB()
 {
@@ -170,13 +183,27 @@ void DeletePCB(char* processName)
   PCB* pcb = FindPCB(processName);
   FreePCB(pcb);
 }
+
 void InsertPCB(PCB* pcb){
   if(pcb->stateReady == 1){
     priority_enqueue(&ready,pcb);
   }else{
     fifo_enqueue(&blocked,pcb);
   }
+
 }
 void RemovePCB(PCB* pcb){
   FindPCB(pcb->processName);
+}
+
+void BlockPCB(char* [100] processName){
+  if(FindPCB(processName == NULL)){
+    println("Name must be valid")
+  }
+  //might need to be PCB* but not sure
+  PCB = FindPCB(processName);
+  PCB.stateReady = 2;
+ //Do you remove it because that would clear all memory
+  InsertPCB(PCB);
+
 }

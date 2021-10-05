@@ -33,7 +33,7 @@ void CreatePCB(); // Jarett
 
 void DeletePCB(); //Will
 
-void BlockPCB();
+void BlockPCB(); //Jarett
 
 void UnblockPCB();
 
