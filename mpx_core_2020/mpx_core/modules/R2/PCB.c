@@ -92,27 +92,27 @@ PCB* AllocatePCB()
 PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
-  PCB = AllocatePCB();
+  pcb = AllocatePCB();
   int nameLen = strlen(processName);
   int classLen = strlen(processClass);
   int i = 0, j = 0;
 
   while (i<nameLen){
-    PCB.processName[i] = processName[i];
+    pcb.processName[i] = processName[i];
     i++
   }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
   while (j<classLen){
-    PCB.processClass[j] = processClass[j];
+    pcb.processClass[j] = processClass[j];
     j++
   }
 
-  PCB.priority = priority;
+  pcb.priority = priority;
   // automatically put them in notsuspended and ready state?
-  PCB.stateReady = 0;
-  PCB.stateSuspended = 0;
+  pcb.stateReady = 0;
+  pcb.stateSuspended = 0;
 
-  return PCB;
+  return pcb;
 }
 
 void FreePCB()
