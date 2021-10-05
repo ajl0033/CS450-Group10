@@ -77,6 +77,23 @@ PCB* AllocatePCB()
   PCB* pcb;
   return pcb;
 }
+PCB* SetupPCB(char [100] processName, unsigned char processClass, int priority){
+  //need to figure out the correct way to insert a unsigned char and char array into a struct
+  PCB = AllocatePCB();
+  PCB.processName = processName;
+  PCB.processClass = processClass;
+  PCB.priority = priority;
+  PCB.stateReady = 0;
+  PCB.stateSuspended = 0;
+
+  return PCB;
+}
+
+void createPCB(char [100] processName, unsigned char processClass, int priority){
+//need to error check that the name is unique and valid, class and priority are valid
+SetupPCB(processName,processClass,priority);
+priority_enqueue(ready*,processName);
+}
 
 void FreePCB()
 {
