@@ -16,9 +16,21 @@ test for will
 */
 typedef struct queue {
     int count;
-    pcb *head;
-    pcb *tail;
+    PCB *head;
+    PCB *tail;
 } queue;
+
+typedef struct PCB{
+  char [100] *processName;
+  unsigned char *processClass;
+  int priority;
+  int state;
+  int stateSuspended;
+  unsigned char *stackTop;
+  unsigned char *stackBase;
+  struct PCB *nextPCB;
+  struct PCB *previousPCB;
+} PCB;
 
 queue ready= {0,NULL,NULL};
 queue blocked = {0,NULL,NULL};

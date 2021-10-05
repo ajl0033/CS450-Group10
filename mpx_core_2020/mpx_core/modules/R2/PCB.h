@@ -2,16 +2,22 @@
 #include <system.h>
 
 typedef struct PCB{
-  char [100] *processName;
+  char *processName;
   unsigned char *processClass;
   int priority;
   int state;
   int stateSuspended;
   unsigned char *stackTop;
   unsigned char *stackBase;
-  PCB *nextPCB;
-  PCB *previousPCB;
+  struct PCB *nextPCB;
+  struct PCB *previousPCB;
 } PCB;
+
+typedef struct queue {
+    int count;
+    PCB *head;
+    PCB *tail;
+} queue;
 
 void fifo_enqueue (queue *q, PCB *pcb); // Emily
 
