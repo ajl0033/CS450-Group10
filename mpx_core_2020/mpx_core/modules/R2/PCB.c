@@ -92,7 +92,7 @@ PCB* AllocatePCB()
 PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
-  pcb = AllocatePCB();
+  PCB pcb = AllocatePCB();
   int nameLen = strlen(processName);
   int classLen = strlen(processClass);
   int i = 0, j = 0;
@@ -207,16 +207,35 @@ void InsertPCB(PCB* pcb){
 
 }
 void RemovePCB(PCB* pcb){
+queue q;
+  //if not suspended
+  if(pcb->stateSuspended == 0){
+
+    if(pcb->stateReady == 0){
+      q = ready;
+    }else{
+      q = blocked;
+    }
+  }
+
+  else{
+    if(pcb->stateReady == 0){
+      q = SuspendedReady;
+    }else{
+      q = SuspendedBlocked;
+    }
+  }
+
   //if pcb to be removed is at the head, make the head now equal
   // the next pcb
-  if(pcb = head){
-    head->nextPCB = pcb->nextPCB->nextPCB;
-    head = pcb->nextPCB;
+  if(pcb = q->head){
+    q->head->nextPCB = pcb->nextPCB->nextPCB;
+    q->head = pcb->nextPCB;
   }
   //esle if it is at the tail,
-  else if(pcb = tail){
-    tail->previousPCB = pcb->previousPCB->previousPCB;
-    tail = pcb->previousPCB;
+  else if(pcb = q->tail){
+    q->tail->previousPCB = pcb->previousPCB->previousPCB;
+    q->tail = pcb->previousPCB;
   }
   else{
  pcb->previousPCB->nextPCB = pcb->nextPCB;
@@ -244,8 +263,8 @@ void BlockPCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateReady = 2;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateReady = 2;
 
   //could move removePCB to the top but i have no clue tbh
   RemovePCB(PCB);
@@ -260,8 +279,8 @@ void UnblockPCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateReady = 0;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateReady = 0;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -274,8 +293,8 @@ void SuspendPCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateSuspended = 1;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateSuspended = 1;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -288,8 +307,8 @@ void ResumePCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateSuspended = 0;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateSuspended = 0;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -304,9 +323,8 @@ void SetPCBPriority(char* [100] processName, int priority){
   else if (priority > 9 || priority < 1){
     println("not a valid priority")
   }else{
-  //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.priority = priority;
+    PCB* pcb = FindPCB(processName);
+    pcb->priority = priority;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -351,4 +369,12 @@ void ShowBlocked()
   }
 }
 
+void ShowAll()
+{
+  println();
+  ShowReady();
+  println();
+  ShowBlocked();
+  println();
+}
 }
