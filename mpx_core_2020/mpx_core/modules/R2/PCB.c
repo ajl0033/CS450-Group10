@@ -176,6 +176,7 @@ PCB* FindPCB(char* processName)
 void DeletePCB(char* processName)
 {
   PCB* pcb = FindPCB(processName);
+  RemovePCB(pcb);
   FreePCB(pcb);
 }
 
