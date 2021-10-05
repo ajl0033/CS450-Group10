@@ -245,8 +245,8 @@ queue q= {0,NULL,NULL};
  pcb->nextPCB->previousPCB = pcb->previousPCB;
 }
 }
- 
-void createPCB(char* processName, int processClass, int priority){
+
+void CreatePCB(char* processName, int processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name");
   }
@@ -407,7 +407,7 @@ void ShowPCB(char* processName){
       println("Priority: 9");
     }
   }
-
+}
 void ShowReady()
 {
   PCB *tempReady = ready.head;
@@ -437,5 +437,4 @@ void ShowAll()
   println("");
   ShowBlocked();
   println("");
-}
 }
