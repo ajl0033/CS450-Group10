@@ -26,7 +26,7 @@ void priority_enqueue (queue *q, PCB *pcb);// Emily
 
 PCB* AllocatePCB(); // Anthony
 
-void FreePCB(); // Anthony
+void FreePCB(PCB* pcb); // Anthony
 
 PCB* SetupPCB(char* processName, int processClass, int priority); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
 

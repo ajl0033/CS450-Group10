@@ -99,11 +99,13 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
 
   int i = 0;
 
+
   while (i<nameLen){
     pcb->processName[i] = processName[i];
     i++;
   }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
+
   while (j<classLen){
     pcb->processClass[j] = processClass[j];
     j++;
@@ -117,7 +119,7 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
   return pcb;
 }
 
-void FreePCB()
+void FreePCB(PCB* pcb)
 {
   int check = sys_free_mem(pcb);
   if (check == -1)
