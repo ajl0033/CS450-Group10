@@ -17,8 +17,7 @@ print.o\
 bcdConversion.o\
 time.o\
 date.o\
-PCB.o\
-queue.o
+PCB.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
