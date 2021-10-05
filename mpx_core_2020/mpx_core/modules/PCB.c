@@ -245,7 +245,7 @@ queue q= {0,NULL,NULL};
  pcb->nextPCB->previousPCB = pcb->previousPCB;
 }
 }
-
+ 
 void createPCB(char* processName, int processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name");
