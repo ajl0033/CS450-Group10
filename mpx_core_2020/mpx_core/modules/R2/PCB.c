@@ -3,7 +3,6 @@
 #include <system.h>
 #include <core/serial.h>
 #include "PCB.h"
-#include <Queue.c>
 #include <print.c>
 
 /*
@@ -15,6 +14,11 @@ Need to figure out what to do with processClass, stackTop, and stackBase in Setu
 
 test for will
 */
+typedef struct queue {
+    int count;
+    pcb *head;
+    pcb *tail;
+} queue;
 
 queue ready= {0,NULL,NULL};
 queue blocked = {0,NULL,NULL};
