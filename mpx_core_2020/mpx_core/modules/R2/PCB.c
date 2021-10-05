@@ -8,7 +8,7 @@
 /*
 stateReady = 0,1 or 2 ---- 0 = ready -- 1 = running -- 2 = blocked
 stateSuspended = 0,1 ---- 0 = not suspended -- 1 = suspended
-
+^this can be changed but its how i coded it
 
 Need to figure out what to do with processClass, stackTop, and stackBase in SetupPCB
 
@@ -87,7 +87,7 @@ PCB* AllocatePCB()
   return pcb;
 }
 
-PCB* SetupPCB(char [100] processName, unsigned char processClass, int priority){
+PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
   PCB = AllocatePCB();
@@ -207,7 +207,7 @@ void RemovePCB(PCB* pcb){
   FindPCB(pcb->processName);
 }
 
-void createPCB(char [100] processName, unsigned char processClass, int priority){
+void createPCB(char* [100] processName, unsigned char processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name")
   }
@@ -245,6 +245,7 @@ void UnblockPCB(char* [100] processName){
   //might need to be PCB* but not sure
   PCB = FindPCB(processName);
   PCB.stateReady = 0;
+
   RemovePCB(PCB);
   InsertPCB(PCB);
 }
@@ -258,6 +259,7 @@ void SuspendPCB(char* [100] processName){
   //might need to be PCB* but not sure
   PCB = FindPCB(processName);
   PCB.stateSuspended = 1;
+
   RemovePCB(PCB);
   InsertPCB(PCB);
 }
@@ -271,13 +273,14 @@ void ResumePCB(char* [100] processName){
   //might need to be PCB* but not sure
   PCB = FindPCB(processName);
   PCB.stateSuspended = 0;
+
   RemovePCB(PCB);
   InsertPCB(PCB);
 }
 }
 
 //pretty similar to the rest - might need to mess with removing it from its queue
-void SetPCBPriority(char [100] processName, int priority){
+void SetPCBPriority(char* [100] processName, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name")
   }

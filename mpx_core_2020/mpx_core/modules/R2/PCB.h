@@ -21,7 +21,7 @@ PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony
 
-PCB* SetupPCB(); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
+PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
 
 void FindPCB(); // Will
 
@@ -29,19 +29,19 @@ void InsertPCB(); // Emily
 
 void RemovePCB(); // Emily
 
-void CreatePCB(); // Jarett
+void CreatePCB(char* [100] processName, unsigned char processClass, int priority); // Jarett
 
-void DeletePCB(); //Will
+void DeletePCB(char* [100] processName); //Will
 
-void BlockPCB(); //Jarett
+void BlockPCB(char* [100] processName); //Jarett
 
-void UnblockPCB();// these were all really similar
+void UnblockPCB(char* [100] processName);// these were all really similar
 
-void SuspendPCB();// and should be mostly right I have to study for 422 tm
+void SuspendPCB(char* [100] processName);// and should be mostly right - I have to study for 422 tm
 
-void ResumePCB();//  cuz i have the quiz wednesday I  can still hop on
+void ResumePCB(char* [100] processName);//  cuz i have the quiz wednesday - I  can still hop on
 
-void SetPCBPriority();// and help but cant do to much Hopefully this is a decent start
+void SetPCBPriority(char* [100] processName, int priority);// and help but cant do to much - Hopefully this is a decent start
 
 void ShowPCB();
 
