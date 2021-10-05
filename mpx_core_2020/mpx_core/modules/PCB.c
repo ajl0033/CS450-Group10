@@ -111,7 +111,7 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
 
   pcb->priority = priority;
   // automatically put them in notsuspended and ready state?
-  pcb->stateReady = 0;
+  pcb->state = 0;
   pcb->stateSuspended = 0;
 
   return pcb;
@@ -191,7 +191,7 @@ void InsertPCB(PCB* pcb){
   //if not suspended
   if(pcb->stateSuspended == 0){
 
-    if(pcb->stateReady == 0){
+    if(pcb->state == 0){
       priority_enqueue(&ready,pcb);
     }else{
       fifo_enqueue(&blocked,pcb);
@@ -200,7 +200,7 @@ void InsertPCB(PCB* pcb){
 
   //else suspended
   else{
-    if(pcb->stateReady == 0){
+    if(pcb->state == 0){
       priority_enqueue(&SuspendedReady,pcb);
     }else{
       fifo_enqueue(&SuspendedBlocked,pcb);
@@ -213,7 +213,7 @@ queue q;
   //if not suspended
   if(pcb->stateSuspended == 0){
 
-    if(pcb->stateReady == 0){
+    if(pcb->state == 0){
       q = ready;
     }else{
       q = blocked;
@@ -221,7 +221,7 @@ queue q;
   }
 
   else{
-    if(pcb->stateReady == 0){
+    if(pcb->state == 0){
       q = SuspendedReady;
     }else{
       q = SuspendedBlocked;
@@ -266,7 +266,7 @@ void BlockPCB(char* processName){
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
-  pcb->stateReady = 2;
+  pcb->state = 2;
 
   //could move removePCB to the top but i have no clue tbh
   RemovePCB(PCB);
@@ -282,7 +282,7 @@ void UnblockPCB(char* processName){
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
-  pcb->stateReady = 0;
+  pcb->state = 0;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
