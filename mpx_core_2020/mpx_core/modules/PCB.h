@@ -32,9 +32,9 @@ PCB* SetupPCB(char* processName, int processClass, int priority); // Jarett - it
 
 void FindPCB(char* processName); // Will
 
-void InsertPCB(); // Emily
+void InsertPCB(PCB* pcb); // Emily
 
-void RemovePCB(); // Emily
+void RemovePCB(PCB* pcb); // Emily
 
 void CreatePCB(char* processName, int processClass, int priority); // Jarett
 
