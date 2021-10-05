@@ -104,14 +104,10 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
     i++;
   }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
-<<<<<<< HEAD
   while (j<classLen){
     pcb->processClass[j] = processClass[j];
     j++;
   }
-=======
-  pcb.processClass = processClass;
->>>>>>> c8a98ed28709d9f55acfe8f881daf5062e5347be
 
   pcb->priority = priority;
   // automatically put them in notsuspended and ready state?
