@@ -21,7 +21,7 @@ PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony
 
-void SetupPCB(); // Jarett
+PCB* SetupPCB(); // Jarett
 
 void FindPCB(); // Will
 
@@ -29,7 +29,7 @@ void InsertPCB(); // Emily
 
 void RemovePCB(); // Emily
 
-PCB CreatePCB(); // Jarett
+void CreatePCB(); // Jarett
 
 void DeletePCB(); //Will
 
