@@ -307,7 +307,8 @@ void ShowPCB(char [100] processName){
   else
   {
     PCB* pcb = FindPCB(processName);
-    println(processName);
+    println();
+    println("Process " + processName);
     println(pcb->processClass);
     println(pcb->state);
     println(pcb->stateSuspended);
@@ -317,10 +318,22 @@ void ShowPCB(char [100] processName){
 void ShowReady()
 {
   PCB *tempReady = ready->head;
+  println("PCB's in ready queue:")
   while (tempReady->nextPCB != NULL)
   {
     showPCB(tempReady->processName);
     tempReady = tempReady->nextPCB;
+  }
+}
+
+void ShowBlocked()
+{
+  PCB *tempBlocked = blocked->head;
+  println("PCB's in blocked queue:");
+  while (tempBlocked->nextPCB != NULL)
+  {
+    showPCB(tempBlocked->processName);
+    tempBlocked = tempBlocked->nextPCB;
   }
 }
 
