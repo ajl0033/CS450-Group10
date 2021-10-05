@@ -7,7 +7,6 @@
 #include <string.h>
 #include "date.h"
 #include "time.h"
-#include "R2/queue.h"
 #include "R2/PCB.h"
 
 int comhand(){

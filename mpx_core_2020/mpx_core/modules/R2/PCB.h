@@ -1,6 +1,5 @@
 // PCB Header
 #include <system.h>
-#include "queue.h"
 
 typedef struct PCB{
   char [100] *processName;
