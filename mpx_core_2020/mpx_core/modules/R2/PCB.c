@@ -90,8 +90,8 @@ PCB* AllocatePCB()
 }
 
 PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority){
-  // I'm not sure what to do with process class, stackTop, and stackBase.
-
+  // I'm not sure what to do with process class, stackTop, and stackBase
+  //the code here may certainly be wrong
   PCB = AllocatePCB();
   int nameLen = strlen(processName);
   int classLen = strlen(processClass);
@@ -244,8 +244,8 @@ void BlockPCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateReady = 2;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateReady = 2;
 
   //could move removePCB to the top but i have no clue tbh
   RemovePCB(PCB);
@@ -260,8 +260,8 @@ void UnblockPCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateReady = 0;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateReady = 0;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -274,8 +274,8 @@ void SuspendPCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateSuspended = 1;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateSuspended = 1;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -288,8 +288,8 @@ void ResumePCB(char* [100] processName){
     println("Name must be valid")
   }else{
   //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.stateSuspended = 0;
+  PCB* pcb = FindPCB(processName);
+  pcb->stateSuspended = 0;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
@@ -304,9 +304,8 @@ void SetPCBPriority(char* [100] processName, int priority){
   else if (priority > 9 || priority < 1){
     println("not a valid priority")
   }else{
-  //might need to be PCB* but not sure
-  PCB = FindPCB(processName);
-  PCB.priority = priority;
+    PCB* pcb = FindPCB(processName);
+    pcb->priority = priority;
 
   RemovePCB(PCB);
   InsertPCB(PCB);
