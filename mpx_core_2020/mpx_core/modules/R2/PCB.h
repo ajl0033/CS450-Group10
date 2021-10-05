@@ -1,7 +1,8 @@
 // PCB Header
 #include <system.h>
 
-typedef struct {
+
+typedef struct PCB{
   char [100] *processName;
   unsigned char *processClass;
   int priority;
