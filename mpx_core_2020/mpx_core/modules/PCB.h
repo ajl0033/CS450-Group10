@@ -3,7 +3,7 @@
 
 typedef struct PCB{
   char *processName;
-  unsigned char *processClass;
+  int processClass;
   int priority;
   int state;
   int stateSuspended;
