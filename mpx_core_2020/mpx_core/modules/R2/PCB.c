@@ -314,4 +314,14 @@ void ShowPCB(char [100] processName){
     println(pcb->priority);
   }
 
+void ShowReady()
+{
+  PCB *tempReady = ready->head;
+  while (tempReady->nextPCB != NULL)
+  {
+    showPCB(tempReady->processName);
+    tempReady = tempReady->nextPCB;
+  }
+}
+
 }

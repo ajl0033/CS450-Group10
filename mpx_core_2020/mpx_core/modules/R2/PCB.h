@@ -43,9 +43,9 @@ void ResumePCB(char* [100] processName);//  cuz i have the quiz wednesday - I  c
 
 void SetPCBPriority(char* [100] processName, int priority);// and help but cant do to much - Hopefully this is a decent start
 
-void ShowPCB(char* [100] processName);
+void ShowPCB(char* [100] processName); // Will
 
-void ShowReady();
+void ShowReady(); // Will
 
 void ShowBlocked();
 
