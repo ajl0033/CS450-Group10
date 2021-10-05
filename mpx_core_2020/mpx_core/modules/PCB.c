@@ -142,7 +142,7 @@ PCB* FindPCB(char* processName)
   while (tempReady->nextPCB != NULL)
   {
     // If process = processName, return PCB
-    if (tempReady->processName = processName)
+    if (tempReady->processName == processName)
     {
       return tempReady;
     }
@@ -151,7 +151,7 @@ PCB* FindPCB(char* processName)
   while (tempBlocked->nextPCB != NULL)
   {
     // If process = processName, return PCB
-    if (tempBlocked->processName = processName)
+    if (tempBlocked->processName == processName)
     {
       return tempBlocked;
     }
@@ -160,7 +160,7 @@ PCB* FindPCB(char* processName)
   while (tempSReady->nextPCB != NULL)
   {
     // If process = processName, return PCB
-    if (tempSReady->processName = processName)
+    if (tempSReady->processName == processName)
     {
       return tempSReady;
     }
@@ -169,7 +169,7 @@ PCB* FindPCB(char* processName)
   while (tempSBlocked->nextPCB != NULL)
   {
     // If process = processName, return PCB
-    if (tempSBlocked->processName = processName)
+    if (tempSBlocked->processName == processName)
     {
       return tempSBlocked;
     }
@@ -211,7 +211,7 @@ void InsertPCB(PCB* pcb){
 
 }
 void RemovePCB(PCB* pcb){
-queue q;
+queue q= {0,NULL,NULL};
   //if not suspended
   if(pcb->stateSuspended == 0){
 
