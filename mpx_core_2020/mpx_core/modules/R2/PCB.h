@@ -47,6 +47,6 @@ void ShowPCB(char* [100] processName); // Will
 
 void ShowReady(); // Will
 
-void ShowBlocked();
+void ShowBlocked(); // Will
 
-void ShowAll();
+void ShowAll(); // Will

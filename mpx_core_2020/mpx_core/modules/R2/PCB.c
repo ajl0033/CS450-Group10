@@ -337,4 +337,13 @@ void ShowBlocked()
   }
 }
 
+void ShowAll()
+{
+  println();
+  ShowReady();
+  println();
+  ShowBlocked();
+  println();
+}
+
 }
