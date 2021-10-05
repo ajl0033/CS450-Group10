@@ -3,7 +3,7 @@
 #include <system.h>
 #include <core/serial.h>
 #include "PCB.h"
-#include <print.c>
+#include "print.h"
 
 /*
 stateReady = 0,1 or 2 ---- 0 = ready -- 1 = running -- 2 = blocked

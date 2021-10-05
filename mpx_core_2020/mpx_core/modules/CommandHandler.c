@@ -7,7 +7,7 @@
 #include <string.h>
 #include "date.h"
 #include "time.h"
-#include "R2/PCB.h"
+#include "PCB.h"
 
 int comhand(){
   char cmdBuffer[100];
