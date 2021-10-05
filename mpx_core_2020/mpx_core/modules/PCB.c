@@ -39,8 +39,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
     q->tail = pcb;
   }
   q->count++;
-}
-int priority_enqueue (queue *q, PCB *pcb){
+}void priority_enqueue (queue *q, PCB *pcb){
   //if nothing yet in the queue
   if(q->count == 0){
     q->nextPCB = NULL;
