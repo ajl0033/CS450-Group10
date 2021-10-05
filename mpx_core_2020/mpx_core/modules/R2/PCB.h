@@ -5,7 +5,7 @@ typedef struct {
   char [100] *processName;
   unsigned char *processClass;
   int priority;
-  int stateReady;
+  int state;
   int stateSuspended;
   unsigned char *stackTop;
   unsigned char *stackBase;
@@ -23,7 +23,7 @@ void FreePCB(); // Anthony
 
 PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
 
-void FindPCB(); // Will
+void FindPCB(char* [100] processName); // Will
 
 void InsertPCB(); // Emily
 
@@ -43,7 +43,7 @@ void ResumePCB(char* [100] processName);//  cuz i have the quiz wednesday - I  c
 
 void SetPCBPriority(char* [100] processName, int priority);// and help but cant do to much - Hopefully this is a decent start
 
-void ShowPCB();
+void ShowPCB(char* [100] processName);
 
 void ShowReady();
 

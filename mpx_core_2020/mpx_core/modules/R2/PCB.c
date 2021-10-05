@@ -4,6 +4,7 @@
 #include <core/serial.h>
 #include "PCB.h"
 #include <Queue.c>
+#include <print.c>
 
 /*
 stateReady = 0,1 or 2 ---- 0 = ready -- 1 = running -- 2 = blocked
@@ -299,13 +300,18 @@ void SetPCBPriority(char* [100] processName, int priority){
 }
 
 void ShowPCB(char [100] processName){
-  if(FindPCB(processName) == NULL){
-    println("not unique process name")
-  }else{
-      PCB = FindPCB(processName);
-
-      // Print dat ish
-      // i think
+  if(FindPCB(processName) == NULL)
+  {
+    println("Process does not exist!")
+  }
+  else
+  {
+    PCB* pcb = FindPCB(processName);
+    println(processName);
+    println(pcb->processClass);
+    println(pcb->state);
+    println(pcb->stateSuspended);
+    println(pcb->priority);
   }
 
 }
