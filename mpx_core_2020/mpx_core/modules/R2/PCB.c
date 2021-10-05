@@ -12,6 +12,7 @@ stateSuspended = 0,1 ---- 0 = not suspended -- 1 = suspended
 
 Need to figure out what to do with processClass, stackTop, and stackBase in SetupPCB
 
+test for will
 */
 
 queue ready= {0,NULL,NULL};
