@@ -7,8 +7,8 @@
 #include <string.h>
 #include "date.h"
 #include "time.h"
-#include "queue.h"
-#include "PCB.h"
+#include "R2/queue.h"
+#include "R2/PCB.h"
 
 int comhand(){
   char cmdBuffer[100];
