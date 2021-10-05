@@ -191,173 +191,179 @@ int comhand(){
       quit = shutdown();
     }
   }
-
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'u' && cmdBuffer[2] == 's' && cmdBuffer[3] == 'p' && cmdBuffer[4] == 'e' && cmdBuffer[5] == 'n' && cmdBuffer[6] == 'd')
-  int i;
-  int check = 1;
-  for (i=7; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'u' && cmdBuffer[2] == 's' && cmdBuffer[3] == 'p' && cmdBuffer[4] == 'e' && cmdBuffer[5] == 'n' && cmdBuffer[6] == 'd') {
+    int i;
+    int check = 1;
+    for (i=7; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      SuspendPCB(cmdBuffer);
-    }
-  }
-  else if (cmdBuffer[0] == 'r' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 's' && cmdBuffer[3] == 'u' && cmdBuffer[4] == 'm' && cmdBuffer[5] == 'e')
-  int i;
-  int check = 1;
-  for (i=6; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
-    {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      ResumePCB(cmdBuffer);
-    }
-  }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 'p' && cmdBuffer[4] == 'r' && cmdBuffer[5] == 'i' && cmdBuffer[6] == 'o' && cmdBuffer[7] == 'r' && cmdBuffer[8] == 'i' && cmdBuffer[9] == 't' && cmdBuffer[10] == 'y')
-  int i;
-  int check = 1;
-  for (i=11; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
-    {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      char process[100] = cmdBuffer;
-      println("");
-      println("\nEnter the Process Priority...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      int priority = 99;
-      int check = 1;
-      while (check == 1) {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
         check = 0;
-        if (cmdBuffer[0] == '1') { priority = 1;}
-        else if (cmdBuffer[0] == '1') { priority = 1;}
-        else if (cmdBuffer[0] == '2') { priority = 2;}
-        else if (cmdBuffer[0] == '3') { priority = 3;}
-        else if (cmdBuffer[0] == '4') { priority = 4;}
-        else if (cmdBuffer[0] == '5') { priority = 5;}
-        else if (cmdBuffer[0] == '6') { priority = 6;}
-        else if (cmdBuffer[0] == '7') { priority = 7;}
-        else if (cmdBuffer[0] == '8') { priority = 8;}
-        else if (cmdBuffer[0] == '9') { priority = 9;}
-        else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
+        break;
       }
-      SetPCBPriority(process, priority);
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        SuspendPCB(cmdBuffer);
+      }
     }
   }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 'c' && cmdBuffer[5] == 'b')
-  int i;
-  int check = 1;
-  for (i=7; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 'r' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 's' && cmdBuffer[3] == 'u' && cmdBuffer[4] == 'm' && cmdBuffer[5] == 'e') {
+    int i;
+    int check = 1;
+    for (i=6; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      ShowPCB(cmdBuffer);
-    }
-  }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'l')
-  int i;
-  int check = 1;
-  for (i=7; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
-    {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      ShowAll();
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        ResumePCB(cmdBuffer);
+      }
     }
   }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'r' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'a' && cmdBuffer[7] == 'd' && cmdBuffer[8] == 'y')
-  int i;
-  int check = 1;
-  for (i=9; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 'p' && cmdBuffer[4] == 'r' && cmdBuffer[5] == 'i' && cmdBuffer[6] == 'o' && cmdBuffer[7] == 'r' && cmdBuffer[8] == 'i' && cmdBuffer[9] == 't' && cmdBuffer[10] == 'y') {
+    int i;
+    int check = 1;
+    for (i=11; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      ShowReady();
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        char process[100] = cmdBuffer;
+        println("");
+        println("\nEnter the Process Priority...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        int priority = 99;
+        int check = 1;
+        while (check == 1) {
+          check = 0;
+          if (cmdBuffer[0] == '1') { priority = 1;}
+          else if (cmdBuffer[0] == '1') { priority = 1;}
+          else if (cmdBuffer[0] == '2') { priority = 2;}
+          else if (cmdBuffer[0] == '3') { priority = 3;}
+          else if (cmdBuffer[0] == '4') { priority = 4;}
+          else if (cmdBuffer[0] == '5') { priority = 5;}
+          else if (cmdBuffer[0] == '6') { priority = 6;}
+          else if (cmdBuffer[0] == '7') { priority = 7;}
+          else if (cmdBuffer[0] == '8') { priority = 8;}
+          else if (cmdBuffer[0] == '9') { priority = 9;}
+          else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
+        }
+        SetPCBPriority(process, priority);
+      }
     }
   }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'b' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'o' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'k' && cmdBuffer[9] == 'e' && cmdBuffer[10] == 'd')
-  int i;
-  int check = 1;
-  for (i=11; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 'c' && cmdBuffer[5] == 'b') {
+    int i;
+    int check = 1;
+    for (i=7; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        ShowPCB(cmdBuffer);
+      }
     }
-    if (check == 1)
+  }
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'l') {
+    int i;
+    int check = 1;
+    for (i=7; i<100; i++)
     {
-      ShowBlocked();
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        ShowAll();
+      }
+    }
+  }
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'r' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'a' && cmdBuffer[7] == 'd' && cmdBuffer[8] == 'y') {
+    int i;
+    int check = 1;
+    for (i=9; i<100; i++)
+    {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        ShowReady();
+      }
+    }
+  }
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'b' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'o' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'k' && cmdBuffer[9] == 'e' && cmdBuffer[10] == 'd') {
+    int i;
+    int check = 1;
+    for (i=11; i<100; i++)
+    {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        ShowBlocked();
+      }
     }
   }
   //////////////////////////////////////////////////////////////////////////////////
@@ -365,124 +371,128 @@ int comhand(){
   /////             TEMP COMMANDS                                    ///////////////
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
-  else if (cmdBuffer[0] == 'c' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'a' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b')
-  int i;
-  int check = 1;
-  for (i=9; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 'c' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'a' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b') {
+    int i;
+    int check = 1;
+    for (i=9; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      char process[100] = cmdBuffer;
-      println("");
-      println("\nEnter the Process Class...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      char class[100] = cmdBuffer;
-      println("");
-      println("\nEnter the Process Priority...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      int priority = 99;
-      int check = 1;
-      while (check == 1) {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
         check = 0;
-        if (cmdBuffer[0] == '1') { priority = 1;}
-        else if (cmdBuffer[0] == '1') { priority = 1;}
-        else if (cmdBuffer[0] == '2') { priority = 2;}
-        else if (cmdBuffer[0] == '3') { priority = 3;}
-        else if (cmdBuffer[0] == '4') { priority = 4;}
-        else if (cmdBuffer[0] == '5') { priority = 5;}
-        else if (cmdBuffer[0] == '6') { priority = 6;}
-        else if (cmdBuffer[0] == '7') { priority = 7;}
-        else if (cmdBuffer[0] == '8') { priority = 8;}
-        else if (cmdBuffer[0] == '9') { priority = 9;}
-        else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
+        break;
       }
-      CreatePCB(process, class, priority);
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        char process[100] = cmdBuffer;
+        println("");
+        println("\nEnter the Process Class...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        char class[100] = cmdBuffer;
+        println("");
+        println("\nEnter the Process Priority...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        int priority = 99;
+        int check = 1;
+        while (check == 1) {
+          check = 0;
+          if (cmdBuffer[0] == '1') { priority = 1;}
+          else if (cmdBuffer[0] == '1') { priority = 1;}
+          else if (cmdBuffer[0] == '2') { priority = 2;}
+          else if (cmdBuffer[0] == '3') { priority = 3;}
+          else if (cmdBuffer[0] == '4') { priority = 4;}
+          else if (cmdBuffer[0] == '5') { priority = 5;}
+          else if (cmdBuffer[0] == '6') { priority = 6;}
+          else if (cmdBuffer[0] == '7') { priority = 7;}
+          else if (cmdBuffer[0] == '8') { priority = 8;}
+          else if (cmdBuffer[0] == '9') { priority = 9;}
+          else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
+        }
+        CreatePCB(process, class, priority);
+      }
     }
   }
-  else if (cmdBuffer[0] == 'd' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b')
-  int i;
-  int check = 1;
-  for (i=9; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 'd' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b') {
+    int i;
+    int check = 1;
+    for (i=9; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      DeletePCB(cmdBuffer);
-    }
-  }
-  else if (cmdBuffer[0] == 'b' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'c' && cmdBuffer[4] == 'k' && cmdBuffer[5] == 'p' && cmdBuffer[6] == 'c' && cmdBuffer[7] == 'b')
-  int i;
-  int check = 1;
-  for (i=8; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
-    {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
-    }
-    if (check == 1)
-    {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      BlockPCB(cmdBuffer);
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        DeletePCB(cmdBuffer);
+      }
     }
   }
-  else if (cmdBuffer[0] == 'u' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'b' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'o' && cmdBuffer[5] == 'c' && cmdBuffer[6] == 'k' && cmdBuffer[7] == 'p' && cmdBuffer[8] == 'c' && cmdBuffer[9] == 'b')
-  int i;
-  int check = 1;
-  for (i=10; i<100; i++)
-  {
-    if (cmdBuffer[i] != ' ')
+  else if (cmdBuffer[0] == 'b' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'c' && cmdBuffer[4] == 'k' && cmdBuffer[5] == 'p' && cmdBuffer[6] == 'c' && cmdBuffer[7] == 'b') {
+    int i;
+    int check = 1;
+    for (i=8; i<100; i++)
     {
-      print("\033[31m");
-      println("\n\n**Invalid Command**\n");
-      print("\033[37m");
-      check = 0;
-      break;
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        BlockPCB(cmdBuffer);
+      }
     }
-    if (check == 1)
+  }
+  else if (cmdBuffer[0] == 'u' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'b' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'o' && cmdBuffer[5] == 'c' && cmdBuffer[6] == 'k' && cmdBuffer[7] == 'p' && cmdBuffer[8] == 'c' && cmdBuffer[9] == 'b') {
+    int i;
+    int check = 1;
+    for (i=10; i<100; i++)
     {
-      println("");
-      println("\nEnter the Process Name...\n");
-      memset(cmdBuffer, '\0', 100);
-      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-      println("");
-      UnblockPCB(cmdBuffer);
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+      if (check == 1)
+      {
+        println("");
+        println("\nEnter the Process Name...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        UnblockPCB(cmdBuffer);
+      }
     }
   }
 //////////////////////////////////////////////////////////////////////////////////
