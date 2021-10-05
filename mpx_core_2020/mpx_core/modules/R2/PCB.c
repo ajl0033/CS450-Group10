@@ -3,7 +3,7 @@
 #include <system.h>
 #include <core/serial.h>
 #include "PCB.h"
-#include "queue.h"
+#include <Queue.c>
 #include <print.c>
 
 /*
@@ -89,7 +89,7 @@ PCB* AllocatePCB()
   return pcb;
 }
 
-PCB* SetupPCB(char* [100] processName, unsigned char processClass, int priority){
+PCB* SetupPCB(char* processName, unsigned char processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
   PCB pcb = AllocatePCB();
@@ -243,7 +243,7 @@ queue q;
 }
 }
 
-void createPCB(char* [100] processName, unsigned char processClass, int priority){
+void createPCB(char* processName, unsigned char processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name")
   }
@@ -258,7 +258,7 @@ void createPCB(char* [100] processName, unsigned char processClass, int priority
     priority_enqueue(ready*,processName);
 }
 
-void BlockPCB(char* [100] processName){
+void BlockPCB(char* processName){
   if(FindPCB(processName == NULL)){
     println("Name must be valid")
   }else{
@@ -274,7 +274,7 @@ void BlockPCB(char* [100] processName){
 
 
 //same as block but changed 2 to a 0
-void UnblockPCB(char* [100] processName){
+void UnblockPCB(char* processName){
   if(FindPCB(processName == NULL)){
     println("Name must be valid")
   }else{
@@ -288,7 +288,7 @@ void UnblockPCB(char* [100] processName){
 }
 
 //same as block or unblock but change stateSuspended instead
-void SuspendPCB(char* [100] processName){
+void SuspendPCB(char* processName){
   if(FindPCB(processName == NULL)){
     println("Name must be valid")
   }else{
@@ -302,7 +302,7 @@ void SuspendPCB(char* [100] processName){
 }
 
 //same as suspend but 1 to 0
-void ResumePCB(char* [100] processName){
+void ResumePCB(char* processName){
   if(FindPCB(processName == NULL)){
     println("Name must be valid")
   }else{
@@ -316,7 +316,7 @@ void ResumePCB(char* [100] processName){
 }
 
 //pretty similar to the rest - might need to mess with removing it from its queue
-void SetPCBPriority(char* [100] processName, int priority){
+void SetPCBPriority(char* processName, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name")
   }
@@ -331,7 +331,7 @@ void SetPCBPriority(char* [100] processName, int priority){
   }
 }
 
-void ShowPCB(char [100] processName){
+void ShowPCB(char* processName){
   if(FindPCB(processName) == NULL)
   {
     println("Process does not exist!")
