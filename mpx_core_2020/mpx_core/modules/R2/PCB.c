@@ -93,24 +93,46 @@ void FreePCB()
 
 PCB* FindPCB(char* processName)
 {
+  PCB *tempReady = ready->head;
+  PCB *tempBlocked = blocked->head;
+  PCB *tempSReady = SuspendedReady->head;
+  PCB *tempSBlocked = SuspendedBlocked->head;
   // Search each queue for process. Null if not found, else return PCB.
-  // How do you access the queues, and how are the queues initialized.
-  // Will will figure this out at some point! Studying right now for 450 and 320!
-  for (int i = 0; i < ready->count; i++)
+  while (tempReady->nextPCB != NULL)
   {
     // If process = processName, return PCB
+    if (tempReady->processName = processName)
+    {
+      return tempReady;
+    }
+    tempReady = tempReady->nextPCB;
   }
-  for (int i = 0; i < blocked->count; i++)
+  while (tempBlocked->nextPCB != NULL)
   {
     // If process = processName, return PCB
+    if (tempBlocked->processName = processName)
+    {
+      return tempBlocked;
+    }
+    tempBlocked = tempBlocked->nextPCB;
   }
-  for (int i = 0; i < SuspendedReady->count; i++)
+  while (tempSReady->nextPCB != NULL)
   {
     // If process = processName, return PCB
+    if (tempSReady->processName = processName)
+    {
+      return tempSReady;
+    }
+    tempSReady = tempSReady->nextPCB;
   }
-  for (int i = 0; i < SuspendedBlocked->count; i++)
+  while (tempSBlocked->nextPCB != NULL)
   {
     // If process = processName, return PCB
+    if (tempSBlocked->processName = processName)
+    {
+      return tempSBlocked;
+    }
+    tempSBlocked = tempSBlocked->nextPCB;
   }
   return null;
 }
