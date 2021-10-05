@@ -77,11 +77,22 @@ PCB* AllocatePCB()
   PCB* pcb;
   return pcb;
 }
+
 PCB* SetupPCB(char [100] processName, unsigned char processClass, int priority){
   //need to figure out the correct way to insert a unsigned char and char array into a struct
   PCB = AllocatePCB();
-  PCB.processName = processName;
-  PCB.processClass = processClass;
+  int nameLen = strlen(processName);
+  int classLen = strlen(processClass);
+  int i = 0, j = 0;
+
+  while (i<nameLen){
+    PCB.processName[i] = processName[i];
+  }
+  //uhh what tf is an unsingned char
+  while (j<classLen){
+    PCB.processClass[j] = processClass[j];
+  }
+
   PCB.priority = priority;
   PCB.stateReady = 0;
   PCB.stateSuspended = 0;
