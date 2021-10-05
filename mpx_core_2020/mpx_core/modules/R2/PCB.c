@@ -3,7 +3,7 @@
 #include <system.h>
 #include <core/serial.h>
 #include "PCB.h"
-#include <Queue.c>
+#include "queue.h"
 #include <print.c>
 
 /*
