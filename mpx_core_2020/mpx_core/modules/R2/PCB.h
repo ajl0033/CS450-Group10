@@ -21,7 +21,7 @@ PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony
 
-PCB* SetupPCB(); // Jarett
+PCB* SetupPCB(); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
 
 void FindPCB(); // Will
 
@@ -35,13 +35,13 @@ void DeletePCB(); //Will
 
 void BlockPCB(); //Jarett
 
-void UnblockPCB();
+void UnblockPCB();// these were all really similar
 
-void SuspendPCB();
+void SuspendPCB();// and should be mostly right I have to study for 422 tm
 
-void ResumePCB();
+void ResumePCB();//  cuz i have the quiz wednesday I  can still hop on
 
-void SetPCBPriority();
+void SetPCBPriority();// and help but cant do to much Hopefully this is a decent start
 
 void ShowPCB();
 
