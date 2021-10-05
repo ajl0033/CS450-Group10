@@ -86,26 +86,32 @@ PCB* AllocatePCB()
 {
   sys_alloc_mem(PCB);
   PCB* pcb;
+  pcb->stackBase = pcb->stack;
+  pcb->stackTop = pcb->stackBase + 1024;
   return pcb;
 }
 
-PCB* SetupPCB(char* processName, unsigned char processClass, int priority){
+PCB* SetupPCB(char* processName, int processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
   PCB* pcb = AllocatePCB();
   int nameLen = strlen(processName);
-  int classLen = strlen(processClass);
-  int i = 0, j = 0;
+
+  int i = 0;
 
   while (i<nameLen){
     pcb->processName[i] = processName[i];
     i++;
   }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
+<<<<<<< HEAD
   while (j<classLen){
     pcb->processClass[j] = processClass[j];
     j++;
   }
+=======
+  pcb.processClass = processClass;
+>>>>>>> c8a98ed28709d9f55acfe8f881daf5062e5347be
 
   pcb->priority = priority;
   // automatically put them in notsuspended and ready state?
@@ -243,7 +249,7 @@ queue q;
 }
 }
 
-void createPCB(char* processName, unsigned char processClass, int priority){
+void createPCB(char* processName, int processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name")
   }
@@ -341,7 +347,11 @@ void ShowPCB(char* processName){
     PCB* pcb = FindPCB(processName);
     println();
     println("Process " + processName);
-    println(pcb->processClass);
+    if (pcb->processClass == 0) {
+      println("Process Class: System Process");
+    } else if (pcb->processClass == 1) {
+      println("Process Class: Application");
+    }
     println(pcb->state);
     println(pcb->stateSuspended);
     println(pcb->priority);

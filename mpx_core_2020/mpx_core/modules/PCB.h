@@ -7,6 +7,7 @@ typedef struct PCB{
   int priority;
   int state;
   int stateSuspended;
+  unsigned char stack[1024];
   unsigned char *stackTop;
   unsigned char *stackBase;
   struct PCB *nextPCB;
@@ -27,7 +28,7 @@ PCB* AllocatePCB(); // Anthony
 
 void FreePCB(); // Anthony
 
-PCB* SetupPCB(char* processName, unsigned char processClass, int priority); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
+PCB* SetupPCB(char* processName, int processClass, int priority); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
 
 void FindPCB(char* processName); // Will
 
@@ -35,7 +36,7 @@ void InsertPCB(); // Emily
 
 void RemovePCB(); // Emily
 
-void CreatePCB(char* processName, unsigned char processClass, int priority); // Jarett
+void CreatePCB(char* processName, int processClass, int priority); // Jarett
 
 void DeletePCB(char* processName); //Will
 
