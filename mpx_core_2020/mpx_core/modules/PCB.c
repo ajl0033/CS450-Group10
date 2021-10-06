@@ -175,7 +175,7 @@ PCB* FindPCB(char* processName)
     }
     tempSBlocked = tempSBlocked->nextPCB;
   }
-  return null;
+  return NULL;
 }
 
 void DeletePCB(char* processName)
