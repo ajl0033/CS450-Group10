@@ -258,7 +258,7 @@ void createPCB(char* processName, int processClass, int priority){
   SetupPCB(processName,processClass,priority);
 //always put into ready queue because you never get the chance to change it at this point
 // unless thats changed in SetupPCB
-    priority_enqueue(ready*,processName);
+    priority_enqueue(&ready,FindPCB(processName));
 }
 
 void BlockPCB(char* processName){
