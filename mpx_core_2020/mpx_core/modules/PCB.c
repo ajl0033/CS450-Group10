@@ -247,7 +247,7 @@ queue q= {0,NULL,NULL};
 }
 
 void CreatePCB(char* processName, int processClass, int priority){
-  if(FindPCB(processName) == NULL){
+  if(FindPCB(processName) != NULL){
     println("not unique process name");
   }
   else if(priority > 9 || priority < 0){
