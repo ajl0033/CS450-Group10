@@ -84,7 +84,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
 
 PCB* AllocatePCB()
 {
-  sys_alloc_mem(PCB);
+  sys_alloc_mem(8192);
   PCB* pcb;
   pcb->stackBase = pcb->stack;
   pcb->stackTop = pcb->stackBase + 1024;
@@ -104,10 +104,9 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
     i++;
   }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
-  while (j<classLen){
-    pcb->processClass[j] = processClass[j];
-    j++;
-  }
+
+  pcb->processClass = processClass;
+
 
   pcb->priority = priority;
   // automatically put them in notsuspended and ready state?
