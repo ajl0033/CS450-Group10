@@ -94,15 +94,8 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
   PCB* pcb = AllocatePCB();
-  int nameLen = strlen(processName);
+  pcb->processName = processName;
 
-  int i = 0;
-
-
-  while (i<nameLen){
-    pcb->processName[i] = processName[i];
-    i++;
-  }
   //so I'm not really sure what processClass is, I've read the slide a few times :(
 
 
@@ -255,10 +248,26 @@ void CreatePCB(char* processName, int processClass, int priority){
   }else {
 //how do you check if processname and class are valid?
 
-  SetupPCB(processName,processClass,priority);
+  PCB* pcb = SetupPCB(processName,processClass,priority);
 //always put into ready queue because you never get the chance to change it at this point
 // unless thats changed in SetupPCB
-    priority_enqueue(&ready,FindPCB(processName));
+  fifo_enqueue(&ready,pcb);
+  println(pcb->processName);
+  if (pcb->processClass == 1) {
+    println("Class: Application");
+  } else if (pcb->processClass == 0) {
+    println("Class: System Process");
+  }
+  if (pcb->priority == 0) {println("Priority: 0");}
+  else if (pcb->priority == 1) {println("Priority: 1");}
+  else if (pcb->priority == 2) {println("Priority: 2");}
+  else if (pcb->priority == 3) {println("Priority: 3");}
+  else if (pcb->priority == 4) {println("Priority: 4");}
+  else if (pcb->priority == 5) {println("Priority: 5");}
+  else if (pcb->priority == 6) {println("Priority: 6");}
+  else if (pcb->priority == 7) {println("Priority: 7");}
+  else if (pcb->priority == 8) {println("Priority: 8");}
+  else if (pcb->priority == 9) {println("Priority: 9");}
   }
 }
 
