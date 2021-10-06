@@ -250,7 +250,7 @@ void CreatePCB(char* processName, int processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name");
   }
-  else if(priority > 9 || priority < 1){
+  else if(priority > 9 || priority < 0){
     println("not a valid priority");
   }else {
 //how do you check if processname and class are valid?
@@ -324,7 +324,7 @@ void SetPCBPriority(char* processName, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name");
   }
-  else if (priority > 9 || priority < 1){
+  else if (priority > 9 || priority < 0){
     println("not a valid priority");
   }else{
     PCB* pcb = FindPCB(processName);
