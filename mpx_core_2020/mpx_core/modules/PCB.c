@@ -175,7 +175,7 @@ PCB* FindPCB(char* processName)
     }
     tempSBlocked = tempSBlocked->nextPCB;
   }
-  return null;
+  return NULL;
 }
 
 void DeletePCB(char* processName)
@@ -232,7 +232,7 @@ queue q= {0,NULL,NULL};
 
   //if pcb to be removed is at the head, make the head now equal
   // the next pcb
-  if(pcb = q->head){
+  if(pcb == q->head){
     q->head->nextPCB = pcb->nextPCB->nextPCB;
     q->head = pcb->nextPCB;
   }
