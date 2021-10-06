@@ -291,7 +291,7 @@ int comhand(){
         SetPCBPriority(process, priority);
       }
   }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 'c' && cmdBuffer[5] == 'b') {
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 'c' && cmdBuffer[6] == 'b') {
     int i;
     int check = 1;
     for (i=7; i<100; i++)
