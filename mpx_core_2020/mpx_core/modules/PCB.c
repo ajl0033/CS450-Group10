@@ -250,15 +250,16 @@ void createPCB(char* processName, int processClass, int priority){
   if(FindPCB(processName) == NULL){
     println("not unique process name");
   }
-  if(priority > 9 || priority < 1){
+  else if(priority > 9 || priority < 1){
     println("not a valid priority");
-  }
+  }else
 //how do you check if processname and class are valid?
 
   SetupPCB(processName,processClass,priority);
 //always put into ready queue because you never get the chance to change it at this point
 // unless thats changed in SetupPCB
     priority_enqueue(&ready,FindPCB(processName));
+  }
 }
 
 void BlockPCB(char* processName){
