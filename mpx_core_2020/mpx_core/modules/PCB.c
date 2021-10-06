@@ -361,7 +361,7 @@ void ShowReady()
   println("PCB's in ready queue:");
   while (tempReady->nextPCB != NULL)
   {
-    showPCB(tempReady->processName);
+    ShowPCB(tempReady->processName);
     tempReady = tempReady->nextPCB;
   }
 }
@@ -372,7 +372,7 @@ void ShowBlocked()
   println("PCB's in blocked queue:");
   while (tempBlocked->nextPCB != NULL)
   {
-    showPCB(tempBlocked->processName);
+    ShowPCB(tempBlocked->processName);
     tempBlocked = tempBlocked->nextPCB;
   }
 }
