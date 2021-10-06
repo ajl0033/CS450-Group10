@@ -40,46 +40,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
   }
   q->count++;
 }
-/*
-void priority_enqueue (queue *q, PCB* pcb){
-  //if nothing yet in the queue
-  if(q->count == 0){
 
-    q->head = pcb;
-    q->tail = pcb;
-  }
-  //if the priority is greater than the head,
-  //set the pcb's next element equal to the head, and the head's previous element equal to the pcb,
-  //and the head equal to the pcb
-  else if(pcb->priority > q->head->priority){
-    pcb->previousPCB = q->head;
-    q->head->nextPCB = pcb;
-    q->head = pcb;
-  }
-  //if priority is less than the tail, insert after tail
-  else if(pcb->priority <= q->tail->priority){
-    q->tail->previousPCB = pcb;
-    pcb->nextPCB = q->tail;
-    q->tail = pcb;
-  }
-  //otherwise if priority is somewhere in the middle
-  else{
-    PCB* temp = q->head;
-    while(temp != q->tail){
-      if(pcb->priority < temp->priority){
-        temp = temp->previousPCB;
-      }else{
-        PCB* tempdos = temp->previousPCB;
-        pcb->nextPCB = temp;
-        pcb->previousPCB = temp->previousPCB;
-        tempdos->nextPCB = pcb;
-        temp->previousPCB = pcb;
-      }
-    }
-  }
-  q->count++;
-}
-*/
 
 void priority_enqueue (queue *q, PCB *pcb){
   //if nothing yet in the queue
@@ -182,7 +143,7 @@ PCB* FindPCB(char* processName)
 
       return tempReady;
     }
-    tempReady = tempReady->previousPCB;
+    tempReady = tempReady->nextPCB;
   }
   while (tempBlocked != NULL)
   {
@@ -191,7 +152,7 @@ PCB* FindPCB(char* processName)
     {
       return tempBlocked;
     }
-    tempBlocked = tempBlocked->previousPCB;
+    tempBlocked = tempBlocked->nextPCB;
   }
   while (tempSReady != NULL)
   {
@@ -200,7 +161,7 @@ PCB* FindPCB(char* processName)
     {
       return tempSReady;
     }
-    tempSReady = tempSReady->previousPCB;
+    tempSReady = tempSReady->nextPCB;
   }
   while (tempSBlocked != NULL)
   {
@@ -209,7 +170,7 @@ PCB* FindPCB(char* processName)
     {
       return tempSBlocked;
     }
-    tempSBlocked = tempSBlocked->previousPCB;
+    tempSBlocked = tempSBlocked->nextPCB;
   }
   return NULL;
 }
