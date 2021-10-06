@@ -537,7 +537,7 @@ void version() {
   println("");
   println("");
   println("------------------------------");
-  println("Current Version: R2 - 10/01/2021");
+  println("Current Version: R2 - 10/06/2021");
   println("------------------------------\n");
 }
 
