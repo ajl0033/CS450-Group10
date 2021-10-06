@@ -432,6 +432,7 @@ int comhand(){
          while (check == 1) {
            check = 0;
            if (cmdBuffer[0] == '1') { priority = 1;}
+           else if (cmdBuffer[0] == '0') { priority = 0;}
            else if (cmdBuffer[0] == '1') { priority = 1;}
            else if (cmdBuffer[0] == '2') { priority = 2;}
            else if (cmdBuffer[0] == '3') { priority = 3;}
