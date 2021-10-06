@@ -134,10 +134,10 @@ void FreePCB(PCB* pcb)
 
 PCB* FindPCB(char* processName)
 {
-  PCB *tempReady = ready->head;
-  PCB *tempBlocked = blocked->head;
-  PCB *tempSReady = SuspendedReady->head;
-  PCB *tempSBlocked = SuspendedBlocked->head;
+  PCB *tempReady = ready.head;
+  PCB *tempBlocked = blocked.head;
+  PCB *tempSReady = SuspendedReady.head;
+  PCB *tempSBlocked = SuspendedBlocked.head;
   // Search each queue for process. Null if not found, else return PCB.
   while (tempReady->nextPCB != NULL)
   {
