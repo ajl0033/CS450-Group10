@@ -356,7 +356,7 @@ void ShowPCB(char* processName){
 
 void ShowReady()
 {
-  PCB *tempReady = ready->head;
+  PCB *tempReady = ready.head;
   println("PCB's in ready queue:");
   while (tempReady->nextPCB != NULL)
   {
@@ -367,7 +367,7 @@ void ShowReady()
 
 void ShowBlocked()
 {
-  PCB *tempBlocked = blocked->head;
+  PCB *tempBlocked = blocked.head;
   println("PCB's in blocked queue:");
   while (tempBlocked->nextPCB != NULL)
   {
