@@ -203,6 +203,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -212,7 +213,6 @@ int comhand(){
         println("");
         SuspendPCB(cmdBuffer);
       }
-    }
   }
   else if (cmdBuffer[0] == 'r' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 's' && cmdBuffer[3] == 'u' && cmdBuffer[4] == 'm' && cmdBuffer[5] == 'e') {
     int i;
@@ -227,6 +227,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -236,7 +237,6 @@ int comhand(){
         println("");
         ResumePCB(cmdBuffer);
       }
-    }
   }
   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 't' && cmdBuffer[3] == 'p' && cmdBuffer[4] == 'r' && cmdBuffer[5] == 'i' && cmdBuffer[6] == 'o' && cmdBuffer[7] == 'r' && cmdBuffer[8] == 'i' && cmdBuffer[9] == 't' && cmdBuffer[10] == 'y') {
     int i;
@@ -251,6 +251,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -287,7 +288,6 @@ int comhand(){
         }
         SetPCBPriority(process, priority);
       }
-    }
   }
   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 'c' && cmdBuffer[5] == 'b') {
     int i;
@@ -302,6 +302,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -311,7 +312,6 @@ int comhand(){
         println("");
         ShowPCB(cmdBuffer);
       }
-    }
   }
   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'l') {
     int i;
@@ -326,11 +326,11 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         ShowAll();
       }
-    }
   }
   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'r' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'a' && cmdBuffer[7] == 'd' && cmdBuffer[8] == 'y') {
     int i;
@@ -345,11 +345,11 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         ShowReady();
       }
-    }
   }
   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'b' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'o' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'k' && cmdBuffer[9] == 'e' && cmdBuffer[10] == 'd') {
     int i;
@@ -364,11 +364,11 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         ShowBlocked();
       }
-    }
   }
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
@@ -388,6 +388,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -442,7 +443,6 @@ int comhand(){
 
         CreatePCB(process, class, priority);
       }
-    }
   }
   else if (cmdBuffer[0] == 'd' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b') {
     int i;
@@ -457,6 +457,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -466,7 +467,6 @@ int comhand(){
         println("");
         DeletePCB(cmdBuffer);
       }
-    }
   }
   else if (cmdBuffer[0] == 'b' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'c' && cmdBuffer[4] == 'k' && cmdBuffer[5] == 'p' && cmdBuffer[6] == 'c' && cmdBuffer[7] == 'b') {
     int i;
@@ -481,6 +481,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -490,7 +491,6 @@ int comhand(){
         println("");
         BlockPCB(cmdBuffer);
       }
-    }
   }
   else if (cmdBuffer[0] == 'u' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'b' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'o' && cmdBuffer[5] == 'c' && cmdBuffer[6] == 'k' && cmdBuffer[7] == 'p' && cmdBuffer[8] == 'c' && cmdBuffer[9] == 'b') {
     int i;
@@ -505,6 +505,7 @@ int comhand(){
         check = 0;
         break;
       }
+    }
       if (check == 1)
       {
         println("");
@@ -514,7 +515,6 @@ int comhand(){
         println("");
         UnblockPCB(cmdBuffer);
       }
-    }
   }
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
