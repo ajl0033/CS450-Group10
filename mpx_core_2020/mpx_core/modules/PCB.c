@@ -129,7 +129,22 @@ PCB* FindPCB(char* processName)
   PCB *tempSReady = SuspendedReady.head;
   PCB *tempSBlocked = SuspendedBlocked.head;
   // Search each queue for process. Null if not found, else return PCB.
-  
+  if (tempReady->processName == processName)
+  {
+    return tempReady;
+  }
+  if (tempBlocked->processName == processName)
+  {
+    return tempBlocked;
+  }
+  if (tempSReady->processName == processName)
+  {
+    return tempSReady;
+  }
+  if (tempSBlocked->processName == processName)
+  {
+    return tempSBlocked;
+  }
   while (tempReady->nextPCB != NULL)
   {
     // If process = processName, return PCB
