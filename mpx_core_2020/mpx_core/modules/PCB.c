@@ -343,7 +343,7 @@ void ShowPCB(char* processName){
   else
   {
     PCB* pcb = FindPCB(processName);
-    println();
+    println("");
     println("Process " + processName);
     if (pcb->processClass == 0) {
       println("Process Class: System Process");
@@ -383,6 +383,6 @@ void ShowAll()
   ShowReady();
   println();
   ShowBlocked();
-  println();
+  println("");
 }
 }
