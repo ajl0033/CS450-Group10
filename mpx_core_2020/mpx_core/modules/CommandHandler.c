@@ -417,7 +417,7 @@ int comhand(){
            check1 = 0;
            if (cmdBuffer[0] == '0') {
                class = 0;
-           } else if (cmdBuffer[0] == 1) {
+           } else if (cmdBuffer[0] == '1') {
              class = 1;
            } else {
              check1 = 1;
