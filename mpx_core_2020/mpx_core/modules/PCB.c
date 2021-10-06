@@ -51,13 +51,13 @@ int priority_enqueue (queue *q, PCB *pcb){
   //if the priority is greater than the head,
   //set the pcb's next element equal to the head, and the head's previous element equal to the pcb,
   //and the head equal to the pcb
-  else if(pcb.priority > q->head){
+  else if(pcb->priority > q->head->priority){
     pcb->nextPCB = q->head;
     q->head->previousPCB = pcb;
     q->head = pcb;
   }
   //if priority is less than the tail, insert after tail
-  else if(pcb.priority <= q->tail){
+  else if(pcb->priority <= q->tail->priority){
     q->tail->nextPCB = pcb;
     pcb->previousPCB = q->tail;
     q->tail = pcb;
