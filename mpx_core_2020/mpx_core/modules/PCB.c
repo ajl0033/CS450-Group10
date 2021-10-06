@@ -364,47 +364,47 @@ void ShowPCB(char* processName){
     }
     if (pcb->stateSuspended == 0)
     {
-      println("Not Suspended")
+      println("Not Suspended");
     }
     else
     {
-      println("Suspended")
+      println("Suspended");
     }
     if (pcb->priority == 1)
     {
-      println("Priority: 1")
+      println("Priority: 1");
     }
     else if (pcb->priority == 2)
     {
-      println("Priority: 2")
+      println("Priority: 2");
     }
     else if (pcb->priority == 3)
     {
-      println("Priority: 3")
+      println("Priority: 3");
     }
     else if (pcb->priority == 4)
     {
-      println("Priority: 4")
+      println("Priority: 4");
     }
     else if (pcb->priority == 5)
     {
-      println("Priority: 5")
+      println("Priority: 5");
     }
     else if (pcb->priority == 6)
     {
-      println("Priority: 6")
+      println("Priority: 6");
     }
     else if (pcb->priority == 7)
     {
-      println("Priority: 7")
+      println("Priority: 7");
     }
     if (pcb->priority == 8)
     {
-      println("Priority: 8")
+      println("Priority: 8");
     }
     else (pcb->priority == 1)
     {
-      println("Priority: 9")
+      println("Priority: 9");
     }
   }
 
