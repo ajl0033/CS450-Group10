@@ -252,7 +252,7 @@ void createPCB(char* processName, int processClass, int priority){
   }
   else if(priority > 9 || priority < 1){
     println("not a valid priority");
-  }else
+  }else {
 //how do you check if processname and class are valid?
 
   SetupPCB(processName,processClass,priority);
