@@ -7,6 +7,7 @@ typedef struct PCB{
   int priority;
   int state;
   int stateSuspended;
+  unsigned char stack[1024];
   unsigned char *stackTop;
   unsigned char *stackBase;
   struct PCB *nextPCB;

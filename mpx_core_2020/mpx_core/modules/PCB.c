@@ -85,6 +85,8 @@ PCB* AllocatePCB()
 {
   sys_alloc_mem(PCB);
   PCB* pcb;
+  pcb->stackBase = pcb->stack;
+  pcb->stackTop = pcb->stackBase + 1024;
   return pcb;
 }
 
