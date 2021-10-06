@@ -321,7 +321,7 @@ void ResumePCB(char* processName){
 
 //pretty similar to the rest - might need to mess with removing it from its queue
 void SetPCBPriority(char* processName, int priority){
-  if(FindPCB(&processName) == NULL){
+  if(FindPCB(processName) == NULL){
     println("not unique process name");
   }
   else if (priority > 9 || priority < 1){
