@@ -263,7 +263,7 @@ void createPCB(char* processName, int processClass, int priority){
 }
 
 void BlockPCB(char* processName){
-  if(FindPCB(processName == NULL)){
+  if(FindPCB(processName) == NULL){
     println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
@@ -279,7 +279,7 @@ void BlockPCB(char* processName){
 
 //same as block but changed 2 to a 0
 void UnblockPCB(char* processName){
-  if(FindPCB(processName == NULL)){
+  if(FindPCB(processName) == NULL){
     println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
@@ -293,7 +293,7 @@ void UnblockPCB(char* processName){
 
 //same as block or unblock but change stateSuspended instead
 void SuspendPCB(char* processName){
-  if(FindPCB(processName == NULL)){
+  if(FindPCB(processName) == NULL){
     println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
@@ -307,7 +307,7 @@ void SuspendPCB(char* processName){
 
 //same as suspend but 1 to 0
 void ResumePCB(char* processName){
-  if(FindPCB(processName == NULL)){
+  if(FindPCB(processName) == NULL){
     println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
@@ -321,7 +321,7 @@ void ResumePCB(char* processName){
 
 //pretty similar to the rest - might need to mess with removing it from its queue
 void SetPCBPriority(char* processName, int priority){
-  if(FindPCB(processName) == NULL){
+  if(FindPCB(&processName) == NULL){
     println("not unique process name");
   }
   else if (priority > 9 || priority < 1){
