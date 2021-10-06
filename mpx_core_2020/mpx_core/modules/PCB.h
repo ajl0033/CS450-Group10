@@ -30,7 +30,7 @@ void FreePCB(PCB* pcb); // Anthony
 
 PCB* SetupPCB(char* processName, int processClass, int priority); // Jarett - its kinda funky cuz of processClass, stackTop, and stackBase
 
-void FindPCB(char* processName); // Will
+PCB* FindPCB(char* processName); // Will
 
 void InsertPCB(PCB* pcb); // Emily
 
