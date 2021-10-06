@@ -84,8 +84,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
 
 PCB* AllocatePCB()
 {
-  sys_alloc_mem(8192);
-  PCB* pcb;
+  PCB* pcb = sus_alloc_mem(sizeof(PCB));
   pcb->stackBase = pcb->stack;
   pcb->stackTop = pcb->stackBase + 1024;
   return pcb;
