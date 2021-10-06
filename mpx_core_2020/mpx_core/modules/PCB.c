@@ -232,14 +232,14 @@ queue q= {0,NULL,NULL};
 
   //if pcb to be removed is at the head, make the head now equal
   // the next pcb
-  if(pcb == q->head){
-    q->head->nextPCB = pcb->nextPCB->nextPCB;
-    q->head = pcb->nextPCB;
+  if(pcb == q.head){
+    q.head->nextPCB = pcb->nextPCB->nextPCB;
+    q.head = pcb->nextPCB;
   }
   //esle if it is at the tail,
-  else if(pcb = q->tail){
-    q->tail->previousPCB = pcb->previousPCB->previousPCB;
-    q->tail = pcb->previousPCB;
+  else if(pcb == q.tail){
+    q.tail->previousPCB = pcb->previousPCB->previousPCB;
+    q.tail = pcb->previousPCB;
   }
   else{
  pcb->previousPCB->nextPCB = pcb->nextPCB;
