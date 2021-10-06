@@ -379,9 +379,9 @@ void ShowBlocked()
 
 void ShowAll()
 {
-  println();
+  println("");
   ShowReady();
-  println();
+  println("");
   ShowBlocked();
   println("");
 }
