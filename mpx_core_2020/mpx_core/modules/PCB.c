@@ -252,7 +252,7 @@ void createPCB(char* processName, int processClass, int priority){
   }
   else if(priority > 9 || priority < 1){
     println("not a valid priority");
-  } else {
+  }else
 //how do you check if processname and class are valid?
 
   SetupPCB(processName,processClass,priority);
@@ -344,15 +344,33 @@ void ShowPCB(char* processName){
   {
     PCB* pcb = FindPCB(processName);
     println("");
-    println("Process " + processName);
+    println(processName);
     if (pcb->processClass == 0) {
       println("Process Class: System Process");
     } else if (pcb->processClass == 1) {
       println("Process Class: Application");
     }
-    println(pcb->state);
-    println(pcb->stateSuspended);
-    println(pcb->priority);
+    if (pcb->state == 0)
+    {
+      println("Ready");
+    }
+    else if (pcb->state == 1)
+    {
+      println("Running");
+    }
+    else
+    {
+      println("Blocked");
+    }
+    if (pcb->stateSuspended == 0)
+    {
+      println("Not Suspended")
+    }
+    else
+    {
+      println("Suspended")
+    }
+    if (pcb->priority);
   }
 
 void ShowReady()
