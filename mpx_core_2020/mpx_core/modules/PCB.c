@@ -175,7 +175,7 @@ PCB* FindPCB(char* processName)
     }
     tempSBlocked = tempSBlocked->nextPCB;
   }
-  return NULL;
+  return null;
 }
 
 void DeletePCB(char* processName)
@@ -271,8 +271,8 @@ void BlockPCB(char* processName){
   pcb->state = 2;
 
   //could move removePCB to the top but i have no clue tbh
-  RemovePCB(PCB);
-  InsertPCB(PCB);
+  RemovePCB(pcb);
+  InsertPCB(pcb);
 }
 }
 
@@ -286,8 +286,8 @@ void UnblockPCB(char* processName){
   PCB* pcb = FindPCB(processName);
   pcb->state = 0;
 
-  RemovePCB(PCB);
-  InsertPCB(PCB);
+  RemovePCB(pcb);
+  InsertPCB(pcb);
 }
 }
 
@@ -300,8 +300,8 @@ void SuspendPCB(char* processName){
   PCB* pcb = FindPCB(processName);
   pcb->stateSuspended = 1;
 
-  RemovePCB(PCB);
-  InsertPCB(PCB);
+  RemovePCB(pcb);
+  InsertPCB(pcb);
 }
 }
 
@@ -314,8 +314,8 @@ void ResumePCB(char* processName){
   PCB* pcb = FindPCB(processName);
   pcb->stateSuspended = 0;
 
-  RemovePCB(PCB);
-  InsertPCB(PCB);
+  RemovePCB(pcb);
+  InsertPCB(pcb);
 }
 }
 
@@ -330,8 +330,8 @@ void SetPCBPriority(char* processName, int priority){
     PCB* pcb = FindPCB(processName);
     pcb->priority = priority;
 
-  RemovePCB(PCB);
-  InsertPCB(PCB);
+    RemovePCB(pcb);
+    InsertPCB(pcb);
   }
 }
 
