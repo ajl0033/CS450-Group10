@@ -245,10 +245,10 @@ queue q;
 
 void createPCB(char* processName, unsigned char processClass, int priority){
   if(FindPCB(processName) == NULL){
-    println("not unique process name")
+    println("not unique process name");
   }
   if(priority > 9 || priority < 1){
-    println("not a valid priority")
+    println("not a valid priority");
   }
 //how do you check if processname and class are valid?
 
@@ -260,7 +260,7 @@ void createPCB(char* processName, unsigned char processClass, int priority){
 
 void BlockPCB(char* processName){
   if(FindPCB(processName == NULL)){
-    println("Name must be valid")
+    println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
@@ -276,7 +276,7 @@ void BlockPCB(char* processName){
 //same as block but changed 2 to a 0
 void UnblockPCB(char* processName){
   if(FindPCB(processName == NULL)){
-    println("Name must be valid")
+    println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
@@ -290,7 +290,7 @@ void UnblockPCB(char* processName){
 //same as block or unblock but change stateSuspended instead
 void SuspendPCB(char* processName){
   if(FindPCB(processName == NULL)){
-    println("Name must be valid")
+    println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
@@ -304,7 +304,7 @@ void SuspendPCB(char* processName){
 //same as suspend but 1 to 0
 void ResumePCB(char* processName){
   if(FindPCB(processName == NULL)){
-    println("Name must be valid")
+    println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
@@ -318,10 +318,10 @@ void ResumePCB(char* processName){
 //pretty similar to the rest - might need to mess with removing it from its queue
 void SetPCBPriority(char* processName, int priority){
   if(FindPCB(processName) == NULL){
-    println("not unique process name")
+    println("not unique process name");
   }
   else if (priority > 9 || priority < 1){
-    println("not a valid priority")
+    println("not a valid priority");
   }else{
     PCB* pcb = FindPCB(processName);
     pcb->priority = priority;
@@ -334,7 +334,7 @@ void SetPCBPriority(char* processName, int priority){
 void ShowPCB(char* processName){
   if(FindPCB(processName) == NULL)
   {
-    println("Process does not exist!")
+    println("Process does not exist!");
   }
   else
   {
