@@ -125,8 +125,7 @@ void FreePCB(PCB* pcb)
 PCB* FindPCB(char* processName)
 {
 
-  print("PROCESS NAME:     ");
-  println(processName);
+
   PCB* tempReady = ready.head;
   PCB* tempBlocked = blocked.head;
   PCB* tempSReady = SuspendedReady.head;
@@ -134,13 +133,11 @@ PCB* FindPCB(char* processName)
 
   while (tempReady != NULL)
   {
-    print("TEMP PROCESS NAME:    ");
-    println(tempReady->processName);
 
     // If process = processName, return PCB
-    if (strcmp(tempReady->processName, processName))
+    if (strcmp(tempReady->processName, processName)==0)
     {
-      println("RETURN READY");
+
       return tempReady;
     }
     tempReady = tempReady->previousPCB;
@@ -148,7 +145,7 @@ PCB* FindPCB(char* processName)
   while (tempBlocked != NULL)
   {
     // If process = processName, return PCB
-    if (strcmp(tempBlocked->processName, processName))
+    if (strcmp(tempBlocked->processName, processName)==0)
     {
       return tempBlocked;
     }
@@ -157,7 +154,7 @@ PCB* FindPCB(char* processName)
   while (tempSReady != NULL)
   {
     // If process = processName, return PCB
-    if (strcmp(tempSReady->processName, processName))
+    if (strcmp(tempSReady->processName, processName)==0)
     {
       return tempSReady;
     }
@@ -166,7 +163,7 @@ PCB* FindPCB(char* processName)
   while (tempSBlocked != NULL)
   {
     // If process = processName, return PCB
-    if (strcmp(tempSBlocked->processName, processName))
+    if (strcmp(tempSBlocked->processName, processName)==0)
     {
       return tempSBlocked;
     }
