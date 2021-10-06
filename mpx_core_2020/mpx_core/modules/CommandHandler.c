@@ -402,6 +402,23 @@ int comhand(){
           process[k] = cmdBuffer[k];
         }
         println("");
+        println("");
+        println("\nEnter the Process Class: (0 for \"system process\" or 1 for \"application\")\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        int check1 = 1;
+        int class = 99;
+        while (check1 == 1) {
+          check1 = 0;
+          if (cmdBuffer[0] == '0') {
+              class = 0;
+          } else if (cmdBuffer[0] == 1) }
+            class = 1;
+          } else {
+            check1 = 1;
+          }
+        }
         println("\nEnter the Process Priority...\n");
         memset(cmdBuffer, '\0', 100);
         sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
@@ -422,7 +439,6 @@ int comhand(){
           else if (cmdBuffer[0] == '9') { priority = 9;}
           else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
         }
-        unsigned char class = 0;
 
         CreatePCB(process, class, priority);
       }
