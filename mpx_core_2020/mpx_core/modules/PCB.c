@@ -124,26 +124,26 @@ void FreePCB(PCB* pcb)
 
 PCB* FindPCB(char* processName)
 {
-  println("FIND PCB:");
+
   print("PROCESS NAME:     ");
   println(processName);
-  PCB *tempReady = ready.head;
-  PCB *tempBlocked = blocked.head;
-  PCB *tempSReady = SuspendedReady.head;
-  PCB *tempSBlocked = SuspendedBlocked.head;
+  PCB* tempReady = ready.head;
+  PCB* tempBlocked = blocked.head;
+  PCB* tempSReady = SuspendedReady.head;
+  PCB* tempSBlocked = SuspendedBlocked.head;
 
   while (tempReady != NULL)
   {
     print("TEMP PROCESS NAME:    ");
     println(tempReady->processName);
-    println("READY LOOPPPPPPPPPPPPP");
+
     // If process = processName, return PCB
     if (strcmp(tempReady->processName, processName))
     {
-      println("RETURN READYYYYYYYYY");
+      println("RETURN READY");
       return tempReady;
     }
-    tempReady = tempReady->nextPCB;
+    tempReady = tempReady->previousPCB;
   }
   while (tempBlocked != NULL)
   {
@@ -152,7 +152,7 @@ PCB* FindPCB(char* processName)
     {
       return tempBlocked;
     }
-    tempBlocked = tempBlocked->nextPCB;
+    tempBlocked = tempBlocked->previousPCB;
   }
   while (tempSReady != NULL)
   {
@@ -161,7 +161,7 @@ PCB* FindPCB(char* processName)
     {
       return tempSReady;
     }
-    tempSReady = tempSReady->nextPCB;
+    tempSReady = tempSReady->previousPCB;
   }
   while (tempSBlocked != NULL)
   {
@@ -170,7 +170,7 @@ PCB* FindPCB(char* processName)
     {
       return tempSBlocked;
     }
-    tempSBlocked = tempSBlocked->nextPCB;
+    tempSBlocked = tempSBlocked->previousPCB;
   }
   return NULL;
 }
@@ -424,7 +424,7 @@ void ShowPCB(char* processName){
 }
 void ShowReady()
 {
-  PCB *tempReady = ready.head;
+  PCB* tempReady = ready.head;
   println("\nPCB's in ready queue:");
   // if (ready.head != NULL)
   // {
@@ -439,7 +439,7 @@ void ShowReady()
 
 void ShowBlocked()
 {
-  PCB *tempBlocked = blocked.head;
+  PCB* tempBlocked = blocked.head;
   println("\nPCB's in blocked queue:");
   // if (blocked.head != NULL)
   // {
