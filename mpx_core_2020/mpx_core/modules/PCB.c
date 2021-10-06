@@ -26,8 +26,7 @@ queue SuspendedBlocked= {0,NULL,NULL};
 void fifo_enqueue (queue *q, PCB *pcb){
   //if nothingg is in the queue yet, set the head and tail to the new pcb
   if(q->count == 0){
-    q->tail->nextPCB = NULL;
-    pcb->previousPCB = NULL;
+
     q->head = pcb;
     q->tail = pcb;
   }
@@ -43,8 +42,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
 }void priority_enqueue (queue *q, PCB *pcb){
   //if nothing yet in the queue
   if(q->count == 0){
-    q->tail->nextPCB = NULL;
-    pcb->previousPCB = NULL;
+    
     q->head = pcb;
     q->tail = pcb;
   }
