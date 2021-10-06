@@ -42,7 +42,7 @@ void fifo_enqueue (queue *q, PCB *pcb){
 }void priority_enqueue (queue *q, PCB *pcb){
   //if nothing yet in the queue
   if(q->count == 0){
-    
+
     q->head = pcb;
     q->tail = pcb;
   }
@@ -129,6 +129,7 @@ PCB* FindPCB(char* processName)
   PCB *tempSReady = SuspendedReady.head;
   PCB *tempSBlocked = SuspendedBlocked.head;
   // Search each queue for process. Null if not found, else return PCB.
+  
   while (tempReady->nextPCB != NULL)
   {
     // If process = processName, return PCB
@@ -249,7 +250,7 @@ void CreatePCB(char* processName, int processClass, int priority){
   PCB* pcb = SetupPCB(processName,processClass,priority);
 //always put into ready queue because you never get the chance to change it at this point
 // unless thats changed in SetupPCB
-  fifo_enqueue(&ready,pcb);
+  priority_enqueue(&ready,pcb);
   println(pcb->processName);
   if (pcb->processClass == 1) {
     println("Class: Application");
