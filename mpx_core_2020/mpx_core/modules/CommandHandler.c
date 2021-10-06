@@ -545,23 +545,23 @@ void help() {
   println("");
   println("");
   println("-------------------------------------------------------------------------");
-  println("version:  Prints the current version of MPX and the completion date");
-  println("getdate:  Retrieves the current date");
-  println("setdate:  Sets the current date (MM/DD/YYYY)");
-  println("gettime:  Retrieves the current time of day");
-  println("settime:  Sets the current time of day (HH:MM:SS)");
-  println("shutdown: Exits command handler loop, bringing the system to a halt");
-  println("suspend:  Places a PCB in the suspeneded state and reinserts it into the apropriate queue");
-  println("resume:   Places a PCB in the suspeneded state and reinserts it into the apropriate queue");
-  println("setpriority: Sets the priority of a given PCB,and reinserts it into the apropriate queue");
-  println("showpcb:     Displays the process name, class, state, suspended status, and priority of a given PCB");
-  println("showall:     Displays the process name, class, state, suspended status, and priority of all PCBs");
-  println("showready:   Displays the process name, class, state, suspended status, and priority of all PCBs in the ready queue");
-  println("showblocked: Displays the process name, class, state, suspended status, and priority of all PCBs in the blocked queue");
+  println("version:     Prints the current version of MPX and the completion date");
+  println("getdate:     Retrieves the current date");
+  println("setdate:     Sets the current date (MM/DD/YYYY)");
+  println("gettime:     Retrieves the current time of day");
+  println("settime:     Sets the current time of day (HH:MM:SS)");
+  println("shutdown:    Exits command handler loop, bringing the system to a halt");
+  println("suspend:     Places a PCB in the suspeneded state and reinserts it into\n             the apropriate queue");
+  println("resume:      Places a PCB in the suspeneded state and reinserts it into\n             the apropriate queue");
+  println("setpriority: Sets the priority of a given PCB,and reinserts it into the\n             apropriate queue");
+  println("showpcb:     Displays the process name, class, state, suspended status,\n             and priority of a given PCB");
+  println("showall:     Displays the process name, class, state, suspended status,\n             and priority of all PCBs");
+  println("showready:   Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the ready queue");
+  println("showblocked: Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the blocked queue");
   println("createpcb:   Creates a new PCB and inserts into the apropriate queue");
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
-  println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into the apropriate queue");
-  println("blockpcb:    Finds a given PCB, sets it to unblocked, and inserts it into the apropriate queue");
+  println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into\n             the apropriate queue");
+  println("blockpcb:    Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
   println("-------------------------------------------------------------------------\n");
 }
 
