@@ -561,7 +561,7 @@ void help() {
   println("createpcb:   Creates a new PCB and inserts into the apropriate queue");
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
   println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into\n             the apropriate queue");
-  println("blockpcb:    Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
+  println("unblockpcb:  Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
   println("-------------------------------------------------------------------------\n");
 }
 

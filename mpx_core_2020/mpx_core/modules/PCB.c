@@ -67,7 +67,7 @@ void priority_enqueue (queue *q, PCB *pcb){
   else{
     PCB *temp = q->head;
     while(temp != q->tail){
-      if(pcb->priority < temp->priority){
+      if(pcb->priority <= temp->priority){
         temp = temp->nextPCB;
       }else{
         pcb->previousPCB = temp->previousPCB;
@@ -95,7 +95,8 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
 
   PCB* pcb = AllocatePCB();
-  pcb->processName = processName;
+  memset(pcb->processName, '\0', 20);
+  strcpy(pcb->processName, processName);
 
   //so I'm not really sure what processClass is, I've read the slide a few times :(
 
@@ -133,10 +134,8 @@ PCB* FindPCB(char* processName)
   PCB* tempBlocked = blocked.head;
   PCB* tempSReady = SuspendedReady.head;
   PCB* tempSBlocked = SuspendedBlocked.head;
-
   while (tempReady != NULL)
   {
-
     // If process = processName, return PCB
     if (strcmp(tempReady->processName, processName)==0)
     {
@@ -230,18 +229,18 @@ queue q= {0,NULL,NULL};
   //if pcb to be removed is at the head, make the head now equal
   // the next pcb
   if(pcb == q.head){
-    q.head->nextPCB = pcb->nextPCB->nextPCB;
     q.head = pcb->nextPCB;
   }
   //esle if it is at the tail,
   else if(pcb == q.tail){
-    q.tail->previousPCB = pcb->previousPCB->previousPCB;
     q.tail = pcb->previousPCB;
   }
   else{
- pcb->previousPCB->nextPCB = pcb->nextPCB;
- pcb->nextPCB->previousPCB = pcb->previousPCB;
-}
+    pcb->previousPCB->nextPCB = pcb->nextPCB;
+    pcb->nextPCB->previousPCB = pcb->previousPCB;
+  }
+  pcb->nextPCB = NULL;
+  pcb->previousPCB = NULL;
 }
 
 void CreatePCB(char* processName, int processClass, int priority){
@@ -282,10 +281,11 @@ void BlockPCB(char* processName){
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
+  RemovePCB(pcb);
   pcb->state = 2;
 
   //could move removePCB to the top but i have no clue tbh
-  RemovePCB(pcb);
+
   InsertPCB(pcb);
 }
 }
@@ -298,9 +298,10 @@ void UnblockPCB(char* processName){
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
+  RemovePCB(pcb);
   pcb->state = 0;
 
-  RemovePCB(pcb);
+
   InsertPCB(pcb);
 }
 }
@@ -312,9 +313,10 @@ void SuspendPCB(char* processName){
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
-  pcb->stateSuspended = 1;
+
 
   RemovePCB(pcb);
+  pcb->stateSuspended = 1;
   InsertPCB(pcb);
 }
 }
@@ -326,25 +328,27 @@ void ResumePCB(char* processName){
   }else{
   //might need to be PCB* but not sure
   PCB* pcb = FindPCB(processName);
+  RemovePCB(pcb);
   pcb->stateSuspended = 0;
 
-  RemovePCB(pcb);
+
   InsertPCB(pcb);
 }
 }
 
 //pretty similar to the rest - might need to mess with removing it from its queue
 void SetPCBPriority(char* processName, int priority){
-  if(FindPCB(processName) != NULL){
+  if(FindPCB(processName) == NULL){
     println("not unique process name");
   }
   else if (priority > 9 || priority < 0){
     println("not a valid priority");
   }else{
     PCB* pcb = FindPCB(processName);
+    RemovePCB(pcb);
     pcb->priority = priority;
 
-    RemovePCB(pcb);
+
     InsertPCB(pcb);
   }
 }

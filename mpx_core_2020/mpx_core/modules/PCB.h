@@ -2,7 +2,7 @@
 #include <system.h>
 
 typedef struct PCB{
-  char *processName;
+  char processName[20];
   int processClass;
   int priority;
   int state;
