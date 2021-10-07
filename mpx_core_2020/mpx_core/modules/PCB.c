@@ -45,7 +45,6 @@ void fifo_enqueue (queue *q, PCB *pcb){
 void priority_enqueue (queue *q, PCB *pcb){
   //if nothing yet in the queue
   if(q->count == 0){
-
     q->head = pcb;
     q->tail = pcb;
   }
@@ -118,7 +117,7 @@ void FreePCB(PCB* pcb)
   int check = sys_free_mem(pcb);
   if (check == -1)
   {
-    print("Error freeing memory");
+    println("Error freeing memory");
     return;
   } else
   {
