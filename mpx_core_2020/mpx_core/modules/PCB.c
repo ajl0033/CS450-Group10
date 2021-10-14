@@ -206,33 +206,33 @@ void InsertPCB(PCB* pcb){
 
 }
 void RemovePCB(PCB* pcb){
-queue q= {0,NULL,NULL};
+queue* q= NULL;
   //if not suspended
   if(pcb->stateSuspended == 0){
 
     if(pcb->state == 0){
-      q = ready;
+      q = &ready;
     }else{
-      q = blocked;
+      q = &blocked;
     }
   }
 
   else{
     if(pcb->state == 0){
-      q = SuspendedReady;
+      q = &SuspendedReady;
     }else{
-      q = SuspendedBlocked;
+      q = &SuspendedBlocked;
     }
   }
 
   //if pcb to be removed is at the head, make the head now equal
   // the next pcb
-  if(pcb == q.head){
-    q.head = pcb->nextPCB;
+  if(pcb == q->head){
+    q->head = pcb->nextPCB;
   }
   //esle if it is at the tail,
-  else if(pcb == q.tail){
-    q.tail = pcb->previousPCB;
+  else if(pcb == q->tail){
+    q->tail = pcb->previousPCB;
   }
   else{
     pcb->previousPCB->nextPCB = pcb->nextPCB;
