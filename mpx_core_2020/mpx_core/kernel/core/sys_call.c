@@ -1,5 +1,7 @@
 #include <pcb.h>
-prototype u32int* sys_call(context* registers){
+u32int* sys_call(context* registers);
+
+sys_call(context* registers){
 GLOBAL PCB* cop;
 context* saveOld;
 

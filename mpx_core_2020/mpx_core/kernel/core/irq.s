@@ -19,6 +19,8 @@
 [GLOBAL reserved]
 [GLOBAL coprocessor]
 [GLOBAL rtc_isr]
+[GLOBAL sys_call]
+[GLOBAL sys_call_isr]
 
 ;; Names of the C handlers
 extern do_divide_error
@@ -109,6 +111,7 @@ reserved:
 coprocessor:
 	call do_coprocessor
 	iret
+
 
 ;;; System call interrupt handler. Pushes all the x86 registers
 ;;; onto the stack followed by ds,es,fs,gs (see context structure).
