@@ -19,7 +19,7 @@ void createAlarmProcess() // Create Process
   CreatePCB("alarm", 0, 1);
 }
 
-void addAlarm(char* message, int alarmTime) // Command
+void addAlarm(char* message, int alarmTime) // Command for terminal
 {
   PCB* alarm = FindPCB("alarm");
   timesList* node = head;
@@ -48,6 +48,7 @@ void addAlarm(char* message, int alarmTime) // Command
 //   else
 //   {
 //   node->previous->next = node->next; // delete individual alarm
+//   free(node);
 // }
 // }
 // node = node->next;
