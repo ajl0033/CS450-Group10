@@ -1,9 +1,4 @@
-#include <modules\PCB.h>
-  ;; ----- irq.s -----
 
-  ;; Description..: Interrupt handler stubs. All call C routines
-  ;; 	to do the real work. Also, default system call handler
-  ;; 	located at the bottom.
 
 
 [GLOBAL divide_error]
@@ -127,8 +122,8 @@ sys_call_isr:
   push fs
   push gs
   push esp
-  eax = sys_call(esp)
-  esp = eax
+  call sys_call(esp):
+  mov esp, eax
   pop gs
   pop fs
   pop es
