@@ -19,8 +19,8 @@
 [GLOBAL reserved]
 [GLOBAL coprocessor]
 [GLOBAL rtc_isr]
-[GLOBAL sys_call]
-[GLOBAL sys_call_isr]
+
+
 
 ;; Names of the C handlers
 extern do_divide_error
@@ -41,6 +41,7 @@ extern do_page_fault
 extern do_reserved
 extern do_coprocessor
 extern sys_call
+
 
 ; RTC interrupt handler
 ; Tells the slave PIC to ignore

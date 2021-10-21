@@ -18,7 +18,6 @@ core/kmain.o\
 core/serial.o\
 core/system.o\
 core/tables.o\
-core/sys_call.o\
 mem/paging.o\
 mem/heap.o
 

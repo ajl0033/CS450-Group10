@@ -9,6 +9,7 @@
 #include <mem/heap.h>
 #include <string.h>
 #include <core/serial.h>
+#include "PCB.h"
 
 // global variable containing parameter used when making
 // system calls via sys_req
@@ -184,7 +185,7 @@ void idle()
     sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
   }
 }
-extern u32int* sys_call(context* registers){
+u32int* sys_call(context* registers){
 GLOBAL PCB* cop;
 context* saveOld;
 
