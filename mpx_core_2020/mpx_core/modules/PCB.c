@@ -100,7 +100,7 @@ PCB* AllocatePCB()
 
 PCB* SetupPCB(char* processName, int processClass, int priority){
   // I'm not sure what to do with process class, stackTop, and stackBase.
-
+PCB->stackTop = PCB->stackBase + 1024 - sizeof(struct context);
   PCB* pcb = AllocatePCB();
   memset(pcb->processName, '\0', 20);
   strcpy(pcb->processName, processName);

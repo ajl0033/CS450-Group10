@@ -1,4 +1,5 @@
 #include <pcb.h>
+#include <sys_call.h>
 u32int* sys_call(context* registers);
 
 sys_call(context* registers){
@@ -14,7 +15,7 @@ else{
   cop->stackTop = registers;
   }
   else if(params.opcode == EXIT){
-  free cop;
+  FreePCB(cop);
   }
 }
 
