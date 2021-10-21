@@ -32,13 +32,15 @@ void addAlarm(char* message, int alarmTime) // Command
   newNode->message = message;
 }
 
+// **** Starter code to examine if alarm is triggered or should stay IDLE ********
+// **** Don't know if this needs to be in this file or the PCB.c file...
 // timesList* node = head;
 // while (node != NULL)
 // {
 // if (gettime() == node->time || gettime() > node->time)
 // {
-//   println(alarm->message)
-//   sys_req(IDLE);
+//   println(node->message)
+//   sys_req(IDLE); ?
 //   if (node == head)
 //   {
 //     head == NULL;
@@ -51,6 +53,8 @@ void addAlarm(char* message, int alarmTime) // Command
 // node = node->next;
 // }
 
+
+// ****** Code for commhand, can be directly pased as an else if. User types "alarm" in the terminal ********
 // else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'r' && cmdBuffer[4] == 'm') {
 // int i;
 // int check = 1;
