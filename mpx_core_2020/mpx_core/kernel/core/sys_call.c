@@ -1,6 +1,6 @@
 #include <pcb.h>
-prototype u32int* sys_call(context* registers):
-PCB* cop;
+prototype u32int* sys_call(context* registers){
+GLOBAL PCB* cop;
 context* saveOld;
 
 if(cop == NULL){
@@ -26,3 +26,4 @@ else{
   else{
   return saveOld;
   }
+}
