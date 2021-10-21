@@ -20,6 +20,8 @@ typedef struct queue {
     PCB *tail;
 } queue;
 
+int isEmpty(queue *q);
+
 void fifo_enqueue (queue *q, PCB *pcb); // Emily
 
 void priority_enqueue (queue *q, PCB *pcb);// Emily

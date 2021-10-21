@@ -22,6 +22,14 @@ queue blocked = {0,NULL,NULL};
 queue SuspendedReady= {0,NULL,NULL};
 queue SuspendedBlocked= {0,NULL,NULL};
 
+int isEmpty(queue *q){
+  if(q->count == 0){
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 //for blocked queue
 void fifo_enqueue (queue *q, PCB *pcb){
   //if nothingg is in the queue yet, set the head and tail to the new pcb
