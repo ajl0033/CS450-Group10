@@ -136,7 +136,7 @@ sys_call_isr:
   popa
 	iret
 
-sys_call:
+prototype u32int* sys_call(context* registers):
 PCB* cop;
 context* saveOld;
 
@@ -161,5 +161,5 @@ else{
     return cop->stackTop;
   }
   else{
-  return;
+  return saveOld;
   }
