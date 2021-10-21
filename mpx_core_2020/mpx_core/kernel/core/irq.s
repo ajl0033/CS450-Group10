@@ -121,6 +121,7 @@ coprocessor:
 ;;; new processes stack top/pointer.
 sys_call_isr:
 
+  pusha
   push ds
   push es
   push fs
@@ -132,6 +133,7 @@ sys_call_isr:
   pop fs
   pop es
   pop ds
+  popa
 
 	iret
 
