@@ -4,22 +4,51 @@
 #include <system.h>
 #include <core/serial.h>
 
+struct Node {
+  int time;
+  char message [50];
+  struct Node* next;
+  struct Node* previous;
+} timesList;
+
+struct timesList* head = NULL;
+head = (struct timesList*)malloc(sizeof(struct timesList));
+
 void createAlarmProcess() // Create Process
 {
   CreatePCB("alarm", 0, 1);
 }
 
-void addAlarm(char* message, int time) // Command
+void addAlarm(char* message, int alarmTime) // Command
 {
   PCB* alarm = FindPCB("alarm");
-  alarm->time = time;
-  alarm->message = message;
+  timesList* node = head;
+  while (node != NULL)
+  {
+    node = node->next;
+  }
+  timesList* newNode = node->next
+  newNode->time = alarmTime;
+  newNode->message = message;
 }
-// if (gettime() == alarm->time)
+
+// timesList* node = head;
+// while (node != NULL)
+// {
+// if (gettime() == node->time || gettime() > node->time)
 // {
 //   println(alarm->message)
 //   sys_req(IDLE);
-//   alarmList[alarm] = null; // delete individual alarm
+//   if (node == head)
+//   {
+//     head == NULL;
+//   }
+//   else
+//   {
+//   node->previous->next = node->next; // delete individual alarm
+// }
+// }
+// node = node->next;
 // }
 
 // else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'r' && cmdBuffer[4] == 'm') {
