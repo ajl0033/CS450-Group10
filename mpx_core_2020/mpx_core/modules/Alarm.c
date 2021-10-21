@@ -29,7 +29,7 @@ void addAlarm(char* message, int alarmTime) // Command for terminal
   }
   timesList* newNode = node->next
   newNode->time = alarmTime;
-  newNode->message = message;
+  strcpy(newNode->message, message);
 }
 
 // **** Starter code to examine if alarm is triggered or should stay IDLE ********
