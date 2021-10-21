@@ -185,6 +185,7 @@ void idle()
     sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
   }
 }
+
 u32int* sys_call(context* registers){
 GLOBAL PCB* cop;
 context* saveOld;
