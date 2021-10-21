@@ -127,24 +127,31 @@ sys_call_isr:
   push fs
   push gs
   push esp
-  eax = sys_call
+  eax = sys_call(esp)
   esp = eax
   pop gs
   pop fs
   pop es
   pop ds
   popa
-
 	iret
 
 sys_call:
-  PCB* cop
-  prototype u32int* sys_call(context* registers)
-  if(cop == NULL){
+PCB* cop;
+context* saveOld;
 
-  } else{
-
-    }
+if(cop == NULL){
+saveOld = registers;
+}
+else{
+  if(params.opcode == IDLE){
+  saveOld = registers;
+  cop->stackTop = registers;
+  }
+  else if(params.opcode == EXIT){
+  free cop;
+  }
+}
 
   if(isEmpty(ready) == 0 ){
     PCB* pcb = ready->head;
