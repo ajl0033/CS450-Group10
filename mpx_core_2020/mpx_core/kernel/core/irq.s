@@ -115,7 +115,6 @@ coprocessor:
 ;;; access the registers. The C handler returns the address of the
 ;;; new processes stack top/pointer.
 sys_call_isr:
-
   pusha
   push ds
   push es
@@ -130,31 +129,3 @@ sys_call_isr:
   pop ds
   popa
 	iret
-
-prototype u32int* sys_call(context* registers):
-PCB* cop;
-context* saveOld;
-
-if(cop == NULL){
-saveOld = registers;
-}
-else{
-  if(params.opcode == IDLE){
-  saveOld = registers;
-  cop->stackTop = registers;
-  }
-  else if(params.opcode == EXIT){
-  free cop;
-  }
-}
-
-  if(isEmpty(ready) == 0 ){
-    PCB* pcb = ready->head;
-    RemovePCB(pcb);
-    pcb->stateReady = 1;
-    cop = pcb;
-    return cop->stackTop;
-  }
-  else{
-  return saveOld;
-  }
