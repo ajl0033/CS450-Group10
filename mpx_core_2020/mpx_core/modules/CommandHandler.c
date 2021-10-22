@@ -563,6 +563,47 @@ int comhand(){
        addAlarm(message, time);
      }
    }
+   else if (cmdBuffer[0] == 'l' && cmdBuffer[1] == 'o' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'd' && cmdBuffer[4] == 'r' && cmdBuffer[5] == '3') {
+   int i;
+   int check = 1;
+   for (i=6; i<100; i++)
+   {
+     if (cmdBuffer[i] != ' ')
+     {
+       print("\033[31m");
+       println("\n\n**Invalid Command**\n");
+       print("\033[37m");
+       check = 0;
+       break;
+     }
+   }
+     if (check == 1)
+     {
+       println("");
+       println("\nEnter the Process Name...\n");
+       memset(cmdBuffer, '\0', 100);
+       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+       println("");
+       char process[100];
+       memset(process, '\0', 100);
+       int k;
+       for (k = 0; k < 100; k++) {
+         process[k] = cmdBuffer[k];
+       }
+        println("");
+        println("\nEnter the Process Function...\n");
+        memset(cmdBuffer, '\0', 100);
+        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+        println("");
+        char func[100];
+        memset(func, '\0', 100);
+        int j;
+        for (j = 0; j < 100; j++) {
+          func[j] = cmdBuffer[j];
+        }
+        loadr3(process, func);
+      }
+    }
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
