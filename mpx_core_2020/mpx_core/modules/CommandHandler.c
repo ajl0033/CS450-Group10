@@ -537,7 +537,7 @@ int comhand(){
     if (check == 1)
     {
       println("");
-      println("\nEnter a messag for the alarm...\n");
+      println("\nEnter a message for the alarm...\n");
       memset(cmdBuffer, '\0', 100);
       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
       println("");
