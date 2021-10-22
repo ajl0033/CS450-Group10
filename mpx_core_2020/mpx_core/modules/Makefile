@@ -17,6 +17,7 @@ print.o\
 bcdConversion.o\
 time.o\
 date.o\
+Alarm.o\
 PCB.o
 
 .c.s:

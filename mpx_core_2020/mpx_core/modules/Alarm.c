@@ -20,15 +20,14 @@ void createAlarmProcess() // Create Process
   CreatePCB("alarm", 0, 2);
 }
 
-void addAlarm(char* message, char* alarmTime) // Command for terminal
-{
+void addAlarm(char* message, char* alarmTime){
   PCB* alarm = FindPCB("alarm");
   timesList* node = head;
   while (node != NULL)
   {
     node = node->next;
   }
-  timesList* newNode = node->next
+  timesList* newNode = node->next;
   strcpy(newNode->time, alarmTime);
   strcpy(newNode->message, message);
 }

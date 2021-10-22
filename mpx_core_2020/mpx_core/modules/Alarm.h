@@ -5,4 +5,5 @@
 
 void createAlarmProcess(); // Create Process
 
-void addAlarm(char* message, char* alarmTime); // Command for terminal
+void addAlarm(char* message, char* alarmTime);
+// Command for terminal
