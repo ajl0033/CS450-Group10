@@ -27,7 +27,7 @@ int comhand(){
   println("    /  \\ /  \\|     ___/\\     / ");
   println("   /    Y    \\    |    /     \\    ____________");
   println("   \\____|__  /____|   /___/\\  \\");
-  println("           \\/               \\_/    Version R2  ");
+  println("           \\/               \\_/    Version R3/4  ");
   println("                                  ____________");
   println("");
   print("\033[34m"); // BLUE
@@ -646,7 +646,8 @@ void help() {
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
   println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into\n             the apropriate queue");
   println("unblockpcb:  Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
-  println("alarm:       Sets a new alarm with a message at a given time\n");
+  println("alarm:       Sets a new alarm with a message at a given time");
+  println("yield:       Causes commhand to yield to other processes\n");
   println("-------------------------------------------------------------------------\n");
 }
 
