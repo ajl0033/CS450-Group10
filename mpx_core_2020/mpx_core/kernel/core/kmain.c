@@ -90,13 +90,12 @@ void kmain(void)
    // int count = 1;
    print("\033[37m");
 
-   while (1)
-   {
+   
     sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
 
     yield();
     comhand();
-   }
+
    print("\033[0m");
    //intcomhand();
    println("");
