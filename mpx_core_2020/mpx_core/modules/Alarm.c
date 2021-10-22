@@ -1,4 +1,4 @@
-#include "PCB.c"
+#include "PCB.h"
 #include "print.h"
 #include <string.h>
 #include <system.h>
