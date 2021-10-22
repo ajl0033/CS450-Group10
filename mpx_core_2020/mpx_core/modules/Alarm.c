@@ -24,6 +24,13 @@ void createAlarmProcess() // Create Process
 
 void addAlarm(char* message, char* alarmTime){
   //PCB* alarm = FindPCB("alarm");
+  if (head == NULL)
+  {
+    strcpy(head->time, alarmTime);
+    strcpy(head->message, message);
+  }
+  else
+  {
   node = head;
   while (node != NULL)
   {
@@ -32,6 +39,7 @@ void addAlarm(char* message, char* alarmTime){
   newNode = node->next;
   strcpy(newNode->time, alarmTime);
   strcpy(newNode->message, message);
+}
 }
 
 // **** Starter code to examine if alarm is triggered or should stay IDLE ********
