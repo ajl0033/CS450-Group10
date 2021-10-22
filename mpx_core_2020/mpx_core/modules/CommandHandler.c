@@ -537,15 +537,15 @@ int comhand(){
     if (check == 1)
     {
       println("");
-      println("\nEnter a name for the alarm...\n");
+      println("\nEnter a messag for the alarm...\n");
       memset(cmdBuffer, '\0', 100);
       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
       println("");
-      char name[100];
-      memset(name, '\0', 100);
+      char message[100];
+      memset(message, '\0', 100);
       int k;
       for (k = 0; k < 100; k++) {
-        name[k] = cmdBuffer[k];
+        message[k] = cmdBuffer[k];
       }
       println("");
        println("");
@@ -553,7 +553,7 @@ int comhand(){
        memset(cmdBuffer, '\0', 100);
       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
        println("");
-       addAlarm(name, cmdBuffer);
+       addAlarm(message, cmdBuffer);
      }
    }
 //////////////////////////////////////////////////////////////////////////////////
