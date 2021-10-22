@@ -16,7 +16,7 @@ head = (struct timesList*)malloc(sizeof(struct timesList));
 
 void createAlarmProcess() // Create Process
 {
-  CreatePCB("alarm", 0, 1);
+  CreatePCB("alarm", 0, 2);
 }
 
 void addAlarm(char* message, int alarmTime) // Command for terminal

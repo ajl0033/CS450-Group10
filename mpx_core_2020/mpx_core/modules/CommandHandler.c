@@ -520,6 +520,42 @@ int comhand(){
         UnblockPCB(cmdBuffer);
       }
   }
+  else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'r' && cmdBuffer[4] == 'm') {
+  int i;
+  int check = 1;
+  for (i=4; i<100; i++)
+  {
+    if (cmdBuffer[i] != ' ')
+    {
+      print("\033[31m");
+      println("\n\n**Invalid Command**\n");
+      print("\033[37m");
+      check = 0;
+      break;
+    }
+  }
+    if (check == 1)
+    {
+      println("");
+      println("\nEnter a name for the alarm...\n");
+      memset(cmdBuffer, '\0', 100);
+      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+      println("");
+      char name[100];
+      memset(name, '\0', 100);
+      int k;
+      for (k = 0; k < 100; k++) {
+        name[k] = cmdBuffer[k];
+      }
+      println("");
+       println("");
+      println("\nEnter the time for the alarm...\n");
+       memset(cmdBuffer, '\0', 100);
+      sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+       println("");
+       addAlarm(name, cmdBuffer);
+     }
+   }
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -562,6 +598,7 @@ void help() {
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
   println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into\n             the apropriate queue");
   println("unblockpcb:  Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
+  println("alarm:       Sets a new alarm with a message at a given time\n");
   println("-------------------------------------------------------------------------\n");
 }
 
