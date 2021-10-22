@@ -19,6 +19,7 @@
 [GLOBAL reserved]
 [GLOBAL coprocessor]
 [GLOBAL rtc_isr]
+[GLOBAL sys_call_isr]
 
 
 
