@@ -89,6 +89,10 @@ void kmain(void)
    // char buffer[100];
    // int count = 1;
    print("\033[37m");
+
+   sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
+
+   yield();
    comhand();
    print("\033[0m");
    //intcomhand();
