@@ -549,7 +549,7 @@ int comhand(){
       }
       println("");
        println("");
-      println("\nEnter the time for the alarm...\n");
+      println("\nEnter the time for the alarm in the form: 'HH:MM:SS'...\n");
        memset(cmdBuffer, '\0', 100);
       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
        println("");
