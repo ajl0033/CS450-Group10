@@ -580,19 +580,19 @@ int comhand(){
      if (check == 1)
      {
        println("\nEnter the process number (1-5)...\n");
-       memset(cmdBuffer, '\0', 100);
-       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-       println("");
        int func = 99;
        int check = 1;
        while (check == 1) {
+       memset(cmdBuffer, '\0', 100);
+       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+       println("");
          check = 0;
          if (cmdBuffer[0] == '1') { func = 1;}
          else if (cmdBuffer[0] == '2') { func = 2;}
          else if (cmdBuffer[0] == '3') { func = 3;}
          else if (cmdBuffer[0] == '4') { func = 4;}
          else if (cmdBuffer[0] == '5') { func = 5;}
-         else {print("Invalid Priority.  Must be from 1 to 5.");check = 1;}
+         else {print("Invalid Priority.  Must be from 1 to 5.\n");check = 1;}
        }
         loadr3(func);
       }

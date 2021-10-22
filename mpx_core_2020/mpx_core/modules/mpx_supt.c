@@ -259,22 +259,27 @@ cp->esp = (u32int)( new_pcb->stackTop );
 if (func == 1)
 {
 	cp->eip = (u32int) *proc1;
+	proc1();
 }
 else if (func == 2)
 {
 	cp->eip = (u32int) *proc2;
+	proc2();
 }
 else if (func == 3)
 {
 	cp->eip = (u32int) *proc3;
+	proc3();
 }
 else if (func == 4)
 {
 	cp->eip = (u32int) *proc4;
+	proc4();
 }
 else if (func == 5)
 {
 	cp->eip = (u32int) *proc5;
+	proc5();
 }
 cp->eflags = 0x202;
 return new_pcb;
