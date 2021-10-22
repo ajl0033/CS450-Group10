@@ -90,7 +90,7 @@ void kmain(void)
    // int count = 1;
    print("\033[37m");
 
-   
+   // Would add comhand idle to ready queue, but do not know how to store functions in the struct
     sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
 
     yield();
