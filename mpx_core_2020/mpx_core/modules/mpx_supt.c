@@ -216,7 +216,7 @@ else{
   return (u32int*)saveOld;
   }
 }
-void yeild(){
+void yield(){
 	asm volatile("int $60");
 }
 void loadr3(){
