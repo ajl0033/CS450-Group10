@@ -658,6 +658,7 @@ void help() {
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
   println("alarm:       Sets a new alarm with a message at a given time");
   println("yield:       Causes commhand to yield to other processes\n");
+  println("loadr3:       Load processes for R3 testing purposes\n");
   println("-------------------------------------------------------------------------\n");
 }
 
