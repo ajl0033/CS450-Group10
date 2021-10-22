@@ -11,6 +11,7 @@
 #include <core/serial.h>
 #include "PCB.h"
 
+extern queue ready;
 // global variable containing parameter used when making
 // system calls via sys_req
 param params;
@@ -203,8 +204,9 @@ else{
   }
 }
 
-  if(isEmpty(ready) == 0 ){
-    PCB* pcb = ready->head;
+  if(isEmpty(&ready) == 0 ){
+
+    PCB* pcb = ready.head;
     RemovePCB(pcb);
     pcb->state = 1;
     cop = pcb;
