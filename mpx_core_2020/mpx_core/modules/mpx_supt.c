@@ -220,9 +220,33 @@ else{
 void yield(){
 	asm volatile("int $60");
 }
-PCB* loadr3(char* name, char* func){
-CreatePCB(name, 1, 5);
-PCB* new_pcb = FindPCB(name);
+PCB* loadr3(int func){
+PCB* new_pcb = NULL;
+if (func == 1)
+{
+	CreatePCB("proc1", 1, 5);
+	new_pcb = FindPCB("proc1");
+}
+else if (func == 2)
+{
+	CreatePCB("proc2", 1, 5);
+	new_pcb = FindPCB("proc2");
+}
+else if (func == 3)
+{
+	CreatePCB("proc3", 1, 5);
+	new_pcb = FindPCB("proc3");
+}
+else if (func == 4)
+{
+	CreatePCB("proc4", 1, 5);
+	new_pcb = FindPCB("proc4");
+}
+else if (func == 5)
+{
+	CreatePCB("proc5", 1, 5);
+	new_pcb = FindPCB("proc5");
+}
 context* cp = (context *)(new_pcb->stackTop);
 memset (cp , 0, sizeof (context *));
 cp->fs = 0x10;
@@ -232,7 +256,26 @@ cp->es = 0x10;
 cp->es = 0x8;
 cp->ebp = (u32int)( new_pcb->stack );
 cp->esp = (u32int)( new_pcb->stackTop );
-cp->eip = (u32int) func;
+if (func == 1)
+{
+	cp->eip = (u32int) "proc1";
+}
+else if (func == 2)
+{
+	cp->eip = (u32int) "proc2";
+}
+else if (func == 3)
+{
+	cp->eip = (u32int) "proc3";
+}
+else if (func == 4)
+{
+	cp->eip = (u32int) "proc4";
+}
+else if (func == 5)
+{
+	cp->eip = (u32int) "proc5";
+}
 cp->eflags = 0x202;
 return new_pcb;
 }

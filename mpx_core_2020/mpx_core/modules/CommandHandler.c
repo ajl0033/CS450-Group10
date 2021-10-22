@@ -579,29 +579,22 @@ int comhand(){
    }
      if (check == 1)
      {
-       println("");
-       println("\nEnter the Process Name...\n");
+       println("\nEnter the process number (1-5)...\n");
        memset(cmdBuffer, '\0', 100);
        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
        println("");
-       char process[100];
-       memset(process, '\0', 100);
-       int k;
-       for (k = 0; k < 100; k++) {
-         process[k] = cmdBuffer[k];
+       int func = 99;
+       int check = 1;
+       while (check == 1) {
+         check = 0;
+         if (cmdBuffer[0] == '1') { func = 1;}
+         else if (cmdBuffer[0] == '2') { func = 2;}
+         else if (cmdBuffer[0] == '3') { func = 3;}
+         else if (cmdBuffer[0] == '4') { func = 4;}
+         else if (cmdBuffer[0] == '5') { func = 5;}
+         else {print("Invalid Priority.  Must be from 1 to 5.");check = 1;}
        }
-        println("");
-        println("\nEnter the Process Function...\n");
-        memset(cmdBuffer, '\0', 100);
-        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-        println("");
-        char func[100];
-        memset(func, '\0', 100);
-        int j;
-        for (j = 0; j < 100; j++) {
-          func[j] = cmdBuffer[j];
-        }
-        loadr3(process, func);
+        loadr3(func);
       }
     }
 //////////////////////////////////////////////////////////////////////////////////
