@@ -27,7 +27,7 @@ int comhand(){
   println("    /  \\ /  \\|     ___/\\     / ");
   println("   /    Y    \\    |    /     \\    ____________");
   println("   \\____|__  /____|   /___/\\  \\");
-  println("           \\/               \\_/    Version R2  ");
+  println("           \\/               \\_/    Version R3/4  ");
   println("                                  ____________");
   println("");
   print("\033[34m"); // BLUE
