@@ -21,6 +21,7 @@ struct Node* node = NULL;
 void createAlarmProcess() // Create Process
 {
   CreatePCB("alarm", 0, 2);
+  //checkAlarms();
 }
 
 void addAlarm(char* message, char* alarmTime){
@@ -54,7 +55,7 @@ void addAlarm(char* message, char* alarmTime){
 //       if (strcmp(gettime(), node->time) == 0 || strcmp(gettime(), node->time) > 0)
 //       {
 //         yield();
-//         println(node->message)
+//         println(node->message);
 //         break;
 //       }
 //       node = node->next;
