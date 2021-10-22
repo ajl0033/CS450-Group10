@@ -1,4 +1,6 @@
 // PCB Header
+#ifndef _PCB_H
+#define _PCB_H
 #include <system.h>
 
 typedef struct PCB{
@@ -59,3 +61,4 @@ void ShowReady(); // Will
 void ShowBlocked(); // Will
 
 void ShowAll(); // Will
+#endif

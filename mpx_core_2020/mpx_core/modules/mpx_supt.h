@@ -1,12 +1,12 @@
 #ifndef _MPX_SUPT_H
 #define _MPX_SUPT_H
-
+#include "PCB.h"
 #include <system.h>
 
 
 #define EXIT 0
 #define IDLE 1
-#define READ 2
+#define READ 2s
 #define WRITE 3
 #define INVALID_OPERATION 4
 
