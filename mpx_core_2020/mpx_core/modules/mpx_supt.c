@@ -187,18 +187,18 @@ void idle()
 }
 
 u32int* sys_call(context* registers){
-GLOBAL PCB* cop;
+PCB* cop;
 context* saveOld;
 
 if(cop == NULL){
 saveOld = registers;
 }
 else{
-  if(params.opcode == IDLE){
+  if(params.op_code == IDLE){
   saveOld = registers;
-  cop->stackTop = registers;
+  cop->stackTop = registers->esp;
   }
-  else if(params.opcode == EXIT){
+  else if(params.op_code == EXIT){
   FreePCB(cop);
   }
 }
