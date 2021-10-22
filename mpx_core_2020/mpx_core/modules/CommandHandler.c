@@ -8,6 +8,7 @@
 #include "date.h"
 #include "time.h"
 #include "PCB.h"
+#include "Alarm.h"
 
 // UNCOMMENT LINES - 334, 353, 372, 407-444, 446
 

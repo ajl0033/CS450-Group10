@@ -3,6 +3,7 @@
 #include <string.h>
 #include <system.h>
 #include <core/serial.h>
+#include "Alarm.h"
 
 struct Node {
   int time;
