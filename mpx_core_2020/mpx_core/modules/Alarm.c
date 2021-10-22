@@ -43,24 +43,24 @@ void addAlarm(char* message, char* alarmTime){
 }
 }
 
-/*
-void checkAlarms()
-{
-while (1) {
-  sys_req(IDLE);
-timesList* node = head;
-while (node != NULL)
-{
-if (strcmp(gettime(), node->time) == 0 || strcmp(gettime(), node->time) > 0)
-{
-  println(node->message)
-  break;
-}
-node = node->next;
-}
-}
-}
-*/
+// void checkAlarms()
+// {
+//   while (1) {
+//     PCB * alarm = FindPCB("alarm");
+//     alarm = sys_req(IDLE,DEFAULT_DEVICE,NULL,NULL);
+//     node = head;
+//     while (node != NULL)
+//     {
+//       if (strcmp(gettime(), node->time) == 0 || strcmp(gettime(), node->time) > 0)
+//       {
+//         yield();
+//         println(node->message)
+//         break;
+//       }
+//       node = node->next;
+//     }
+//   }
+// }
 
 // **** Starter code to examine if alarm is triggered or should stay IDLE ********
 // **** Don't know if this needs to be in this file or the PCB.c file...
