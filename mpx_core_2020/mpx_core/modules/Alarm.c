@@ -43,6 +43,7 @@ void addAlarm(char* message, char* alarmTime){
 }
 }
 
+/*
 void checkAlarms()
 {
 while (1) {
@@ -59,6 +60,7 @@ node = node->next;
 }
 }
 }
+*/
 
 // **** Starter code to examine if alarm is triggered or should stay IDLE ********
 // **** Don't know if this needs to be in this file or the PCB.c file...
