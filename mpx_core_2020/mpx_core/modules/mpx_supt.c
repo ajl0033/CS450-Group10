@@ -220,9 +220,9 @@ void yield(){
 	asm volatile("int $60");
 }
 void loadr3(){
-pcb* new_pcb = create_pcb ( name , 1 , 1 , 1 , stack_size );
-context* cp = (context *)( new_pcb->stack_top );
-memset (cp , 0, sizeof ( context ));
+PCB* new_pcb = create_pcb (name , 1 , 1 , 1 , stack_size );
+context* cp = (context *)(new_pcb->stack_top );
+memset (cp , 0, sizeof (context ));
 cp->fs = 0x10;
 cp->gs = 0x10;
 cp->ds = 0x10;
