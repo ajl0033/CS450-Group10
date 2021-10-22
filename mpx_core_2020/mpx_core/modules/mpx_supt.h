@@ -6,7 +6,7 @@
 
 #define EXIT 0
 #define IDLE 1
-#define READ 2s
+#define READ 2
 #define WRITE 3
 #define INVALID_OPERATION 4
 
