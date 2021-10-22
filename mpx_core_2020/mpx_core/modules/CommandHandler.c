@@ -379,76 +379,76 @@ int comhand(){
   /////             TEMP COMMANDS                                    ///////////////
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
-  else if (cmdBuffer[0] == 'c' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'a' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b') {
-    int i;
-    int check = 1;
-    for (i=9; i<100; i++)
-    {
-      if (cmdBuffer[i] != ' ')
-      {
-        print("\033[31m");
-        println("\n\n**Invalid Command**\n");
-        print("\033[37m");
-        check = 0;
-        break;
-      }
-    }
-      if (check == 1)
-      {
-        println("");
-        println("\nEnter the Process Name...\n");
-        memset(cmdBuffer, '\0', 100);
-        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-        println("");
-        char process[100];
-        memset(process, '\0', 100);
-        int k;
-        for (k = 0; k < 100; k++) {
-          process[k] = cmdBuffer[k];
-        }
-        println("");
-         println("");
-        println("\nEnter the Process Class: (0 for \"system process\" or 1 for \"application\")\n");
-         memset(cmdBuffer, '\0', 100);
-        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-         println("");
-         int check1 = 1;
-         int class = 99;
-         while (check1 == 1) {
-           check1 = 0;
-           if (cmdBuffer[0] == '0') {
-               class = 0;
-           } else if (cmdBuffer[0] == '1') {
-             class = 1;
-           } else {
-             check1 = 1;
-          }
-         }
-         println("\nEnter the Process Priority...\n");
-         memset(cmdBuffer, '\0', 100);
-         sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-         println("");
-         int priority = 99;
-         int check = 1;
-         while (check == 1) {
-           check = 0;
-           if (cmdBuffer[0] == '1') { priority = 1;}
-           else if (cmdBuffer[0] == '0') { priority = 0;}
-           else if (cmdBuffer[0] == '1') { priority = 1;}
-           else if (cmdBuffer[0] == '2') { priority = 2;}
-           else if (cmdBuffer[0] == '3') { priority = 3;}
-           else if (cmdBuffer[0] == '4') { priority = 4;}
-           else if (cmdBuffer[0] == '5') { priority = 5;}
-           else if (cmdBuffer[0] == '6') { priority = 6;}
-           else if (cmdBuffer[0] == '7') { priority = 7;}
-           else if (cmdBuffer[0] == '8') { priority = 8;}
-           else if (cmdBuffer[0] == '9') { priority = 9;}
-           else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
-         }
-
-        CreatePCB(process, class, priority);
-      }
-  }
+  // else if (cmdBuffer[0] == 'c' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'a' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b') {
+  //   int i;
+  //   int check = 1;
+  //   for (i=9; i<100; i++)
+  //   {
+  //     if (cmdBuffer[i] != ' ')
+  //     {
+  //       print("\033[31m");
+  //       println("\n\n**Invalid Command**\n");
+  //       print("\033[37m");
+  //       check = 0;
+  //       break;
+  //     }
+  //   }
+  //     if (check == 1)
+  //     {
+  //       println("");
+  //       println("\nEnter the Process Name...\n");
+  //       memset(cmdBuffer, '\0', 100);
+  //       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+  //       println("");
+  //       char process[100];
+  //       memset(process, '\0', 100);
+  //       int k;
+  //       for (k = 0; k < 100; k++) {
+  //         process[k] = cmdBuffer[k];
+  //       }
+  //       println("");
+  //        println("");
+  //       println("\nEnter the Process Class: (0 for \"system process\" or 1 for \"application\")\n");
+  //        memset(cmdBuffer, '\0', 100);
+  //       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+  //        println("");
+  //        int check1 = 1;
+  //        int class = 99;
+  //        while (check1 == 1) {
+  //          check1 = 0;
+  //          if (cmdBuffer[0] == '0') {
+  //              class = 0;
+  //          } else if (cmdBuffer[0] == '1') {
+  //            class = 1;
+  //          } else {
+  //            check1 = 1;
+  //         }
+  //        }
+  //        println("\nEnter the Process Priority...\n");
+  //        memset(cmdBuffer, '\0', 100);
+  //        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+  //        println("");
+  //        int priority = 99;
+  //        int check = 1;
+  //        while (check == 1) {
+  //          check = 0;
+  //          if (cmdBuffer[0] == '1') { priority = 1;}
+  //          else if (cmdBuffer[0] == '0') { priority = 0;}
+  //          else if (cmdBuffer[0] == '1') { priority = 1;}
+  //          else if (cmdBuffer[0] == '2') { priority = 2;}
+  //          else if (cmdBuffer[0] == '3') { priority = 3;}
+  //          else if (cmdBuffer[0] == '4') { priority = 4;}
+  //          else if (cmdBuffer[0] == '5') { priority = 5;}
+  //          else if (cmdBuffer[0] == '6') { priority = 6;}
+  //          else if (cmdBuffer[0] == '7') { priority = 7;}
+  //          else if (cmdBuffer[0] == '8') { priority = 8;}
+  //          else if (cmdBuffer[0] == '9') { priority = 9;}
+  //          else {print("Invalid Priority.  Must be from 1 to 9.");check = 1;}
+  //        }
+  //
+  //       CreatePCB(process, class, priority);
+  //     }
+  // }
   else if (cmdBuffer[0] == 'd' && cmdBuffer[1] == 'e' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 't' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'p' && cmdBuffer[7] == 'c' && cmdBuffer[8] == 'b') {
     int i;
     int check = 1;
@@ -473,54 +473,54 @@ int comhand(){
         DeletePCB(cmdBuffer);
       }
   }
-  else if (cmdBuffer[0] == 'b' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'c' && cmdBuffer[4] == 'k' && cmdBuffer[5] == 'p' && cmdBuffer[6] == 'c' && cmdBuffer[7] == 'b') {
-    int i;
-    int check = 1;
-    for (i=8; i<100; i++)
-    {
-      if (cmdBuffer[i] != ' ')
-      {
-        print("\033[31m");
-        println("\n\n**Invalid Command**\n");
-        print("\033[37m");
-        check = 0;
-        break;
-      }
-    }
-      if (check == 1)
-      {
-        println("");
-        println("\nEnter the Process Name...\n");
-        memset(cmdBuffer, '\0', 100);
-        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-        println("");
-        BlockPCB(cmdBuffer);
-      }
-  }
-  else if (cmdBuffer[0] == 'u' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'b' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'o' && cmdBuffer[5] == 'c' && cmdBuffer[6] == 'k' && cmdBuffer[7] == 'p' && cmdBuffer[8] == 'c' && cmdBuffer[9] == 'b') {
-    int i;
-    int check = 1;
-    for (i=10; i<100; i++)
-    {
-      if (cmdBuffer[i] != ' ')
-      {
-        print("\033[31m");
-        println("\n\n**Invalid Command**\n");
-        print("\033[37m");
-        check = 0;
-        break;
-      }
-    }
-      if (check == 1)
-      {
-        println("");
-        println("\nEnter the Process Name...\n");
-        memset(cmdBuffer, '\0', 100);
-        sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-        println("");
-        UnblockPCB(cmdBuffer);
-      }
-  }
+  // else if (cmdBuffer[0] == 'b' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'c' && cmdBuffer[4] == 'k' && cmdBuffer[5] == 'p' && cmdBuffer[6] == 'c' && cmdBuffer[7] == 'b') {
+  //   int i;
+  //   int check = 1;
+  //   for (i=8; i<100; i++)
+  //   {
+  //     if (cmdBuffer[i] != ' ')
+  //     {
+  //       print("\033[31m");
+  //       println("\n\n**Invalid Command**\n");
+  //       print("\033[37m");
+  //       check = 0;
+  //       break;
+  //     }
+  //   }
+  //     if (check == 1)
+  //     {
+  //       println("");
+  //       println("\nEnter the Process Name...\n");
+  //       memset(cmdBuffer, '\0', 100);
+  //       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+  //       println("");
+  //       BlockPCB(cmdBuffer);
+  //     }
+  // }
+  // else if (cmdBuffer[0] == 'u' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'b' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'o' && cmdBuffer[5] == 'c' && cmdBuffer[6] == 'k' && cmdBuffer[7] == 'p' && cmdBuffer[8] == 'c' && cmdBuffer[9] == 'b') {
+  //   int i;
+  //   int check = 1;
+  //   for (i=10; i<100; i++)
+  //   {
+  //     if (cmdBuffer[i] != ' ')
+  //     {
+  //       print("\033[31m");
+  //       println("\n\n**Invalid Command**\n");
+  //       print("\033[37m");
+  //       check = 0;
+  //       break;
+  //     }
+  //   }
+  //     if (check == 1)
+  //     {
+  //       println("");
+  //       println("\nEnter the Process Name...\n");
+  //       memset(cmdBuffer, '\0', 100);
+  //       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
+  //       println("");
+  //       UnblockPCB(cmdBuffer);
+  //     }
+  // }
   else if (cmdBuffer[0] == 'y' && cmdBuffer[1] == 'i' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'd') {
     int i;
     int check = 1;
@@ -655,10 +655,7 @@ void help() {
   println("showall:     Displays the process name, class, state, suspended status,\n             and priority of all PCBs");
   println("showready:   Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the ready queue");
   println("showblocked: Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the blocked queue");
-  println("createpcb:   Creates a new PCB and inserts into the apropriate queue");
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
-  println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into\n             the apropriate queue");
-  println("unblockpcb:  Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
   println("alarm:       Sets a new alarm with a message at a given time");
   println("yield:       Causes commhand to yield to other processes\n");
   println("-------------------------------------------------------------------------\n");
