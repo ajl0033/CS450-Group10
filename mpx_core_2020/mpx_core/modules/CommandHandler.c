@@ -634,4 +634,23 @@ int shutdown() {
       print("\033[37m");
     }
   }
+  if (cmdBuffer[0] == 'y' && cmdBuffer[1] == 'i' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'l' && cmdBuffer[4] == 'd') {
+    int i;
+    int check = 1;
+    for (i=4; i<100; i++)
+    {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+    }
+    if (check == 1)
+    {
+      yield();
+    }
+  }
 }
