@@ -554,7 +554,7 @@ int comhand(){
        memset(cmdBuffer, '\0', 100);
       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
        println("");
-       addAlarm(message, cmdBuffer);
+       addAlarm(message, (int) cmdBuffer);
      }
    }
 //////////////////////////////////////////////////////////////////////////////////
