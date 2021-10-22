@@ -606,7 +606,7 @@ void help() {
   println("blockpcb:    Finds a given PCB, sets it to blocked, and inserts it into\n             the apropriate queue");
   println("unblockpcb:  Finds a given PCB, sets it to unblocked, and inserts it into\n             the apropriate queue");
   println("alarm:       Sets a new alarm with a message at a given time\n");
-  prinlt("yield:        Causes commhand to yield to other processes\n");
+  println("yield:        Causes commhand to yield to other processes\n");
   println("-------------------------------------------------------------------------\n");
 }
 
