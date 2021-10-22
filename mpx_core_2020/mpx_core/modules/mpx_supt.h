@@ -96,5 +96,5 @@ void idle();
 u32int* sys_call(context* registers);
 
 void yield();
-PCB* loadr3(char* name, char* func);
+PCB* loadr3(int func);
 #endif

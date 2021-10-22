@@ -258,23 +258,23 @@ cp->ebp = (u32int)( new_pcb->stack );
 cp->esp = (u32int)( new_pcb->stackTop );
 if (func == 1)
 {
-	cp->eip = (u32int) "proc1";
+	cp->eip = (u32int) *proc1;
 }
 else if (func == 2)
 {
-	cp->eip = (u32int) "proc2";
+	cp->eip = (u32int) *proc2;
 }
 else if (func == 3)
 {
-	cp->eip = (u32int) "proc3";
+	cp->eip = (u32int) *proc3;
 }
 else if (func == 4)
 {
-	cp->eip = (u32int) "proc4";
+	cp->eip = (u32int) *proc4;
 }
 else if (func == 5)
 {
-	cp->eip = (u32int) "proc5";
+	cp->eip = (u32int) *proc5;
 }
 cp->eflags = 0x202;
 return new_pcb;
