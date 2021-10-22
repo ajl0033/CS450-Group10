@@ -220,15 +220,18 @@ else{
 void yield(){
 	asm volatile("int $60");
 }
-PCB* loadr3(){
-char* name = "name";
-PCB* new_pcb = FindPCB(name);
+PCB* loadr3(char* name){
+PCB* new_pcb = CreatePCB(name, 1, 5);
 context* cp = (context *)(new_pcb->stackTop);
 memset (cp , 0, sizeof (context *));
 cp->fs = 0x10;
+cp->gs = 0x10;
 cp->ds = 0x10;
 cp->es = 0x10;
+cp->es = 0x8;
 cp->ebp = (u32int)( new_pcb->stack );
 cp->esp = (u32int)( new_pcb->stackTop );
+cp->eip = (u32int) func;
 cp->eflags = 0x202;
+return new_pcb;
 }
