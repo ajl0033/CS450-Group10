@@ -12,8 +12,10 @@ struct Node {
   struct Node* previous;
 } timesList;
 
-struct timesList* head = NULL;
-head = (struct timesList*)malloc(sizeof(struct timesList));
+struct Node* head = NULL;
+struct Node* newNode = NULL;
+struct Node* node = NULL;
+//head = (struct timesList*)malloc(sizeof(struct timesList));
 
 void createAlarmProcess() // Create Process
 {
@@ -21,13 +23,13 @@ void createAlarmProcess() // Create Process
 }
 
 void addAlarm(char* message, char* alarmTime){
-  PCB* alarm = FindPCB("alarm");
-  timesList* node = head;
+  //PCB* alarm = FindPCB("alarm");
+  node = head;
   while (node != NULL)
   {
     node = node->next;
   }
-  timesList* newNode = node->next;
+  newNode = node->next;
   strcpy(newNode->time, alarmTime);
   strcpy(newNode->message, message);
 }
