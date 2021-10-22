@@ -7,7 +7,7 @@
 #include "print.h"
 
 /*
-stateReady = 0,1 or 2 ---- 0 = ready -- 1 = running -- 2 = blocked
+state = 0,1 or 2 ---- 0 = ready -- 1 = running -- 2 = blocked
 stateSuspended = 0,1 ---- 0 = not suspended -- 1 = suspended
 ^this can be changed but its how i coded it
 

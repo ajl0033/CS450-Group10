@@ -206,7 +206,7 @@ else{
   if(isEmpty(ready) == 0 ){
     PCB* pcb = ready->head;
     RemovePCB(pcb);
-    pcb->stateReady = 1;
+    pcb->state = 1;
     cop = pcb;
     return cop->stackTop;
   }
