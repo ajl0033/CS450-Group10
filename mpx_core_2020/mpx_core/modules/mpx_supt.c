@@ -221,7 +221,8 @@ void yield(){
 	asm volatile("int $60");
 }
 PCB* loadr3(char* name){
-PCB* new_pcb = CreatePCB(name, 1, 5);
+CreatePCB(name, 1, 5);
+PCB* new_pcb = FindPCB(name);
 context* cp = (context *)(new_pcb->stackTop);
 memset (cp , 0, sizeof (context *));
 cp->fs = 0x10;
