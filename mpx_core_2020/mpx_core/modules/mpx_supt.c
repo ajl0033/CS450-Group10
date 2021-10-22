@@ -216,3 +216,6 @@ else{
   return (u32int*)saveOld;
   }
 }
+void yeild(){
+	asm volatile("int $60");
+}
