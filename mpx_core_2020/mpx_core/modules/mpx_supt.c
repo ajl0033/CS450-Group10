@@ -9,7 +9,8 @@
 #include <mem/heap.h>
 #include <string.h>
 #include <core/serial.h>
-#include "PCB.h"
+
+#include "proc3.c"
 
 extern queue ready;
 // global variable containing parameter used when making
@@ -220,7 +221,9 @@ void yield(){
 	asm volatile("int $60");
 }
 PCB* loadr3(){
-PCB* new_pcb = CreatePCB(name, 1 , 1);
+char* name = "name";
+CreatePCB(name, 1 , 1);
+PCB* new_pcb = FindPCB(name);
 context* cp = (context *)(new_pcb->stackTop);
 memset (cp , 0, sizeof (context *));
 cp->fs = 0x10;
@@ -230,7 +233,7 @@ cp->es = 0x10;
 cp->cs = 0x8;
 cp->ebp = (u32int)( new_pcb->stack );
 cp->esp = (u32int)( new_pcb->stackTop );
-cp->eip = ( u32int )func;// The function correlating to the process , ie. Proc1
-cp->eflags = 0x202 ;
-return new_pcb ;
+proc1();// The function correlating to the process , ie. Proc1
+cp->eflags = 0x202;
+return new_pcb;
 }

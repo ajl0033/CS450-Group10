@@ -3,6 +3,7 @@
 
 #include <system.h>
 
+
 #define EXIT 0
 #define IDLE 1
 #define READ 2
@@ -94,4 +95,6 @@ void idle();
 
 u32int* sys_call(context* registers);
 
+void yield();
+PCB* loadr3();
 #endif
