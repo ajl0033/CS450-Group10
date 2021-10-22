@@ -524,7 +524,7 @@ int comhand(){
   else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'r' && cmdBuffer[4] == 'm') {
   int i;
   int check = 1;
-  for (i=4; i<100; i++)
+  for (i=5; i<100; i++)
   {
     if (cmdBuffer[i] != ' ')
     {
