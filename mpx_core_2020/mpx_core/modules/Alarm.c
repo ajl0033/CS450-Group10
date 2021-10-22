@@ -4,6 +4,7 @@
 #include <system.h>
 #include <core/serial.h>
 #include "Alarm.h"
+#include "mpx_supt.h"
 
 struct Node {
   char time [6];
@@ -44,6 +45,7 @@ void addAlarm(char* message, char* alarmTime){
 
 // **** Starter code to examine if alarm is triggered or should stay IDLE ********
 // **** Don't know if this needs to be in this file or the PCB.c file...
+// sys_req(IDLE);
 // timesList* node = head;
 // while (node != NULL)
 // {
@@ -59,6 +61,7 @@ void addAlarm(char* message, char* alarmTime){
 //   {
 //   node->previous->next = node->next; // delete individual alarm
 //   free(node);
+//   break;
 // }
 // }
 // node = node->next;
