@@ -220,7 +220,7 @@ else{
 void yield(){
 	asm volatile("int $60");
 }
-PCB* loadr3(char* name){
+PCB* loadr3(char* name, char* func){
 CreatePCB(name, 1, 5);
 PCB* new_pcb = FindPCB(name);
 context* cp = (context *)(new_pcb->stackTop);
