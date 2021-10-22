@@ -6,7 +6,7 @@
 #include "Alarm.h"
 
 struct Node {
-  int time;
+  char time [6];
   char message [50];
   struct Node* next;
   struct Node* previous;
@@ -20,7 +20,7 @@ void createAlarmProcess() // Create Process
   CreatePCB("alarm", 0, 2);
 }
 
-void addAlarm(char* message, int alarmTime) // Command for terminal
+void addAlarm(char* message, char* alarmTime) // Command for terminal
 {
   PCB* alarm = FindPCB("alarm");
   timesList* node = head;
@@ -29,7 +29,7 @@ void addAlarm(char* message, int alarmTime) // Command for terminal
     node = node->next;
   }
   timesList* newNode = node->next
-  newNode->time = alarmTime;
+  strcpy(newNode->time, alarmTime);
   strcpy(newNode->message, message);
 }
 
@@ -38,7 +38,7 @@ void addAlarm(char* message, int alarmTime) // Command for terminal
 // timesList* node = head;
 // while (node != NULL)
 // {
-// if (gettime() == node->time || gettime() > node->time)
+// if (gettime() == node->time || gettime() > node->time) CHANGE to STRCMP!
 // {
 //   println(node->message)
 //   sys_req(IDLE); ?
