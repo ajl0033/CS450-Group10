@@ -219,7 +219,7 @@ else{
 void yield(){
 	asm volatile("int $60");
 }
-void loadr3(){
+PCB* loadr3(){
 PCB* new_pcb = CreatePCB(name, 1 , 1);
 context* cp = (context *)(new_pcb->stackTop);
 memset (cp , 0, sizeof (context *));
@@ -231,6 +231,6 @@ cp->cs = 0x8;
 cp->ebp = (u32int)( new_pcb->stack );
 cp->esp = (u32int)( new_pcb->stackTop );
 cp->eip = ( u32int )func;// The function correlating to the process , ie. Proc1
-cp->eflags = 0 x202 ;
+cp->eflags = 0x202 ;
 return new_pcb ;
 }
