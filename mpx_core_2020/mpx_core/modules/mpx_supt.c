@@ -187,17 +187,17 @@ void idle()
   }
 }
 
-u32int* sys_call(context* registers){
-PCB* cop;
+PCB* cop = NULL;
 context* saveOld;
+u32int* sys_call(context* registers){
 
 if(cop == NULL){
 saveOld = registers;
 }
 else{
   if(params.op_code == IDLE){
-  saveOld = registers;
-  cop->stackTop = registers->esp;
+
+  cop->stackTop = (unsigned char*)registers;
   }
   else if(params.op_code == EXIT){
   FreePCB(cop);
@@ -210,9 +210,9 @@ else{
     RemovePCB(pcb);
     pcb->state = 1;
     cop = pcb;
-    return cop->stackTop;
+    return (u32int*)cop->stackTop;
   }
   else{
-  return saveOld;
+  return (u32int*)saveOld;
   }
 }
