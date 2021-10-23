@@ -6,7 +6,6 @@ typedef struct CMCB{
   int type; //free is 0 and allocated is 1
   int beginningAddress;
   int size;
-  char name[20];
   struct CMCB *nextCMCB;
   struct CMCB *previousCMCB;
 } CMCB;

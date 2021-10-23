@@ -6,13 +6,24 @@
 #include "print.h"
 
 // Move these to Initialize Heap
-memoryList free = {0,NULL,NULL};
-memoryList allocated = {0,NULL,NULL};
+memoryList free_list = {0,NULL,NULL};
+memoryList allocated_list = {0,NULL,NULL};
 uint32 start_of_memory;
 
 uint32 initialize_heap(uint32 size){
-  start_of_memory =kmalloc(size + sizeof(CMCB));
-  
+  start_of_memory = kmalloc(size + sizeof(CMCB));
+
+  CMCB *top = (CMCB*)start_of_memory;
+  // create the initial CMCB
+  top->beginningAddress = start_of_memory + sizeof(CMCB);
+  top->size = size;
+  top->type = 0; // is free memory
+
+  // put the first cmcb into the free list.
+  free_list.head = top;
+  free_list.tail = top;
+  free_list.count = 1;
+  return 0;
 }
 
 void allocate_memory(int bytes)
@@ -22,7 +33,7 @@ void allocate_memory(int bytes)
 
 void free_memory(int address) // Will, trying to wrap head around it, decent start, need initialize function to visualize.
 {
-  CMCB* tempAllocated = allocated.head;
+  CMCB* tempAllocated = allocated_list.head;
   while (tempAllocated != NULL)
   {
     if (tempAllocated->beginningAddress == address)
@@ -30,13 +41,13 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
       // Allocate to free list
       allocate_memory(tempAllocated->size);
       // Remove from allocated list
-      if(tempAllocated == allocated->head){
-        allocated->head = tempAllocated->nextCMCB;
+      if(tempAllocated == allocated_list->head){
+        allocated_list->head = tempAllocated->nextCMCB;
       }
       //else if it is at the tail,
-      else if(tempAllocated == allocated->tail){
-        allocated->tail = tempAllocated->previousCMCB;
-        allocated->tail->nextCMCB = NULL;
+      else if(tempAllocated == allocated_list->tail){
+        allocated_list->tail = tempAllocated->previousCMCB;
+        allocated_list->tail->nextCMCB = NULL;
       }
       else{
         tempAllocated->previousCMCB->nextCMCB = tempAllocated->nextCMCB;
@@ -44,7 +55,7 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
       }
       tempAllocated->nextCMCB = NULL;
       tempAllocated->previousCMCB = NULL;
-      allocated->count--;
+      allocated_list->count--;
       // Free sizeof(block) + sizeof(CMCB) + sizeof(LCMB)
       // How the heck do i read addresses?!!! Is the Heap a list?
 
@@ -62,7 +73,7 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
 //0 = false ----- 1 = true
 int IsEmpty(){
 int isItEmpty;
-isItEmpty = allocated->count;
+isItEmpty = allocated_list->count;
 if(isItEmpty = 0){
   return 0
 }
@@ -70,10 +81,10 @@ return 1;
 }
 
 void Show_Allocated_Memory(){
-if(allocated->count = 0){
+if(allocated_list->count = 0){
   println("Allocated memory is empty ");
 }else{
-  CMCB* tempCMBC = allocated->head;
+  CMCB* tempCMBC = allocated_list->head;
 
     while(tempCMBC != NULL){
           //I dont think i can print things like this but for now fuckit
@@ -87,7 +98,7 @@ if(allocated->count = 0){
 }
 
 void Show_Free_Memory(){
-  CMCB* tempCMBC = free->head;
+  CMCB* tempCMBC = free_list->head;
 
     while(tempCMBC != NULL){
           //I dont think i can print things like this but for now fuckit
