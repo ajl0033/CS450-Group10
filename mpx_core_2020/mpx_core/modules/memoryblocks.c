@@ -72,12 +72,7 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
 
 //0 = false ----- 1 = true
 int IsEmpty(){
-int isItEmpty;
-isItEmpty = allocated_list->count;
-if(isItEmpty = 0){
-  return 0
-}
-return 1;
+  return allocated_list->count == 0;
 }
 
 void Show_Allocated_Memory(){
