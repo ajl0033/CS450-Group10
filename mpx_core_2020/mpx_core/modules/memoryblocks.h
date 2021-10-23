@@ -15,14 +15,14 @@ typedef struct LMCB{
   int size;
 } LMCB;
 
-struct memoryList {
+typedef struct memoryList {
   int count;
   CMCB *head;
   CMCB *tail;
   //LMCB *tail;
 } memoryList;
 
-void initialize_heap(u32int size);
+u32int initialize_heap(u32int size);
 
 void allocate_memory(u32int bytes);
 

@@ -3,6 +3,7 @@
 #include "mpx_supt.h"
 #include <core/serial.h>
 #include "memoryblocks.h"
+#include <mem/heap.h>
 #include "print.h"
 
 // Move these to Initialize Heap
@@ -42,15 +43,15 @@ void allocate_memory(u32int bytes)
   allocation->size = bytes;
   allocation->type = 1;
 
-  if(allocated_list->count == 0){
-  allocated_list->head = allocation;
-  allocated_list->tail = allocation;
+  if(allocated_list.count == 0){
+  allocated_list.head = allocation;
+  allocated_list.tail = allocation;
   allocation->beginningAddress = top->beginningAddress;
   top->beginningAddress +=  (bytes + sizeof(CMCB));
 
 }else{
-  allocated_list->tail = allocation;
-  allocated_list->head->previousCMCB = allocation;
+  allocated_list.tail = allocation;
+  allocated_list.head->previousCMCB = allocation;
   allocation->beginningAddress = top->beginningAddress;
   top->beginningAddress +=  (bytes + sizeof(CMCB));
 
@@ -68,13 +69,13 @@ void free_memory(int address) // Will
       allocate_memory(tempAllocated->size);
       // Remove from allocated list
       // Head
-      if(tempAllocated == allocated_list->head){
-        allocated_list->head = tempAllocated->nextCMCB;
+      if(tempAllocated == allocated_list.head){
+        allocated_list.head = tempAllocated->nextCMCB;
       }
       //else if it is at the tail,
-      else if(tempAllocated == allocated_list->tail){
-        allocated_list->tail = tempAllocated->previousCMCB;
-        allocated_list->tail->nextCMCB = NULL;
+      else if(tempAllocated == allocated_list.tail){
+        allocated_list.tail = tempAllocated->previousCMCB;
+        allocated_list.tail->nextCMCB = NULL;
       }
       else{
         tempAllocated->previousCMCB->nextCMCB = tempAllocated->nextCMCB;
@@ -82,7 +83,7 @@ void free_memory(int address) // Will
       }
       tempAllocated->nextCMCB = NULL;
       tempAllocated->previousCMCB = NULL;
-      allocated_list->count--;
+      allocated_list.count--;
       // Free sizeof(block) + sizeof(CMCB) + sizeof(LCMB)
       break;
     }
@@ -100,13 +101,13 @@ void free_memory(int address) // Will
       tempFree->size = tempFree->size + tempFreeNext->size;
       // Remove adjacent from free free_list once blocks of memory are combined
       // Head
-      if(tempFreeNext == free_list->head){
-        free_list->head = tempFreeNext->nextCMCB;
+      if(tempFreeNext == free_list.head){
+        free_list.head = tempFreeNext->nextCMCB;
       }
       //else if it is at the tail,
-      else if(tempFreeNext == free_list->tail){
-        free_list->tail = tempFreeNext->previousCMCB;
-        free_list->tail->nextCMCB = NULL;
+      else if(tempFreeNext == free_list.tail){
+        free_list.tail = tempFreeNext->previousCMCB;
+        free_list.tail->nextCMCB = NULL;
       }
       else{
         tempFreeNext->previousCMCB->nextCMCB = tempFreeNext->nextCMCB;
@@ -114,7 +115,7 @@ void free_memory(int address) // Will
       }
       tempFreeNext->nextCMCB = NULL;
       tempFreeNext->previousCMCB = NULL;
-      free_list->count--;
+      free_list.count--;
       break;
       }
       tempFree = tempFree->nextCMCB;
@@ -123,14 +124,14 @@ void free_memory(int address) // Will
 
 //0 = false ----- 1 = true
 int IsEmpty(){
-  return allocated_list->count == 0;
+  return allocated_list.count == 0;
 }
 
 void Show_Allocated_Memory(){
-if(allocated_list->count = 0){
+if(allocated_list.count == 0){
   println("Allocated memory is empty ");
 }else{
-  CMCB* tempCMBC = allocated_list->head;
+  CMCB* tempCMBC = allocated_list.head;
 
     while(tempCMBC != NULL){
           //I dont think i can print things like this but for now fuckit
@@ -144,7 +145,7 @@ if(allocated_list->count = 0){
 }
 
 void Show_Free_Memory(){
-  CMCB* tempCMBC = free_list->head;
+  CMCB* tempCMBC = free_list.head;
 
     while(tempCMBC != NULL){
           //I dont think i can print things like this but for now fuckit
