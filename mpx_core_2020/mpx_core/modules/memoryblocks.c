@@ -8,10 +8,11 @@
 // Move these to Initialize Heap
 memoryList free = {0,NULL,NULL};
 memoryList allocated = {0,NULL,NULL};
+uint32 start_of_memory;
 
-void initialize_heap(int size)
-{
-
+uint32 initialize_heap(uint32 size){
+  start_of_memory =kmalloc(size + sizeof(CMCB));
+  
 }
 
 void allocate_memory(int bytes)
