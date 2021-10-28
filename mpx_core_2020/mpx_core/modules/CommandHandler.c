@@ -43,6 +43,7 @@ int comhand(){
   bufferSize = 99;
 
   // reset size before each call to read
+
   sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
   int i;
   for (i = 0; i<100; i++)
@@ -584,39 +585,24 @@ int comhand(){
      }
    }
    else if (cmdBuffer[0] == 'l' && cmdBuffer[1] == 'o' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'd' && cmdBuffer[4] == 'r' && cmdBuffer[5] == '3') {
-   int i;
-   int check = 1;
-   for (i=6; i<100; i++)
-   {
-     if (cmdBuffer[i] != ' ')
+     int i;
+     int check = 1;
+     for (i=6; i<100; i++)
      {
-       print("\033[31m");
-       println("\n\n**Invalid Command**\n");
-       print("\033[37m");
-       check = 0;
-       break;
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
      }
-   }
      if (check == 1)
      {
-       println("\nEnter the process number (1-5)...\n");
-       int func = 99;
-       int check = 1;
-       while (check == 1) {
-       memset(cmdBuffer, '\0', 100);
-       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-       println("");
-         check = 0;
-         if (cmdBuffer[0] == '1') { func = 1;}
-         else if (cmdBuffer[0] == '2') { func = 2;}
-         else if (cmdBuffer[0] == '3') { func = 3;}
-         else if (cmdBuffer[0] == '4') { func = 4;}
-         else if (cmdBuffer[0] == '5') { func = 5;}
-         else {print("Invalid Priority.  Must be from 1 to 5.\n");check = 1;}
-       }
-        loadr3(func);
-      }
-    }
+        loadr3(1);
+     }
+   }
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -625,6 +611,7 @@ int comhand(){
     println("\n\n**Invalid Command**\n");
     print("\033[37m");
   }
+  sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
   }
   return 0;
 }
@@ -682,6 +669,8 @@ int shutdown() {
     }
     else if (cmdBuffer[0] == 'y' || cmdBuffer[0] == 'Y') {
       println("");
+      removedReadyHead();
+      sys_req(EXIT, DEFAULT_DEVICE, NULL, NULL);
       return 1;
     }
     else if (cmdBuffer[0] == 'n' || cmdBuffer[0] == 'N') {

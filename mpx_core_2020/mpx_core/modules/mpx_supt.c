@@ -198,18 +198,21 @@ saveOld = registers;
 else{
   if(params.op_code == IDLE){
 
-  cop->stackTop = (unsigned char*)registers;
+		// Loads current context onto stackTop of cop
+		// Allows us to resume execution at current state
+	  cop->stackTop = (unsigned char*)registers;
+		cop->state = 0; // Change state to Ready
+
   }
   else if(params.op_code == EXIT){
   FreePCB(cop);
   }
 }
-
-  if(isEmpty(&ready) == 0 ){
-
+  if(isEmpty(&ready) == 0){
     PCB* pcb = ready.head;
     RemovePCB(pcb);
-    pcb->state = 1;
+    pcb->state = 1; //RUNNING State
+		if(params.op_code == IDLE) InsertPCB(cop);
     cop = pcb;
     return (u32int*)cop->stackTop;
   }
@@ -220,67 +223,81 @@ else{
 void yield(){
 	asm volatile("int $60");
 }
-PCB* loadr3(int func){
-PCB* new_pcb = NULL;
-if (func == 1)
-{
-	CreatePCB("proc1", 1, 5);
-	new_pcb = FindPCB("proc1");
-}
-else if (func == 2)
-{
+void loadr3(int func){
+	(void) func;
+	CreatePCB("proc1", 1, 1);
+	PCB* new_pcb = FindPCB("proc1");
+	context* cp = (context *)(new_pcb->stackTop);
+	memset (cp, 0, sizeof(context));
+	cp->fs = 0x10;
+	cp->gs = 0x10;
+	cp->ds = 0x10;
+	cp->es = 0x10;
+	cp->cs = 0x8;
+	cp->ebp = (u32int)( new_pcb->stack );
+	cp->esp = (u32int)( new_pcb->stackTop );
+	cp->eip = (u32int) proc1;
+	cp->eflags = 0x202;
+	SuspendPCB("proc1");
+
 	CreatePCB("proc2", 1, 5);
 	new_pcb = FindPCB("proc2");
-}
-else if (func == 3)
-{
+	cp = (context *)(new_pcb->stackTop);
+	memset (cp , 0, sizeof (context));
+	cp->fs = 0x10;
+	cp->gs = 0x10;
+	cp->ds = 0x10;
+	cp->es = 0x10;
+	cp->cs = 0x8;
+	cp->ebp = (u32int)( new_pcb->stack );
+	cp->esp = (u32int)( new_pcb->stackTop );
+	cp->eip = (u32int) proc2;
+	cp->eflags = 0x202;
+	SuspendPCB("proc2");
+
 	CreatePCB("proc3", 1, 5);
 	new_pcb = FindPCB("proc3");
-}
-else if (func == 4)
-{
+	cp = (context *)(new_pcb->stackTop);
+	memset (cp , 0, sizeof (context));
+	cp->fs = 0x10;
+	cp->gs = 0x10;
+	cp->ds = 0x10;
+	cp->es = 0x10;
+	cp->cs = 0x8;
+	cp->ebp = (u32int)( new_pcb->stack );
+	cp->esp = (u32int)( new_pcb->stackTop );
+	cp->eip = (u32int) proc3;
+	cp->eflags = 0x202;
+	SuspendPCB("proc3");
+
 	CreatePCB("proc4", 1, 5);
 	new_pcb = FindPCB("proc4");
-}
-else if (func == 5)
-{
+	cp = (context *)(new_pcb->stackTop);
+	memset (cp , 0, sizeof (context));
+	cp->fs = 0x10;
+	cp->gs = 0x10;
+	cp->ds = 0x10;
+	cp->es = 0x10;
+	cp->cs = 0x8;
+	cp->ebp = (u32int)( new_pcb->stack );
+	cp->esp = (u32int)( new_pcb->stackTop );
+	cp->eip = (u32int) proc4;
+	cp->eflags = 0x202;
+	SuspendPCB("proc4");
+
 	CreatePCB("proc5", 1, 5);
 	new_pcb = FindPCB("proc5");
-}
-context* cp = (context *)(new_pcb->stackTop);
-memset (cp , 0, sizeof (context *));
-cp->fs = 0x10;
-cp->gs = 0x10;
-cp->ds = 0x10;
-cp->es = 0x10;
-cp->es = 0x8;
-cp->ebp = (u32int)( new_pcb->stack );
-cp->esp = (u32int)( new_pcb->stackTop );
-if (func == 1)
-{
-	cp->eip = (u32int) *proc1;
-	proc1();
-}
-else if (func == 2)
-{
-	cp->eip = (u32int) *proc2;
-	proc2();
-}
-else if (func == 3)
-{
-	cp->eip = (u32int) *proc3;
-	proc3();
-}
-else if (func == 4)
-{
-	cp->eip = (u32int) *proc4;
-	proc4();
-}
-else if (func == 5)
-{
-	cp->eip = (u32int) *proc5;
-	proc5();
-}
-cp->eflags = 0x202;
-return new_pcb;
+	cp = (context *)(new_pcb->stackTop);
+	memset (cp , 0, sizeof (context));
+	cp->fs = 0x10;
+	cp->gs = 0x10;
+	cp->ds = 0x10;
+	cp->es = 0x10;
+	cp->cs = 0x8;
+	cp->ebp = (u32int)( new_pcb->stack );
+	cp->esp = (u32int)( new_pcb->stackTop );
+	cp->eip = (u32int) proc5;
+	cp->eflags = 0x202;
+	SuspendPCB("proc5");
+
 }

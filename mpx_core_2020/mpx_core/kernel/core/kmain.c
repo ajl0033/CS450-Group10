@@ -91,10 +91,39 @@ void kmain(void)
    print("\033[37m");
 
    // Would add comhand idle to ready queue, but do not know how to store functions in the struct
-    sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
+  // sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
+  //
+  //
+  CreatePCB("comhand", 0, 9);
+	PCB* new_pcb = FindPCB("comhand");
+	context* cp = (context *)(new_pcb->stackTop);
+	memset (cp, 0, sizeof(context));
+	cp->fs = 0x10;
+	cp->gs = 0x10;
+	cp->ds = 0x10;
+	cp->es = 0x10;
+	cp->cs = 0x8;
+	cp->ebp = (u32int)( new_pcb->stack );
+	cp->esp = (u32int)( new_pcb->stackTop );
+	cp->eip = (u32int) comhand;
+	cp->eflags = 0x202;
 
-    yield();
-    comhand();
+  CreatePCB("idle", 0, 0);
+  new_pcb = FindPCB("idle");
+  cp = (context *)(new_pcb->stackTop);
+  memset (cp, 0, sizeof(context));
+  cp->fs = 0x10;
+  cp->gs = 0x10;
+  cp->ds = 0x10;
+  cp->es = 0x10;
+  cp->cs = 0x8;
+  cp->ebp = (u32int)( new_pcb->stack );
+  cp->esp = (u32int)( new_pcb->stackTop );
+  cp->eip = (u32int) idle;
+  cp->eflags = 0x202;
+   //comhand();
+
+   yield();
 
    print("\033[0m");
    //intcomhand();

@@ -61,4 +61,6 @@ void ShowReady(); // Will
 void ShowBlocked(); // Will
 
 void ShowAll(); // Will
+
+void removedReadyHead(); // Sam
 #endif

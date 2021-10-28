@@ -55,6 +55,8 @@ void priority_enqueue (queue *q, PCB *pcb){
   if(q->count == 0){
     q->head = pcb;
     q->tail = pcb;
+    pcb->nextPCB = NULL;
+    pcb->previousPCB = NULL;
   }
   //if the priority is greater than the head,
   //set the pcb's next element equal to the head, and the head's previous element equal to the pcb,
@@ -73,7 +75,7 @@ void priority_enqueue (queue *q, PCB *pcb){
   //otherwise if priority is somewhere in the middle
   else{
     PCB *temp = q->head;
-    while(temp != q->tail){
+    while(temp != NULL){
       if(pcb->priority <= temp->priority){
         temp = temp->nextPCB;
       }else{
@@ -81,7 +83,7 @@ void priority_enqueue (queue *q, PCB *pcb){
         pcb->previousPCB->nextPCB = pcb;
         temp->previousPCB = pcb;
         pcb->nextPCB = temp;
-        temp = q->tail;
+        temp = NULL;
       }
     }
   }
@@ -106,7 +108,7 @@ PCB* SetupPCB(char* processName, int processClass, int priority){
   strcpy(pcb->processName, processName);
 
   //so I'm not really sure what processClass is, I've read the slide a few times :(
-pcb->stackTop = pcb->stackBase + 1024 - sizeof(struct context*);
+  pcb->stackTop = pcb->stackBase + 1024 - sizeof(context);
 
 
   pcb->processClass = processClass;
@@ -241,6 +243,7 @@ queue* q= NULL;
   //esle if it is at the tail,
   else if(pcb == q->tail){
     q->tail = pcb->previousPCB;
+    q->tail->nextPCB = NULL;
   }
   else{
     pcb->previousPCB->nextPCB = pcb->nextPCB;
@@ -248,6 +251,7 @@ queue* q= NULL;
   }
   pcb->nextPCB = NULL;
   pcb->previousPCB = NULL;
+  q->count--;
 }
 
 void CreatePCB(char* processName, int processClass, int priority){
@@ -263,22 +267,22 @@ void CreatePCB(char* processName, int processClass, int priority){
 //always put into ready queue because you never get the chance to change it at this point
 // unless thats changed in SetupPCB
   priority_enqueue(&ready,pcb);
-  println(pcb->processName);
-  if (pcb->processClass == 1) {
-    println("Class: Application");
-  } else if (pcb->processClass == 0) {
-    println("Class: System Process");
-  }
-  if (pcb->priority == 0) {println("Priority: 0");}
-  else if (pcb->priority == 1) {println("Priority: 1");}
-  else if (pcb->priority == 2) {println("Priority: 2");}
-  else if (pcb->priority == 3) {println("Priority: 3");}
-  else if (pcb->priority == 4) {println("Priority: 4");}
-  else if (pcb->priority == 5) {println("Priority: 5");}
-  else if (pcb->priority == 6) {println("Priority: 6");}
-  else if (pcb->priority == 7) {println("Priority: 7");}
-  else if (pcb->priority == 8) {println("Priority: 8");}
-  else if (pcb->priority == 9) {println("Priority: 9");}
+  // println(pcb->processName);
+  // if (pcb->processClass == 1) {
+  //   println("Class: Application");
+  // } else if (pcb->processClass == 0) {
+  //   println("Class: System Process");
+  // }
+  // if (pcb->priority == 0) {println("Priority: 0");}
+  // else if (pcb->priority == 1) {println("Priority: 1");}
+  // else if (pcb->priority == 2) {println("Priority: 2");}
+  // else if (pcb->priority == 3) {println("Priority: 3");}
+  // else if (pcb->priority == 4) {println("Priority: 4");}
+  // else if (pcb->priority == 5) {println("Priority: 5");}
+  // else if (pcb->priority == 6) {println("Priority: 6");}
+  // else if (pcb->priority == 7) {println("Priority: 7");}
+  // else if (pcb->priority == 8) {println("Priority: 8");}
+  // else if (pcb->priority == 9) {println("Priority: 9");}
   }
 }
 
@@ -319,13 +323,14 @@ void SuspendPCB(char* processName){
     println("Name must be valid");
   }else{
   //might need to be PCB* but not sure
-  PCB* pcb = FindPCB(processName);
+    PCB* pcb = FindPCB(processName);
+    if (pcb != NULL) {
 
-
-  RemovePCB(pcb);
-  pcb->stateSuspended = 1;
-  InsertPCB(pcb);
-}
+      RemovePCB(pcb);
+      pcb->stateSuspended = 1;
+      InsertPCB(pcb);
+    }
+  }
 }
 
 //same as suspend but 1 to 0
@@ -337,8 +342,6 @@ void ResumePCB(char* processName){
   PCB* pcb = FindPCB(processName);
   RemovePCB(pcb);
   pcb->stateSuspended = 0;
-
-
   InsertPCB(pcb);
 }
 }
@@ -444,7 +447,20 @@ void ShowReady()
   while (tempReady != NULL)
   {
     ShowPCB(tempReady->processName);
+
     tempReady = tempReady->nextPCB;
+  }
+  PCB* tempReadySus = SuspendedReady.head;
+  println("\nPCB's in suspended ready queue:");
+  // if (ready.head != NULL)
+  // {
+  //   ShowPCB(tempReady->processName);
+  // }
+  while (tempReadySus != NULL)
+  {
+    ShowPCB(tempReadySus->processName);
+
+    tempReadySus = tempReadySus->nextPCB;
   }
 }
 
@@ -470,4 +486,10 @@ void ShowAll()
   println("");
   ShowBlocked();
   println("");
+}
+
+void removedReadyHead(){
+  ready.head = NULL;
+  ready.tail = NULL;
+  ready.count = 0;
 }
