@@ -16,6 +16,13 @@ typedef struct LMCB{
   int size;
 } LMCB;
 
+struct block {
+  int count;
+  CMCB *head;
+  CMCB *tail;
+  //LMCB *tail;
+} memoryList;
+
 void initialize_heap(int size);
 
 void allocate_memory(int bytes);
