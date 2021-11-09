@@ -26,9 +26,35 @@ uint32 initialize_heap(uint32 size){
   return 0;
 }
 
-void allocate_memory(int bytes)
+void allocate_memory(uint32 bytes)
 {
+  //if nothing in allocated list:
+  // need to declare a cmcb and put it in allocated_list
+  // top->beginningAddress? += intbytes + sizeof(cmcb)
+  // i think top needs to be global to that effect
+  //else
+  //add it in and move top->beginninng adress the same way
+  //add the shit to allocated_list, were putting it at the end but it can easily go at the front
 
+  //there is 0 error checking here, if there isnt size it'll break
+  // but it should work if there is room within free, error checking is for when it works
+  CMCB* allocation;
+  allocation->size = bytes;
+  allocation->type = 1;
+
+  if(allocated_list->count == 0){
+  allocated_list->head = allocation;
+  allocated_list->tail = allocation;
+  allocation->beginningAddress = top->beginningAddress;
+  top->beginningAddress +=  (bytes + sizeof(CMCB));
+
+}else{
+  allocated_list->tail = allocation;
+  allocated_list->head->previousCMCB = allocation;
+  allocation->beginningAddress = top->beginningAddress;
+  top->beginningAddress +=  (bytes + sizeof(CMCB));
+
+  }
 }
 
 void free_memory(int address) // Will, trying to wrap head around it, decent start, need initialize function to visualize.

@@ -22,9 +22,9 @@ struct memoryList {
   //LMCB *tail;
 } memoryList;
 
-void initialize_heap(int size);
+void initialize_heap(uint32 size);
 
-void allocate_memory(int bytes);
+void allocate_memory(uint32 bytes);
 
 void free_memory(int address); // Will
 
