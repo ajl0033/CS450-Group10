@@ -5,6 +5,7 @@
 #include "memoryblocks.h"
 #include "print.h"
 
+// Move these to Initialize Heap
 memoryList free = {0,NULL,NULL};
 memoryList allocated = {0,NULL,NULL};
 
