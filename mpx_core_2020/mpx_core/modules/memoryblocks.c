@@ -60,7 +60,7 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
 
 //0 = false ----- 1 = true
 int IsEmpty(){
-int IsItEmpty;
+int isItEmpty;
 isItEmpty = allocated->count;
 if(isItEmpty = 0){
   return 0
@@ -69,7 +69,6 @@ return 1;
 }
 
 void Show_Allocated_Memory(){
-
 if(allocated->count = 0){
   println("Allocated memory is empty ");
 }else{
@@ -87,7 +86,6 @@ if(allocated->count = 0){
 }
 
 void Show_Free_Memory(){
-
   CMCB* tempCMBC = free->head;
 
     while(tempCMBC != NULL){
