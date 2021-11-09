@@ -19,7 +19,7 @@ void allocate_memory(int bytes)
 
 }
 
-void free_memory(int address) // Will, trying to wrap head around it, decent start, need initialize function to visualize
+void free_memory(int address) // Will, trying to wrap head around it, decent start, need initialize function to visualize.
 {
   CMCB* tempAllocated = allocated.head;
   while (tempAllocated != NULL)
@@ -44,6 +44,8 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
       tempAllocated->nextCMCB = NULL;
       tempAllocated->previousCMCB = NULL;
       allocated->count--;
+      // Free sizeof(block) + sizeof(CMCB) + sizeof(LCMB)
+      // How the heck do i read addresses?!!! Is the Heap a list?
 
       // Check if blocks of free memory need merged
       // if address adjacent in heap contains CMCB of same type (free==0, allocated==1), merge blocks
