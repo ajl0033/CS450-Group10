@@ -57,3 +57,46 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
     tempAllocated = tempAllocated->nextCMCB;
   }
 }
+
+//0 = false ----- 1 = true
+int IsEmpty(){
+int IsItEmpty;
+isItEmpty = allocated->count;
+if(isItEmpty = 0){
+  return 0
+}
+return 1;
+}
+
+void Show_Allocated_Memory(){
+
+if(allocated->count = 0){
+  println("Allocated memory is empty ");
+}else{
+  CMCB* tempCMBC = allocated->head;
+
+    while(tempCMBC != NULL){
+          //I dont think i can print things like this but for now fuckit
+          //Both are ints, might have to create the string to int method
+          //unless we have it and im dumb
+          println(tempCMBC->beginningAddress);
+          println(tempCMBC->size);
+          tempCMBC->nextCMCB;
+        }
+    }
+}
+
+void Show_Free_Memory(){
+
+  CMCB* tempCMBC = free->head;
+
+    while(tempCMBC != NULL){
+          //I dont think i can print things like this but for now fuckit
+          //Both are ints, might have to create the string to int method
+          //unless we have it and im dumb
+          println(tempCMBC->beginningAddress);
+          println(tempCMBC->size);
+          tempCMBC->nextCMCB;
+        }
+
+}

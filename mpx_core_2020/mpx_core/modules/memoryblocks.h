@@ -29,6 +29,13 @@ void allocate_memory(int bytes);
 
 void free_memory(int address); // Will
 
+//0 = false ----- 1 = true
+int IsEmpty();
+
+void Show_Allocated_Memory();
+
+void Show_Free_Memory();
+
 
 
 #endif
