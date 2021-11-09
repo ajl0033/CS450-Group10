@@ -27,7 +27,7 @@ void initialize_heap(int size);
 
 void allocate_memory(int bytes);
 
-void free_memory(); // Will
+void free_memory(int address); // Will
 
 
 
