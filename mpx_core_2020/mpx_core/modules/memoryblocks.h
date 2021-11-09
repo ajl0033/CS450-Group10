@@ -7,8 +7,8 @@ typedef struct CMCB{
   int beginningAddress;
   int size;
   char name[20];
-  struct PCB *nextCMCB;
-  struct PCB *previousCMCB;
+  struct CMCB *nextCMCB;
+  struct CMCB *previousCMCB;
 } CMCB;
 
 typedef struct LMCB{
@@ -17,8 +17,10 @@ typedef struct LMCB{
 } LMCB;
 
 void initialize_heap(int size);
+
 void allocate_memory(int bytes);
-void free_memory();
+
+void free_memory(); // Will
 
 
 
