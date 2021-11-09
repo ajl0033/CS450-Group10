@@ -16,7 +16,7 @@ typedef struct LMCB{
   int size;
 } LMCB;
 
-struct list {
+struct memoryList {
   int count;
   CMCB *head;
   CMCB *tail;
