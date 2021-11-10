@@ -73,7 +73,7 @@ void free_memory(int address) // Will
   CMCB* tempAllocated = allocated_list.head;
   while (tempAllocated != NULL)
   {
-    if (tempAllocated->beginningAddress == address)
+    if (tempAllocated->beginningAddress == (u32int)address)
     {
       // Allocate to free list
       allocate_memory(tempAllocated->size);
@@ -142,14 +142,17 @@ if(allocated_list.count == 0){
   println("Allocated memory is empty ");
 }else{
   CMCB* tempCMCB = allocated_list.head;
-
+  char str[10];
     while(tempCMCB != NULL){
           //I dont think i can print things like this but for now
           //Both are ints, might have to create the int to string method
 
             //println(tempCMCB->beginningAddress);
             //println(tempCMCB->size);
-
+          toString(str,(tempCMCB->beginningAddress));
+           println(str);
+           toString(str,(tempCMCB->size));
+           println(str);
           //could be changed in both depending on how we define the list
           tempCMCB = tempCMCB->previousCMCB;
         }
@@ -158,15 +161,33 @@ if(allocated_list.count == 0){
 
 void Show_Free_Memory(){
   CMCB* tempCMCB = free_list.head;
-
+  char str[10];
     while(tempCMCB != NULL){
           //I dont think i can print things like this but for now
           //Both are ints, might have to create the int to string method
 
             //println(tempCMCB->beginningAddress);
             //println(tempCMCB->size);
-
+          toString(str,(tempCMCB->beginningAddress));
+         println(str);
+         toString(str,(tempCMCB->size));
+         println(str);
           tempCMCB = tempCMCB->previousCMCB;
         }
+
+}
+void toString(char str[], int x){
+  int i, rem, len =0,n;
+  n =x;
+  while(n!=0){
+    len++;
+    n/=10;
+  }
+  for(i=0; i<len; i++){
+    rem = x % 10;
+    x= x /10;
+    str[len-(i + 1)] = rem + '0';
+  }
+  str[len] = '\0';
 
 }

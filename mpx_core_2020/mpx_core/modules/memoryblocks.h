@@ -4,7 +4,7 @@
 
 typedef struct CMCB{
   int type; //free is 0 and allocated is 1
-  int beginningAddress;
+  u32int beginningAddress;
   int size;
   struct CMCB *nextCMCB;
   struct CMCB *previousCMCB;
@@ -34,6 +34,9 @@ int IsEmpty();
 void Show_Allocated_Memory();
 
 void Show_Free_Memory();
+
+void toString(char str[], int x);
+
 
 
 
