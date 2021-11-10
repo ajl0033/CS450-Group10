@@ -18,7 +18,8 @@ bcdConversion.o\
 time.o\
 date.o\
 Alarm.o\
-PCB.o
+PCB.o\
+memoryblocks.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
