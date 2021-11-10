@@ -113,7 +113,7 @@ void free_memory(int address) // Will
   CMCB* tempFreeNext = tempFree->nextCMCB;
   while (tempFreeNext != NULL)
   {
-    if ((tempFree->size + sizeof(LMCB) + 1) == (tempFreeNext->beginningAddress)) // Check if adjacent blocks are both free
+    if ((tempFree->size + 1) == (tempFreeNext->beginningAddress)) // Check if adjacent blocks are both free
     {
       tempFree->size = tempFree->size + tempFreeNext->size;
       // Remove adjacent from free free_list once blocks of memory are combined
