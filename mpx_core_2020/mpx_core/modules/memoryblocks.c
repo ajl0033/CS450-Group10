@@ -29,33 +29,43 @@ u32int initialize_heap(u32int size){
 
 void allocate_memory(u32int bytes)
 {
-  //if nothing in allocated list:
+  // if nothing in allocated list:
   // need to declare a cmcb and put it in allocated_list
-  // top->beginningAddress? += intbytes + sizeof(cmcb)
-  // i think top needs to be global to that effect
-  //else
-  //add it in and move top->beginninng adress the same way
-  //add the shit to allocated_list, were putting it at the end but it can easily go at the front
+  // top(free_list.head?)->beginningAddress? += intbytes + sizeof(cmcb)
+  //  else
+  //  move top->beginninng adress the same way after placing it at the end of allocated_list
 
   //there is 0 error checking here, if there isnt size it'll break
   // but it should work if there is room within free, error checking is for when it works
-  CMCB* allocation;
-  allocation->size = bytes;
-  allocation->type = 1;
+  CMCB* temp;
+  temp->size = bytes;
+  temp->type = 1;
+
+  //could hard code it in each time but lets see if this works
+  CMCB* top = free_list.head;
 
   if(allocated_list.count == 0){
-  allocated_list.head = allocation;
-  allocated_list.tail = allocation;
-  allocation->beginningAddress = top->beginningAddress;
+  allocated_list.head = temp;
+  allocated_list.tail = temp;
+  temp->beginningAddress = start_of_memory;//top->beginningAddress; could be either - one right one wrong
   top->beginningAddress +=  (bytes + sizeof(CMCB));
 
-}else{
-  allocated_list.tail = allocation;
-  allocated_list.head->previousCMCB = allocation;
-  allocation->beginningAddress = top->beginningAddress;
-  top->beginningAddress +=  (bytes + sizeof(CMCB));
+    }else if(allocated_list.count == 1){
+      allocated_list.tail = temp;
+      //i am confused between the usage of . and -> -- anthony please clear that up
+      allocated_list.head->previousCMCB = temp;
+      temp->nextCMCB = allocated_list.head;
+      temp->beginningAddress = top->beginningAddress;
+      //previous line should be correct b/c allocated_list already starts at the start_of_memory
+      top->beginningAddress +=  (bytes + sizeof(CMCB));
 
-  }
+  }else{
+        allocated_list.tail->previousCMCB = temp;
+        temp->nextCMCB = allocated_list.tail;
+        allocated_list.tail = temp;
+        temp->beginningAddress = top->beginningAddress;
+        top->beginninngAdress += (bytes + sizeof(CMCB));
+    }
 }
 
 void free_memory(int address) // Will
