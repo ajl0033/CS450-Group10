@@ -37,11 +37,11 @@ void allocate_memory(u32int bytes)
 
   //there is 0 error checking here, if there isnt size it'll break
   // but it should work if there is room within free, error checking is for when it works
-  CMCB* temp;
+  CMCB* temp = (CMCB*)start_of_memory;
   temp->size = bytes;
   temp->type = 1;
 
-  //could hard code it in each time but lets see if this works
+  //could hard code it in each timemp; but lets see if this works
   CMCB* top = free_list.head;
 
   if(allocated_list.count == 0){
@@ -59,13 +59,13 @@ void allocate_memory(u32int bytes)
       //previous line should be correct b/c allocated_list already starts at the start_of_memory
       top->beginningAddress +=  (bytes + sizeof(CMCB));
 
-  }else{
-        allocated_list.tail->previousCMCB = temp;
-        temp->nextCMCB = allocated_list.tail;
-        allocated_list.tail = temp;
-        temp->beginningAddress = top->beginningAddress;
-        top->beginninngAdress += (bytes + sizeof(CMCB));
-    }
+  }     else{
+          allocated_list.tail->previousCMCB = temp;
+          temp->nextCMCB = allocated_list.tail;
+          allocated_list.tail = temp;
+          temp->beginningAddress = top->beginningAddress;
+          top->beginningAddress += (bytes + sizeof(CMCB));
+          }
 }
 
 void free_memory(int address) // Will
@@ -141,29 +141,32 @@ void Show_Allocated_Memory(){
 if(allocated_list.count == 0){
   println("Allocated memory is empty ");
 }else{
-  CMCB* tempCMBC = allocated_list.head;
+  CMCB* tempCMCB = allocated_list.head;
 
-    while(tempCMBC != NULL){
-          //I dont think i can print things like this but for now fuckit
-          //Both are ints, might have to create the string to int method
-          //unless we have it and im dumb
-          println(tempCMBC->beginningAddress);
-          println(tempCMBC->size);
-          tempCMBC->nextCMCB;
+    while(tempCMCB != NULL){
+          //I dont think i can print things like this but for now
+          //Both are ints, might have to create the int to string method
+
+            //println(tempCMCB->beginningAddress);
+            //println(tempCMCB->size);
+
+          //could be changed in both depending on how we define the list
+          tempCMCB = tempCMCB->previousCMCB;
         }
     }
 }
 
 void Show_Free_Memory(){
-  CMCB* tempCMBC = free_list.head;
+  CMCB* tempCMCB = free_list.head;
 
-    while(tempCMBC != NULL){
-          //I dont think i can print things like this but for now fuckit
-          //Both are ints, might have to create the string to int method
-          //unless we have it and im dumb
-          println(tempCMBC->beginningAddress);
-          println(tempCMBC->size);
-          tempCMBC->nextCMCB;
+    while(tempCMCB != NULL){
+          //I dont think i can print things like this but for now
+          //Both are ints, might have to create the int to string method
+
+            //println(tempCMCB->beginningAddress);
+            //println(tempCMCB->size);
+
+          tempCMCB = tempCMCB->previousCMCB;
         }
 
 }
