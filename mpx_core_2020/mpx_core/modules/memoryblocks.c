@@ -8,9 +8,9 @@
 // Move these to Initialize Heap
 memoryList free_list = {0,NULL,NULL};
 memoryList allocated_list = {0,NULL,NULL};
-uint32 start_of_memory;
+u32int start_of_memory;
 
-uint32 initialize_heap(uint32 size){
+u32int initialize_heap(u32int size){
   start_of_memory = kmalloc(size + sizeof(CMCB));
 
   CMCB *top = (CMCB*)start_of_memory;
@@ -26,7 +26,7 @@ uint32 initialize_heap(uint32 size){
   return 0;
 }
 
-void allocate_memory(uint32 bytes)
+void allocate_memory(u32int bytes)
 {
   //if nothing in allocated list:
   // need to declare a cmcb and put it in allocated_list
