@@ -30,10 +30,11 @@ u32int initialize_heap(u32int size){
 void allocate_memory(u32int bytes)
 {
   // if nothing in allocated list:
-  // need to declare a cmcb and put it in allocated_list
+  // need to declare a cmcb and put it in allocated_list as head and tail
   // top(free_list.head?)->beginningAddress? += intbytes + sizeof(cmcb)
-  //  else
-  //  move top->beginninng adress the same way after placing it at the end of allocated_list
+  //    else if 1
+  //    move top->beginninng adress the same way after placing it at the end of allocated_list as automatically
+  //      else put it as the tail and make the previous tail point to it
 
   //there is 0 error checking here, if there isnt size it'll break
   // but it should work if there is room within free, error checking is for when it works
@@ -49,6 +50,7 @@ void allocate_memory(u32int bytes)
   allocated_list.tail = temp;
   temp->beginningAddress = start_of_memory;//top->beginningAddress; could be either - one right one wrong
   top->beginningAddress +=  (bytes + sizeof(CMCB));
+  //top->size -= (bytes + sizeof(CMCB));
 
     }else if(allocated_list.count == 1){
       allocated_list.tail = temp;
@@ -66,7 +68,9 @@ void allocate_memory(u32int bytes)
           temp->beginningAddress = top->beginningAddress;
           top->beginningAddress += (bytes + sizeof(CMCB));
           }
+          allocated_list.count += 1;
 }
+
 
 void free_memory(int address) // Will
 {
