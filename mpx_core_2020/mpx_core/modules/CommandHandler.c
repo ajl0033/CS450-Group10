@@ -739,7 +739,7 @@ void version() {
   println("");
   println("");
   println("------------------------------");
-  println("Current Version: R3/4 - 10/21/2021");
+  println("Current Version: R5 - 11/12/2021");
   println("------------------------------\n");
 }
 
@@ -761,9 +761,11 @@ void help() {
   println("showready:   Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the ready queue");
   println("showblocked: Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the blocked queue");
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
-  println("alarm:       Sets a new alarm with a message at a given time");
+  //println("alarm:       Sets a new alarm with a message at a given time");
   println("yield:       Causes commhand to yield to other processes\n");
-  println("loadr3:       Load processes for R3 testing purposes\n");
+  //println("loadr3:      Load processes for R3 testing purposes\n");
+  println("showfree:       Displays address and size of free blocks\n");
+  println("showfree:       Displays address and size of allocated blocks\n");
   println("-------------------------------------------------------------------------\n");
 }
 
