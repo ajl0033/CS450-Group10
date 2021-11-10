@@ -9,6 +9,7 @@
 #include "time.h"
 #include "PCB.h"
 #include "Alarm.h"
+#include "memoryblocks.h"
 
 // UNCOMMENT LINES - 334, 353, 372, 407-444, 446
 
@@ -27,7 +28,7 @@ int comhand(){
   println("    /  \\ /  \\|     ___/\\     / ");
   println("   /    Y    \\    |    /     \\    ____________");
   println("   \\____|__  /____|   /___/\\  \\");
-  println("           \\/               \\_/    Version R3/4  ");
+  println("           \\/               \\_/    Version R5  ");
   println("                                  ____________");
   println("");
   print("\033[34m"); // BLUE
@@ -317,7 +318,7 @@ int comhand(){
         ShowPCB(cmdBuffer);
       }
   }
-  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'l') {
+  else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'l' && cmdBuffer[7] != 'o') {
     int i;
     int check = 1;
     for (i=7; i<100; i++)
@@ -570,18 +571,18 @@ int comhand(){
         message[k] = cmdBuffer[k];
       }
       println("");
-       println("");
+      println("");
       println("\nEnter the time for the alarm in the form: 'HH:MM:SS'...\n");
-       memset(cmdBuffer, '\0', 100);
+      memset(cmdBuffer, '\0', 100);
       sys_req(READ,DEFAULT_DEVICE,cmdBuffer,&bufferSize);
-       println("");
-       char time[6];
-       memset(time, '\0', 100);
-       int k2;
-       for (k2 = 0; k2 < 6; k2++) {
-         time[k2] = cmdBuffer[k2];
-       }
-       addAlarm(message, time);
+      println("");
+      char time[6];
+      memset(time, '\0', 100);
+      int k2;
+      for (k2 = 0; k2 < 6; k2++) {
+        time[k2] = cmdBuffer[k2];
+      }
+      addAlarm(message, time);
      }
    }
    else if (cmdBuffer[0] == 'l' && cmdBuffer[1] == 'o' && cmdBuffer[2] == 'a' && cmdBuffer[3] == 'd' && cmdBuffer[4] == 'r' && cmdBuffer[5] == '3') {
@@ -601,6 +602,123 @@ int comhand(){
      if (check == 1)
      {
         loadr3(1);
+     }
+   }
+   else if (cmdBuffer[0] == 'i' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'i' && cmdBuffer[3] == 't' && cmdBuffer[4] == 'h' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'a' && cmdBuffer[7] == 'p') {
+     int i;
+     int check = 1;
+     for (i=8; i<100; i++)
+     {
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
+     }
+     if (check == 1)
+     {
+        u32int size = 500;
+        initialize_heap(size);
+     }
+   }
+   else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'o' && cmdBuffer[4] == 'c' && cmdBuffer[5] == 'm' && cmdBuffer[6] == 'e' && cmdBuffer[7] == 'm') {
+     int i;
+     int check = 1;
+     for (i=8; i<100; i++)
+     {
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
+     }
+     if (check == 1)
+     {
+        u32int size = 128;
+        allocate_memory(size);
+     }
+   }
+   else if (cmdBuffer[0] == 'f' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 'm' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'm') {
+     int i;
+     int check = 1;
+     for (i=7; i<100; i++)
+     {
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
+     }
+     if (check == 1)
+     {
+        u32int size = 128;
+        free_memory(size);
+     }
+   }
+   else if (cmdBuffer[0] == 'i' && cmdBuffer[1] == 's' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'm' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 't' && cmdBuffer[6] == 'y') {
+     int i;
+     int check = 1;
+     for (i=7; i<100; i++)
+     {
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
+     }
+     if (check == 1)
+     {
+        IsEmpty();
+     }
+   }
+   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'f' && cmdBuffer[5] == 'r' && cmdBuffer[6] == 'e' && cmdBuffer[7] == 'e') {
+     int i;
+     int check = 1;
+     for (i=8; i<100; i++)
+     {
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
+     }
+     if (check == 1)
+     {
+        Show_Free_Memory();
+     }
+   }
+   else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'a' && cmdBuffer[5] == 'l' && cmdBuffer[6] == 'l' && cmdBuffer[7] == 'o' && cmdBuffer[8] == 'c') {
+     int i;
+     int check = 1;
+     for (i=9; i<100; i++)
+     {
+       if (cmdBuffer[i] != ' ')
+       {
+         print("\033[31m");
+         println("\n\n**Invalid Command**\n");
+         print("\033[37m");
+         check = 0;
+         break;
+       }
+     }
+     if (check == 1)
+     {
+        Show_Allocated_Memory();
      }
    }
 //////////////////////////////////////////////////////////////////////////////////
