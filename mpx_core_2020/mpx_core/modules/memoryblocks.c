@@ -57,7 +57,7 @@ void allocate_memory(u32int bytes)
   }
 }
 
-void free_memory(int address) // Will, trying to wrap head around it, decent start, need initialize function to visualize.
+void free_memory(int address) // Will
 {
   CMCB* tempAllocated = allocated_list.head;
   while (tempAllocated != NULL)
@@ -67,6 +67,7 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
       // Allocate to free list
       allocate_memory(tempAllocated->size);
       // Remove from allocated list
+      // Head
       if(tempAllocated == allocated_list->head){
         allocated_list->head = tempAllocated->nextCMCB;
       }
@@ -83,16 +84,40 @@ void free_memory(int address) // Will, trying to wrap head around it, decent sta
       tempAllocated->previousCMCB = NULL;
       allocated_list->count--;
       // Free sizeof(block) + sizeof(CMCB) + sizeof(LCMB)
-      // How the heck do i read addresses?!!! Is the Heap a list?
-
-      // Check if blocks of free memory need merged
-      // if address adjacent in heap contains CMCB of same type (free==0, allocated==1), merge blocks
-      // nextCMCB = CMCB, remove a CMCB and LCMB
-      // size: sizeof(both blocks of memory) + 2*sizeof(CMCB) + 2*sizeof(LCMB) ---->>>> sizeof(both blocks of memory) + sizeof(CMCB) + sizeof(LCMB)
-
       break;
     }
     tempAllocated = tempAllocated->nextCMCB;
+  }
+
+  // Check if blocks of free memory are adjacent and need merged
+
+  CMCB* tempFree = free_list.head;
+  CMCB* tempFreeNext = tempFree->nextCMCB;
+  while (tempFreeNext != NULL)
+  {
+    if ((tempFree->size + sizeof(LMCB) + 1) == (tempFreeNext->beginningAddress)) // Check if adjacent blocks are both free
+    {
+      tempFree->size = tempFree->size + tempFreeNext->size;
+      // Remove adjacent from free free_list once blocks of memory are combined
+      // Head
+      if(tempFreeNext == free_list->head){
+        free_list->head = tempFreeNext->nextCMCB;
+      }
+      //else if it is at the tail,
+      else if(tempFreeNext == free_list->tail){
+        free_list->tail = tempFreeNext->previousCMCB;
+        free_list->tail->nextCMCB = NULL;
+      }
+      else{
+        tempFreeNext->previousCMCB->nextCMCB = tempFreeNext->nextCMCB;
+        tempFreeNext->nextCMCB->previousCMCB = tempFreeNext->previousCMCB;
+      }
+      tempFreeNext->nextCMCB = NULL;
+      tempFreeNext->previousCMCB = NULL;
+      free_list->count--;
+      break;
+      }
+      tempFree = tempFree->nextCMCB;
   }
 }
 
