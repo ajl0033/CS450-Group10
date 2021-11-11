@@ -26,7 +26,7 @@ u32int initialize_heap(u32int size);
 
 u32int allocate_memory(u32int bytes);
 
-void free_memory(int address); // Will
+void free_memory(u32int address); // Will
 
 //0 = false ----- 1 = true
 int IsEmpty();
