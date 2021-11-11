@@ -90,11 +90,11 @@ void kmain(void)
    ////////////////// CODE FOR R5 ////////////////////////
    ///////////////////////////////////////////////////////
 
-   initialize_heap(50000);
-   mpx_init(MEM_MODULE);
-   if (IsEmpty() == 0) {
-     println("\nERROR: Heap is not empty immediately after initialization");
-   }
+   // initialize_heap(50000);
+   // mpx_init(MEM_MODULE);
+   // if (IsEmpty() == 0) {
+   //   println("\nERROR: Heap is not empty immediately after initialization");
+   // }
 
    ///////////////////////////////////////////////////////
    ///////////////////////////////////////////////////////
