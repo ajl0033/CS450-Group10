@@ -765,7 +765,10 @@ void help() {
   println("yield:       Causes commhand to yield to other processes\n");
   //println("loadr3:      Load processes for R3 testing purposes\n");
   println("showfree:       Displays address and size of free blocks\n");
-  println("showfree:       Displays address and size of allocated blocks\n");
+  println("showalloc:       Displays address and size of allocated blocks\n");
+  println("initheap:       initilizes the heap\n");
+  println("allocmem:       Allocates a block of size 128 in memory\n");
+  println("freemem:       Frees a allocated block from memory\n");
   println("-------------------------------------------------------------------------\n");
 }
 
