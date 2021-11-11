@@ -51,9 +51,12 @@ void allocate_memory(u32int bytes)
   }
 
 CMCB* newFree = {NULL};
+//i think the line below needs some work
+free_list.head = newFree;
 newFree->type = 0;
-newFree->beginningAddress = start_of_memory;
+newFree->beginningAddress = top->beginningAddress;
 newFree->size = top->size - (bytes + sizeof(CMCB));
+top->beginningAddress += (bytes + sizeof(CMCB));
 top->type = 1;
 top->size = bytes + sizeof(CMCB);
 
@@ -66,7 +69,7 @@ allocated_list.tail = top;
     //i am confused between the usage of . and -> -- anthony please clear that up
     allocated_list.head->previousCMCB = top;
     top->nextCMCB = allocated_list.head;
-  
+
 }     else{
         allocated_list.tail->previousCMCB = top;
         top->nextCMCB = allocated_list.tail;
