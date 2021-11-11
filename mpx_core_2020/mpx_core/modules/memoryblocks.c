@@ -50,32 +50,28 @@ void allocate_memory(u32int bytes)
     top = top->nextCMCB;
   }
 
-CMCB* newFree = NULL;
+CMCB* newFree = (CMCB*) (top->beginningAddress + bytes);
 //i think the line below needs some work
 newFree->type = 0;
-newFree->beginningAddress = top->beginningAddress + top->size;
-newFree->size = start_of_memory - newFree->beginningAddress;
-free_list.head = newFree;
-free_list.tail = newFree;
+newFree->beginningAddress = top->beginningAddress + bytes + sizeof(CMCB);
+newFree->size = top->size - bytes - sizeof(CMCB);
+
 top->type = 1;
-top->size = bytes + sizeof(CMCB);
+top->size = bytes;
 
-if(allocated_list.count == 0){
-allocated_list.head = top;
-allocated_list.tail = top;
+if (free_list.head == top) {
+  free_list.head = top->nextCMCB;
+}
+else if (free_list.tail == top) {
+  free_list.tail = top->previousCMCB;
+}
+else {
+  top->previousCMCB->nextCMCB = top->nextCMCB;
+  top->nextCMCB->previousCMCB = top->previousCMCB;
+}
 
-  }else if(allocated_list.count == 1){
-    allocated_list.tail = top;
-    //i am confused between the usage of . and -> -- anthony please clear that up
-    allocated_list.head->previousCMCB = top;
-    top->nextCMCB = allocated_list.head;
-
-}     else{
-        allocated_list.tail->previousCMCB = top;
-        top->nextCMCB = allocated_list.tail;
-        allocated_list.tail = top;
-      }
-        allocated_list.count += 1;
+insertCMCB(&free_list, newFree);
+insertCMCB(&allocated_list, top);
 }
 
 
@@ -87,7 +83,7 @@ void free_memory(int address) // Will
     if (tempAllocated->beginningAddress == (u32int)address)
     {
       // Allocate to free list
-      allocate_memory(tempAllocated->size);
+      insertCMCB(&free_list, tempAllocated);
       // Remove from allocated list
       // Head
       if(tempAllocated == allocated_list.head){
@@ -201,4 +197,44 @@ void toString(char str[], int x){
   }
   str[len] = '\0';
 
+}
+
+void insertCMCB (memoryList *list, CMCB *memBlock){
+  //if nothing yet in the memoryList
+  if(list->count == 0){
+    list->head = memBlock;
+    list->tail = memBlock;
+    memBlock->nextCMCB = NULL;
+    memBlock->previousCMCB = NULL;
+  }
+  //if the beginningAddress is greater than the head,
+  //set the memBlock's next element elistual to the head, and the head's previous element elistual to the memBlock,
+  //and the head elistual to the memBlock
+  else if(memBlock->beginningAddress < list->head->beginningAddress){
+    memBlock->nextCMCB = list->head;
+    list->head->previousCMCB = memBlock;
+    list->head = memBlock;
+  }
+  //if beginningAddress is less than the tail, insert after tail
+  else if(memBlock->beginningAddress > list->tail->beginningAddress){
+    list->tail->nextCMCB = memBlock;
+    memBlock->previousCMCB = list->tail;
+    list->tail = memBlock;
+  }
+  //otherwise if beginningAddress is somewhere in the middle
+  else{
+    CMCB *temp = list->head;
+    while(temp != NULL){
+      if(memBlock->beginningAddress > temp->beginningAddress){
+        temp = temp->nextCMCB;
+      }else{
+        memBlock->previousCMCB = temp->previousCMCB;
+        memBlock->previousCMCB->nextCMCB = memBlock;
+        temp->previousCMCB = memBlock;
+        memBlock->nextCMCB = temp;
+        temp = NULL;
+      }
+    }
+  }
+  list->count++;
 }

@@ -37,7 +37,7 @@ void Show_Free_Memory();
 
 void toString(char str[], int x);
 
-
+void insertCMCB (memoryList *list, CMCB *memBlock);
 
 
 #endif
