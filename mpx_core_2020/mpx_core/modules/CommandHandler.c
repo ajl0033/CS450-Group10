@@ -660,7 +660,7 @@ int comhand(){
      }
      if (check == 1)
      {
-        u32int size = 128;
+        u32int size = 218105980;
         free_memory(size);
      }
    }

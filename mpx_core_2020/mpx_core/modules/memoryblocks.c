@@ -141,7 +141,15 @@ void free_memory(int address) // Will
 
 //0 = false ----- 1 = true
 int IsEmpty(){
-  return allocated_list.count == 0;
+  int check = 0;
+  if (allocated_list.count == 0) {
+    // set to 1 for empty
+    check = 1;
+    println("\nEMPTY");
+  } else {
+    println("\nNOT EMPTY");
+  }
+  return check;
 }
 
 void Show_Allocated_Memory(){
@@ -180,9 +188,9 @@ void Show_Free_Memory(){
           toString(str,(tempCMCB->size));
           println(str);
           tempCMCB = tempCMCB->nextCMCB;
-        }
-
+    }
 }
+
 void toString(char str[], int x){
   int i, rem, len =0,n;
   n =x;
