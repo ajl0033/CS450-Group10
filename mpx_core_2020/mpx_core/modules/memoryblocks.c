@@ -141,15 +141,14 @@ void free_memory(int address) // Will
 
 //0 = false ----- 1 = true
 int IsEmpty(){
-  int check = 0;
   if (allocated_list.count == 0) {
     // set to 1 for empty
-    check = 1;
     println("\nEMPTY");
+    return 1;
   } else {
     println("\nNOT EMPTY");
+    return 0;
   }
-  return check;
 }
 
 void Show_Allocated_Memory(){

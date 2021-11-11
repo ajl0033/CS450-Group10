@@ -27,6 +27,8 @@
 
 #include "modules/print.h"
 
+#include "modules/memoryblocks.h"
+
 
 void kmain(void)
 {
@@ -35,7 +37,7 @@ void kmain(void)
    // extern void *mbd;
    // char *boot_loader_name = (char*)((long*)mbd)[16];
 
-   mpx_init(MODULE_R2);
+   mpx_init(MODULE_R5);
    // 0) Initialize Serial I/O
    // functions to initialize serial I/O can be found in serial.c
    // there are 3 functions to call
@@ -83,6 +85,20 @@ void kmain(void)
    //
    klogv("Initializing virtual memory...");
    init_paging();
+
+   ///////////////////////////////////////////////////////
+   ////////////////// CODE FOR R5 ////////////////////////
+   ///////////////////////////////////////////////////////
+
+   initialize_heap(50000);
+   mpx_init(MEM_MODULE);
+   if (IsEmpty() == 0) {
+     println("\nERROR: Heap is not empty immediately after initialization");
+   }
+
+   ///////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////
 
    // 6) Call YOUR command handler -  interface method
    klogv("Transferring control to commhand...");
