@@ -44,7 +44,7 @@ void allocate_memory(u32int bytes)
   CMCB* top = free_list.head;
 
   while(top != NULL){
-    if(top->size >= (u32int)(bytes + sizeof(CMCB) )) {
+    if((u32int) top->size >= (u32int) bytes + sizeof(CMCB)) {
       break;
     }
     top = top->nextCMCB;
