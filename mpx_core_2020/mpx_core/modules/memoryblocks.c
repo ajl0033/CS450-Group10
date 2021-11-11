@@ -161,7 +161,7 @@ if(allocated_list.count == 0){
            toString(str,(tempCMCB->size));
            println(str);
           //could be changed in both depending on how we define the list
-          tempCMCB = tempCMCB->previousCMCB;
+          tempCMCB = tempCMCB->nextCMCB;
         }
     }
 }
@@ -179,7 +179,7 @@ void Show_Free_Memory(){
           println(str);
           toString(str,(tempCMCB->size));
           println(str);
-          tempCMCB = tempCMCB->previousCMCB;
+          tempCMCB = tempCMCB->nextCMCB;
         }
 
 }
