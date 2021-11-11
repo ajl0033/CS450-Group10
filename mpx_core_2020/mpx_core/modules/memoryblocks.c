@@ -160,7 +160,7 @@ if(allocated_list.count == 0){
            println(str);
            toString(str,(tempCMCB->size));
            println(str);
-          //could be changed in both depending on how we define the list
+           println(" ");
           tempCMCB = tempCMCB->nextCMCB;
         }
     }
