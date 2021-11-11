@@ -50,13 +50,13 @@ void allocate_memory(u32int bytes)
     top = top->nextCMCB;
   }
 
-CMCB* newFree = {NULL};
+CMCB* newFree = NULL;
 //i think the line below needs some work
-free_list.head = newFree;
 newFree->type = 0;
-newFree->beginningAddress = top->beginningAddress;
-newFree->size = top->size - (bytes + sizeof(CMCB));
-top->beginningAddress += (bytes + sizeof(CMCB));
+newFree->beginningAddress = top->beginningAddress + top->size;
+newFree->size = start_of_memory - newFree->beginningAddress;
+free_list.head = newFree;
+free_list.tail = newFree;
 top->type = 1;
 top->size = bytes + sizeof(CMCB);
 
@@ -160,7 +160,7 @@ if(allocated_list.count == 0){
 
             //println(tempCMCB->beginningAddress);
             //println(tempCMCB->size);
-          toString(str,(tempCMCB->beginningAddress));
+           toString(str,(tempCMCB->beginningAddress));
            println(str);
            toString(str,(tempCMCB->size));
            println(str);
@@ -180,9 +180,9 @@ void Show_Free_Memory(){
             //println(tempCMCB->beginningAddress);
             //println(tempCMCB->size);
           toString(str,(tempCMCB->beginningAddress));
-         println(str);
-         toString(str,(tempCMCB->size));
-         println(str);
+          println(str);
+          toString(str,(tempCMCB->size));
+          println(str);
           tempCMCB = tempCMCB->previousCMCB;
         }
 
