@@ -57,31 +57,22 @@ newFree->size = top->size - (bytes + sizeof(CMCB));
 top->type = 1;
 top->size = bytes + sizeof(CMCB);
 
-/*
-  if(allocated_list.count == 0){
-  allocated_list.head = temp;
-  allocated_list.tail = temp;
-  temp->beginningAddress = start_of_memory +sizeof(CMCB);//top->beginningAddress; could be either - one right one wrong
-  top->beginningAddress = temp->beginningAddress + sizeof(CMCB);
-  //top->size -= (bytes + sizeof(CMCB));
+if(allocated_list.count == 0){
+allocated_list.head = top;
+allocated_list.tail = top;
 
-    }else if(allocated_list.count == 1){
-      allocated_list.tail = temp;
-      //i am confused between the usage of . and -> -- anthony please clear that up
-      allocated_list.head->previousCMCB = temp;
-      temp->nextCMCB = allocated_list.head;
-      temp->beginningAddress = top->beginningAddress;
-      //previous line should be correct b/c allocated_list already starts at the start_of_memory
-      top->beginningAddress +=  (bytes + sizeof(CMCB));
-
-  }     else{
-          allocated_list.tail->previousCMCB = temp;
-          temp->nextCMCB = allocated_list.tail;
-          allocated_list.tail = temp;
-          temp->beginningAddress = top->beginningAddress;
-          top->beginningAddress += (bytes + sizeof(CMCB));
-        }*/
-          allocated_list.count += 1;
+  }else if(allocated_list.count == 1){
+    allocated_list.tail = top;
+    //i am confused between the usage of . and -> -- anthony please clear that up
+    allocated_list.head->previousCMCB = top;
+    top->nextCMCB = allocated_list.head;
+  
+}     else{
+        allocated_list.tail->previousCMCB = top;
+        top->nextCMCB = allocated_list.tail;
+        allocated_list.tail = top;
+      }
+        allocated_list.count += 1;
 }
 
 
