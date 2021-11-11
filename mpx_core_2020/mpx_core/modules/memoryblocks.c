@@ -33,7 +33,7 @@ void allocate_memory(u32int bytes)
   // need to declare a cmcb and put it in allocated_list as head and tail
   // top(free_list.head?)->beginningAddress? += intbytes + sizeof(cmcb)
   //    else if 1
-  //    move top->beginninng adress the same way after placing it at the end of allocated_list as automatically
+  //    move top->beginning adress the same way after placing it at the end of allocated_list as automatically
   //      else put it as the tail and make the previous tail point to it
 
   //there is 0 error checking here, if there isnt size it'll break
@@ -43,6 +43,21 @@ void allocate_memory(u32int bytes)
   //could hard code it in each timemp; but lets see if this works
   CMCB* top = free_list.head;
 
+  while(top != NULL){
+    if(top->size >= (u32int)(bytes + sizeof(CMCB) )) {
+      break;
+    }
+    top = top->nextCMCB;
+  }
+
+CMCB* newFree = {NULL};
+newFree->type = 0;
+newFree->beginningAddress = start_of_memory;
+newFree->size = top->size - (bytes + sizeof(CMCB));
+top->type = 1;
+top->size = bytes + sizeof(CMCB);
+
+/*
   if(allocated_list.count == 0){
   allocated_list.head = temp;
   allocated_list.tail = temp;
@@ -65,7 +80,7 @@ void allocate_memory(u32int bytes)
           allocated_list.tail = temp;
           temp->beginningAddress = top->beginningAddress;
           top->beginningAddress += (bytes + sizeof(CMCB));
-          }
+        }*/
           allocated_list.count += 1;
 }
 
