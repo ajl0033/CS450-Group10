@@ -38,9 +38,7 @@ void allocate_memory(u32int bytes)
 
   //there is 0 error checking here, if there isnt size it'll break
   // but it should work if there is room within free, error checking is for when it works
-  CMCB* temp = (CMCB*)start_of_memory;
-  temp->size = bytes;
-  temp->type = 1;
+
 
   //could hard code it in each timemp; but lets see if this works
   CMCB* top = free_list.head;
@@ -48,8 +46,8 @@ void allocate_memory(u32int bytes)
   if(allocated_list.count == 0){
   allocated_list.head = temp;
   allocated_list.tail = temp;
-  temp->beginningAddress = start_of_memory;//top->beginningAddress; could be either - one right one wrong
-  top->beginningAddress +=  (bytes + sizeof(CMCB));
+  temp->beginningAddress = start_of_memory +sizeof(CMCB);//top->beginningAddress; could be either - one right one wrong
+  top->beginningAddress = temp->beginningAddress + sizeof(CMCB);
   //top->size -= (bytes + sizeof(CMCB));
 
     }else if(allocated_list.count == 1){
