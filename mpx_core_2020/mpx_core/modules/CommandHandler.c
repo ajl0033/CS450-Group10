@@ -762,13 +762,14 @@ void help() {
   println("showblocked: Displays the process name, class, state, suspended status,\n             and priority of all PCBs in the blocked queue");
   println("deletepcb:   Removes a given PCB and frees the accociated memory");
   //println("alarm:       Sets a new alarm with a message at a given time");
-  println("yield:       Causes commhand to yield to other processes\n");
+  println("yield:       Causes commhand to yield to other processes");
   //println("loadr3:      Load processes for R3 testing purposes\n");
-  println("showfree:       Displays address and size of free blocks\n");
-  println("showalloc:       Displays address and size of allocated blocks\n");
-  println("initheap:       initilizes the heap\n");
-  println("allocmem:       Allocates a block of size 128 in memory\n");
-  println("freemem:       Frees a allocated block from memory\n");
+  println("showfree:    Displays address and size of free blocks");
+  println("showalloc:   Displays address and size of allocated blocks");
+  println("initheap:    Initilizes the heap");
+  println("allocmem:    Allocates a block of size 128 in memory");
+  println("freemem:     Frees an allocated block from memory");
+  println("isempty:     Returns true/false based on whether or not the heap is empty");
   println("-------------------------------------------------------------------------\n");
 }
 
