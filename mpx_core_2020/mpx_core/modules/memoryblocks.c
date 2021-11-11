@@ -164,6 +164,7 @@ if(allocated_list.count == 0){
 
             //println(tempCMCB->beginningAddress);
             //println(tempCMCB->size);
+          println(" ");
            toString(str,(tempCMCB->beginningAddress));
            println(str);
            toString(str,(tempCMCB->size));
@@ -183,6 +184,7 @@ void Show_Free_Memory(){
 
             //println(tempCMCB->beginningAddress);
             //println(tempCMCB->size);
+          println(" ");
           toString(str,(tempCMCB->beginningAddress));
           println(str);
           toString(str,(tempCMCB->size));
