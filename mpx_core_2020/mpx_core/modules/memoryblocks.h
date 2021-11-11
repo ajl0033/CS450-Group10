@@ -24,7 +24,7 @@ typedef struct memoryList {
 
 u32int initialize_heap(u32int size);
 
-void allocate_memory(u32int bytes);
+u32int allocate_memory(u32int bytes);
 
 void free_memory(int address); // Will
 

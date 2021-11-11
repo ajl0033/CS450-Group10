@@ -27,27 +27,25 @@ u32int initialize_heap(u32int size){
   return 0;
 }
 
-void allocate_memory(u32int bytes)
+u32int allocate_memory(u32int bytes)
 {
-  // if nothing in allocated list:
-  // need to declare a cmcb and put it in allocated_list as head and tail
-  // top(free_list.head?)->beginningAddress? += intbytes + sizeof(cmcb)
-  //    else if 1
-  //    move top->beginning adress the same way after placing it at the end of allocated_list as automatically
-  //      else put it as the tail and make the previous tail point to it
-
-  //there is 0 error checking here, if there isnt size it'll break
-  // but it should work if there is room within free, error checking is for when it works
-
-
+char str[10];
   //could hard code it in each timemp; but lets see if this works
   CMCB* top = free_list.head;
 
+  //error checking for size should go below but idk how
   while(top != NULL){
+    toString(str,(top->size));
+    println(str);
     if((u32int) top->size >= (u32int) bytes + sizeof(CMCB)) {
       break;
     }
+    if((u32int) top->size < (u32int) bytes + sizeof(CMCB)){
+      println("uwu major fucky");
+      return NULL;
+    }
     top = top->nextCMCB;
+
   }
 
 CMCB* newFree = (CMCB*) (top->beginningAddress + bytes);
@@ -72,6 +70,8 @@ else {
 
 insertCMCB(&free_list, newFree);
 insertCMCB(&allocated_list, top);
+
+return top->beginningAddress;
 }
 
 
