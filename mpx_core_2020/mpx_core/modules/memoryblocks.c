@@ -10,10 +10,11 @@
 memoryList free_list = {0,NULL,NULL};
 memoryList allocated_list = {0,NULL,NULL};
 u32int start_of_memory;
+u32int total_size;
 
 u32int initialize_heap(u32int size){
   start_of_memory = kmalloc(size + sizeof(CMCB));
-
+  total_size = size;
   CMCB *top = (CMCB*)start_of_memory;
   // create the initial CMCB
   top->beginningAddress = start_of_memory + sizeof(CMCB);
@@ -35,15 +36,19 @@ char str[10];
 
   //error checking for size should go below but idk how
   while(top != NULL){
+    if ((start_of_memory + total_size - top->beginningAddress) < (bytes + sizeof(CMCB))) {
+      println("\nUNABLE TO ALLOCATE MEMORY");
+      return NULL;
+    }
     toString(str,(top->size));
     println(str);
     if((u32int) top->size >= (u32int) bytes + sizeof(CMCB)) {
       break;
     }
-    if((u32int) top->size < (u32int) bytes + sizeof(CMCB)){
-      println("uwu major fucky");
-      return NULL;
-    }
+    // if((u32int) top->size < (u32int) bytes + sizeof(CMCB)){
+    //   println("uwu major fucky");
+    //   return NULL;
+    // }
     top = top->nextCMCB;
 
   }
