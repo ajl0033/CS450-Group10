@@ -93,7 +93,7 @@ void kmain(void)
    initialize_heap(50000);
    //mpx_init(MEM_MODULE);
    sys_set_malloc(allocate_memory);
-   //sys_set_free(free_memory);
+   sys_set_free(free_memory);
 
    if (IsEmpty() == 0) {
      println("\nERROR: Heap is not empty immediately after initialization");
