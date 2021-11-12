@@ -37,7 +37,7 @@ void kmain(void)
    // extern void *mbd;
    // char *boot_loader_name = (char*)((long*)mbd)[16];
 
-   mpx_init(MODULE_R5);
+   mpx_init(MEM_MODULE);
    // 0) Initialize Serial I/O
    // functions to initialize serial I/O can be found in serial.c
    // there are 3 functions to call
@@ -90,11 +90,14 @@ void kmain(void)
    ////////////////// CODE FOR R5 ////////////////////////
    ///////////////////////////////////////////////////////
 
-   // initialize_heap(50000);
-   // mpx_init(MEM_MODULE);
-   // if (IsEmpty() == 0) {
-   //   println("\nERROR: Heap is not empty immediately after initialization");
-   // }
+   initialize_heap(50000);
+   //mpx_init(MEM_MODULE);
+   sys_set_malloc(allocate_memory);
+   //sys_set_free(free_memory);
+
+   if (IsEmpty() == 0) {
+     println("\nERROR: Heap is not empty immediately after initialization");
+   }
 
    ///////////////////////////////////////////////////////
    ///////////////////////////////////////////////////////
@@ -107,9 +110,9 @@ void kmain(void)
    print("\033[37m");
 
    // Would add comhand idle to ready queue, but do not know how to store functions in the struct
-  // sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
-  //
-  //
+   // sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
+   //
+   //
   CreatePCB("comhand", 0, 9);
 	PCB* new_pcb = FindPCB("comhand");
 	context* cp = (context *)(new_pcb->stackTop);
