@@ -604,85 +604,85 @@ int comhand(){
         loadr3(1);
      }
    }
-   else if (cmdBuffer[0] == 'i' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'i' && cmdBuffer[3] == 't' && cmdBuffer[4] == 'h' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'a' && cmdBuffer[7] == 'p') {
-     int i;
-     int check = 1;
-     for (i=8; i<100; i++)
-     {
-       if (cmdBuffer[i] != ' ')
-       {
-         print("\033[31m");
-         println("\n\n**Invalid Command**\n");
-         print("\033[37m");
-         check = 0;
-         break;
-       }
-     }
-     if (check == 1)
-     {
-        u32int size = 500;
-        initialize_heap(size);
-     }
-   }
-   else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'o' && cmdBuffer[4] == 'c' && cmdBuffer[5] == 'm' && cmdBuffer[6] == 'e' && cmdBuffer[7] == 'm') {
-     int i;
-     int check = 1;
-     for (i=8; i<100; i++)
-     {
-       if (cmdBuffer[i] != ' ')
-       {
-         print("\033[31m");
-         println("\n\n**Invalid Command**\n");
-         print("\033[37m");
-         check = 0;
-         break;
-       }
-     }
-     if (check == 1)
-     {
-        u32int size = 128;
-        allocate_memory(size);
-     }
-   }
-   else if (cmdBuffer[0] == 'f' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 'm' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'm') {
-     int i;
-     int check = 1;
-     for (i=7; i<100; i++)
-     {
-       if (cmdBuffer[i] != ' ')
-       {
-         print("\033[31m");
-         println("\n\n**Invalid Command**\n");
-         print("\033[37m");
-         check = 0;
-         break;
-       }
-     }
-     if (check == 1)
-     {
-        u32int size = 218105980;
-        free_memory(size);
-     }
-   }
-   else if (cmdBuffer[0] == 'i' && cmdBuffer[1] == 's' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'm' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 't' && cmdBuffer[6] == 'y') {
-     int i;
-     int check = 1;
-     for (i=7; i<100; i++)
-     {
-       if (cmdBuffer[i] != ' ')
-       {
-         print("\033[31m");
-         println("\n\n**Invalid Command**\n");
-         print("\033[37m");
-         check = 0;
-         break;
-       }
-     }
-     if (check == 1)
-     {
-        IsEmpty();
-     }
-   }
+   // else if (cmdBuffer[0] == 'i' && cmdBuffer[1] == 'n' && cmdBuffer[2] == 'i' && cmdBuffer[3] == 't' && cmdBuffer[4] == 'h' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'a' && cmdBuffer[7] == 'p') {
+   //   int i;
+   //   int check = 1;
+   //   for (i=8; i<100; i++)
+   //   {
+   //     if (cmdBuffer[i] != ' ')
+   //     {
+   //       print("\033[31m");
+   //       println("\n\n**Invalid Command**\n");
+   //       print("\033[37m");
+   //       check = 0;
+   //       break;
+   //     }
+   //   }
+   //   if (check == 1)
+   //   {
+   //      u32int size = 500;
+   //      initialize_heap(size);
+   //   }
+   // }
+   // else if (cmdBuffer[0] == 'a' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'l' && cmdBuffer[3] == 'o' && cmdBuffer[4] == 'c' && cmdBuffer[5] == 'm' && cmdBuffer[6] == 'e' && cmdBuffer[7] == 'm') {
+   //   int i;
+   //   int check = 1;
+   //   for (i=8; i<100; i++)
+   //   {
+   //     if (cmdBuffer[i] != ' ')
+   //     {
+   //       print("\033[31m");
+   //       println("\n\n**Invalid Command**\n");
+   //       print("\033[37m");
+   //       check = 0;
+   //       break;
+   //     }
+   //   }
+   //   if (check == 1)
+   //   {
+   //      u32int size = 128;
+   //      allocate_memory(size);
+   //   }
+   // }
+   // else if (cmdBuffer[0] == 'f' && cmdBuffer[1] == 'r' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'e' && cmdBuffer[4] == 'm' && cmdBuffer[5] == 'e' && cmdBuffer[6] == 'm') {
+   //   int i;
+   //   int check = 1;
+   //   for (i=7; i<100; i++)
+   //   {
+   //     if (cmdBuffer[i] != ' ')
+   //     {
+   //       print("\033[31m");
+   //       println("\n\n**Invalid Command**\n");
+   //       print("\033[37m");
+   //       check = 0;
+   //       break;
+   //     }
+   //   }
+   //   if (check == 1)
+   //   {
+   //      void* address = (void*) 218105980;
+   //      free_memory(address);
+   //   }
+   // }
+   // else if (cmdBuffer[0] == 'i' && cmdBuffer[1] == 's' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'm' && cmdBuffer[4] == 'p' && cmdBuffer[5] == 't' && cmdBuffer[6] == 'y') {
+   //   int i;
+   //   int check = 1;
+   //   for (i=7; i<100; i++)
+   //   {
+   //     if (cmdBuffer[i] != ' ')
+   //     {
+   //       print("\033[31m");
+   //       println("\n\n**Invalid Command**\n");
+   //       print("\033[37m");
+   //       check = 0;
+   //       break;
+   //     }
+   //   }
+   //   if (check == 1)
+   //   {
+   //      IsEmpty();
+   //   }
+   // }
    else if (cmdBuffer[0] == 's' && cmdBuffer[1] == 'h' && cmdBuffer[2] == 'o' && cmdBuffer[3] == 'w' && cmdBuffer[4] == 'f' && cmdBuffer[5] == 'r' && cmdBuffer[6] == 'e' && cmdBuffer[7] == 'e') {
      int i;
      int check = 1;
@@ -766,10 +766,10 @@ void help() {
   //println("loadr3:      Load processes for R3 testing purposes\n");
   println("showfree:    Displays address and size of free blocks");
   println("showalloc:   Displays address and size of allocated blocks");
-  println("initheap:    Initilizes the heap");
-  println("allocmem:    Allocates a block of size 128 in memory");
-  println("freemem:     Frees an allocated block from memory");
-  println("isempty:     Returns true/false based on whether or not the heap is empty");
+  //println("initheap:    Initilizes the heap");
+  //println("allocmem:    Allocates a block of size 128 in memory");
+  //println("freemem:     Frees an allocated block from memory");
+  //println("isempty:     Returns true/false based on whether or not the heap is empty");
   println("-------------------------------------------------------------------------\n");
 }
 

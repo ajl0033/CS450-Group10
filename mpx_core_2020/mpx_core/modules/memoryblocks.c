@@ -45,10 +45,6 @@ char str[10];
     if((u32int) top->size >= (u32int) bytes + sizeof(CMCB)) {
       break;
     }
-    // if((u32int) top->size < (u32int) bytes + sizeof(CMCB)){
-    //   println("uwu major fucky");
-    //   return NULL;
-    // }
     top = top->nextCMCB;
 
   }
@@ -80,8 +76,9 @@ return top->beginningAddress;
 }
 
 
-void free_memory(u32int address) // Will
+int free_memory(void* addressP) // Will
 {
+  u32int address = (u32int)addressP;
   CMCB* tempAllocated = allocated_list.head;
   while (tempAllocated != NULL)
   {
@@ -143,6 +140,7 @@ void free_memory(u32int address) // Will
       tempFreeNext = tempFreeNext->nextCMCB;
       tempFree = tempFree->nextCMCB;
   }
+  return 1;
 }
 
 //0 = false ----- 1 = true
