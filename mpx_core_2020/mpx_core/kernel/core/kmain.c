@@ -10,6 +10,12 @@
       				Ben Smith 2018, and Alex Wilson 2019
 */
 
+/////////// FOR PHASE 1 TESTING ///////////
+//  Line 43:     MEM_MODULE -> MODULE_R4
+//  Line 99-105: Comment
+//  Uncomment code in comhand (607-685)
+
+
 #include <stdint.h>
 #include <string.h>
 #include <system.h>
@@ -91,7 +97,6 @@ void kmain(void)
    ///////////////////////////////////////////////////////
 
    initialize_heap(50000);
-   //mpx_init(MEM_MODULE);
    sys_set_malloc(allocate_memory);
    sys_set_free(free_memory);
 
