@@ -11,7 +11,7 @@
 #include "Alarm.h"
 #include "memoryblocks.h"
 
-// UNCOMMENT LINES - 334, 353, 372, 407-444, 446
+// Lines 607-685 Contain R5 Commands
 
 int comhand(){
   char cmdBuffer[100];
