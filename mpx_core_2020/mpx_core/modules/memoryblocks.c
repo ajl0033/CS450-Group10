@@ -80,10 +80,9 @@ void free_memory(u32int address) // Will
   CMCB* tempAllocated = allocated_list.head;
   while (tempAllocated != NULL)
   {
-    if (tempAllocated->beginningAddress == (u32int)address)
+    if (tempAllocated->beginningAddress == address)
     {
       // Allocate to free list
-      insertCMCB(&free_list, tempAllocated);
       // Remove from allocated list
       // Head
       if(tempAllocated == allocated_list.head){
@@ -100,6 +99,7 @@ void free_memory(u32int address) // Will
       }
       tempAllocated->nextCMCB = NULL;
       tempAllocated->previousCMCB = NULL;
+      insertCMCB(&free_list, tempAllocated);
       allocated_list.count--;
       // Free sizeof(block) + sizeof(CMCB) + sizeof(LCMB)
       break;
@@ -113,6 +113,7 @@ void free_memory(u32int address) // Will
   CMCB* tempFreeNext = tempFree->nextCMCB;
   while (tempFreeNext != NULL)
   {
+    println("penisuwuwuwuwuw");
       if ((tempFree->beginningAddress + tempFree->size + sizeof(CMCB)) == (tempFreeNext->beginningAddress)) // Check if adjacent blocks are both free
     {
       tempFree->size = tempFree->size + tempFreeNext->size;
@@ -135,6 +136,7 @@ void free_memory(u32int address) // Will
       free_list.count--;
       break;
       }
+      tempFreeNext = tempFreeNext->nextCMCB;
       tempFree = tempFree->nextCMCB;
   }
 }
