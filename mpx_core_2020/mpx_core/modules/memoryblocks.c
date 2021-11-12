@@ -118,7 +118,6 @@ void free_memory(u32int address) // Will
   CMCB* tempFreeNext = tempFree->nextCMCB;
   while (tempFreeNext != NULL)
   {
-    println("penisuwuwuwuwuw");
       if ((tempFree->beginningAddress + tempFree->size + sizeof(CMCB)) == (tempFreeNext->beginningAddress)) // Check if adjacent blocks are both free
     {
       tempFree->size = tempFree->size + tempFreeNext->size;
