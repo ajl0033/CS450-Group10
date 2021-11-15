@@ -117,15 +117,13 @@ int free_memory(void* addressP) // Will
   {
       if ((tempFree->beginningAddress + tempFree->size + sizeof(CMCB)) == (tempFreeNext->beginningAddress)) // Check if adjacent blocks are both free
     {
-      tempFree->size = tempFree->size + tempFreeNext->size;
+      tempFree->size = tempFree->size + tempFreeNext->size +sizeof(CMCB);
       // Remove adjacent from free free_list once blocks of memory are combined
       // Head
-      if(tempFreeNext == free_list.head){
-        free_list.head = tempFreeNext->nextCMCB;
-      }
+
       //else if it is at the tail,
-      else if(tempFreeNext == free_list.tail){
-        free_list.tail = tempFreeNext->previousCMCB;
+      if(tempFreeNext == free_list.tail){
+        free_list.tail = tempFree;
         free_list.tail->nextCMCB = NULL;
       }
       else{
@@ -135,7 +133,7 @@ int free_memory(void* addressP) // Will
       tempFreeNext->nextCMCB = NULL;
       tempFreeNext->previousCMCB = NULL;
       free_list.count--;
-      break;
+
       }
       tempFreeNext = tempFreeNext->nextCMCB;
       tempFree = tempFree->nextCMCB;
