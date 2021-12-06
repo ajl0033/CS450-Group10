@@ -19,7 +19,9 @@ time.o\
 date.o\
 Alarm.o\
 PCB.o\
-memoryblocks.o
+memoryblocks.o\
+serial.o\
+newTestProcs.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<

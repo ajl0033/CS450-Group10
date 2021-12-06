@@ -22,6 +22,7 @@
 
 #include <core/io.h>
 #include <core/serial.h>
+#include "modules/serial.h"
 #include <core/tables.h>
 #include <core/interrupts.h>
 #include <mem/heap.h>
@@ -113,6 +114,15 @@ void kmain(void)
    // char buffer[100];
    // int count = 1;
    print("\033[37m");
+
+
+/// ONLY FOR TESTING
+//com_open(1200);
+
+i//nt a=1;
+w//hile(1){
+//(void) a;
+//}
 
    // Would add comhand idle to ready queue, but do not know how to store functions in the struct
    // sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
