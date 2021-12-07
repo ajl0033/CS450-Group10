@@ -7,20 +7,21 @@
 #include "print.h"
 
 u32int dev = COM1;
-int level =4;
+int level = 4;
 
 struct dcb serial_dcb ={
     .ring_s = sizeof(*(serial_dcb.ring)/sizeof(unsigned char))
 };
 
 u32int original_idt_entry;
+
 void set_int(int bit, int on){
-  if(on == 0){
+  if(on == 1){
     outb(dev + 1, inb(dev + 1) | (1<<bit));
 
   }
   else{
-    outb(dev + 1, inb(dev + 1) | ~(1<<bit));
+    outb(dev + 1, inb(dev + 1) & ~(1<<bit));
   }
 }
 void input_h(){
@@ -29,7 +30,7 @@ void input_h(){
 }
 
 void top_handler(){
-  if (serial_dcb.open) {
+  if (serial_dcb.open == 1) {
     cli();
     int type = inb(dev + 2);
     int bit1 = type>>1 & 1;
@@ -40,8 +41,6 @@ void top_handler(){
   if(!bit1 && !bit2){
     //modem
     inb(dev + 6);
-
-
   }
   else if(bit1 && !bit2){
     //outputhandler
@@ -69,26 +68,26 @@ int com_open(int baud_rate){
 
   serial_dcb.open = 1;
   serial_dcb.events = 1;
-  serial_dcb.status = NOTHIING;
+  serial_dcb.status = NOTHING;
 
   original_idt_entry = idt_get_gate(0x24);
   idt_set_gate(0x24, (u32int) top_handler, 0x08, 0x8e);
 
   long brd = 115200/(long) baud_rate;
 
-  //disable installs
+  //disable ints
   outb(dev + 1, 0b00000000);
 
   //set time control register
-    outb(dev + 3, 0b00000000);
+  outb(dev + 3, 0b00000000);
     //LSB baud_rate
-    outb(dev + 0, brd);
+  outb(dev + 0, brd);
 
     //MSB baud_rate
-    outb(dev +1, brd >> 8);
+  outb(dev +1, brd >> 8);
 
     //lock devisor
-    outb(dev + 3, 0b00000011);
+  outb(dev + 3, 0b00000011);
 
     //Enable FIFO, clear, 14 byte threshold
     outb(dev + 2, 0b11000111);

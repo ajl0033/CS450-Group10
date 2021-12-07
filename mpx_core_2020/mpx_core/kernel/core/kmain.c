@@ -119,8 +119,10 @@ void kmain(void)
 /// ONLY FOR TESTING
 //com_open(1200);
 
-i//nt a=1;
-w//hile(1){
+//outb(COM1 + 1, inb(COM1 + 1) | (1<<1));
+//outb(COM1, 'a');
+//int a=1;
+//while(1){
 //(void) a;
 //}
 

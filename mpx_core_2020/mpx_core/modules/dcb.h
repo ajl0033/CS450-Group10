@@ -3,7 +3,7 @@
 
 
 
-enum dcb_status {NOTHIING, READING, WRITING};
+enum dcb_status {NOTHING, READING, WRITING};
 
 struct dcb{
 
