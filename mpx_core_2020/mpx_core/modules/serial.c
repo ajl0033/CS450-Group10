@@ -109,9 +109,30 @@ int com_close(void)
   return 0;
 }
 
-int com_read(char* buf_p, int* count_p)
-{
-  return 0;
+int com_read(char *buf_p, int *count_p){
+  //need to validate the params
+  //error checking for port and status below
+  if(serial_dcb.open == 0){
+    //throw error 301
+    //how are we doing that
+  }
+  if(serial_dcb.status != IDLE){
+    //throw error 304
+    //how are we doing that
+  }
+
+  //initialize the input buffers current index, size, and status
+  serial_dcb.in_x = serial_dcb.ring_inx;
+  serial_dcb.in_s = (serial_dcb.ring_s - serial_dcb.out_s);
+  serial_dcb.status = READING;
+
+  //somehow clear callers event flag below
+  //dont think this is right
+  buf_p.events = 0;
+
+  //copy chars
+
+
 }
 
 int com_write(char* buf_p, int* count_p)
