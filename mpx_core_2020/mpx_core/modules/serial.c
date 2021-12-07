@@ -113,42 +113,32 @@ int com_read(char *buf_p, int *count_p){
   //need to validate the params
   //error checking for port and status below
   if(serial_dcb.open == 0){
-    return READ_PORT_NOT_OPEN -301;
+    //throw error 301
+    //how are we doing that
   }
   if(serial_dcb.status != IDLE){
-    return READ_DEVICE_BUSY -304;
+    //throw error 304
   }
   //initialize the input buffers current index, size, and status
   serial_dcb.in_x = serial_dcb.ring_inx;
   serial_dcb.in_s = (serial_dcb.ring_s - serial_dcb.out_s);
-  if(serial_dcb.ring_s >= count_p){
-    //do i need to read in the ring buffer or just return 0
-    return 0;
-  }
   serial_dcb.status = READING;
 
   //somehow clear callers event flag below -- proly not right
-  buf_p.events = 0; //null? and buf_p is not a dcb im lost.
+  buf_p.events = 0;
 
   //copy chars -- need to disable input interupts or all interupts
   int i = 0;
   while(serial_dcb.ring[i] != NULL && serial_dcb.ring[i] <= count_p){
-    //disable ints
-    outb(dev + 1, 0b00000000);
-
-    buf_p = serial_dcb.ring[i]; //this cant be right
+    buf_p = serial_dcb.ring[i];
 
     //detect if a CR (enter) code has been found??
     if(serial_dcb.ring[i] == CR){
       break;
     }
-    serial_dcb.ring[i] = NULL;
     i++;
   }
 
-  serial_dcb.status = NOTHING;
-  serial_dcb.events = 1;
-  //return the actual count?
 
 }
 
@@ -178,6 +168,12 @@ int com_write(char* buf_p, int* count_p)
   }
 
   serial_dcb.status = WRITING;
-  //sup
+  serial_dcb.out = buf_p;
+  serial_dcb.out_x = 0;
+  serial_dcb.out_s = count_p;
+
+  serial_dcb.events = 0;
+
+  
   return 0;
 }
