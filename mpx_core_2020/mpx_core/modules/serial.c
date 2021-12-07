@@ -204,5 +204,12 @@ int com_write(char* buf_p, int* count_p)
 
   serial_dcb.events = 0;
 
+  // Get first character from requestor's buffer and store it into output buffer.
+  char input = inb(buf_p);
+  outb(dev + 0, 0b00000001);
+
+  // Enable write interrupts
+  outb(dev +1, 0x02, inb(0x02));
+
   return 0;
 }
