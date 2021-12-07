@@ -168,6 +168,6 @@ int com_write(char* buf_p, int* count_p)
   }
 
   serial_dcb.status = WRITING;
-  
+  //sup
   return 0;
 }
