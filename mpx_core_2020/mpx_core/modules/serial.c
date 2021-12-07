@@ -118,19 +118,26 @@ int com_read(char *buf_p, int *count_p){
   }
   if(serial_dcb.status != IDLE){
     //throw error 304
-    //how are we doing that
   }
-
   //initialize the input buffers current index, size, and status
   serial_dcb.in_x = serial_dcb.ring_inx;
   serial_dcb.in_s = (serial_dcb.ring_s - serial_dcb.out_s);
   serial_dcb.status = READING;
 
-  //somehow clear callers event flag below
-  //dont think this is right
+  //somehow clear callers event flag below -- proly not right
   buf_p.events = 0;
 
-  //copy chars
+  //copy chars -- need to disable input interupts or all interupts
+  int i = 0;
+  while(serial_dcb.ring[i] != NULL && serial_dcb.ring[i] <= count_p){
+    buf_p = serial_dcb.ring[i];
+
+    //detect if a CR (enter) code has been found??
+    if(serial_dcb.ring[i] == CR){
+      break;
+    }
+    i++;
+  }
 
 
 }
