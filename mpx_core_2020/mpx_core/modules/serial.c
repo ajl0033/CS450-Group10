@@ -178,6 +178,12 @@ int com_write(char* buf_p, int* count_p)
   }
 
   serial_dcb.status = WRITING;
-  //sup
+  serial_dcb.out = buf_p;
+  serial_dcb.out_x = 0;
+  serial_dcb.out_s = count_p;
+
+  serial_dcb.events = 0;
+
+
   return 0;
 }
