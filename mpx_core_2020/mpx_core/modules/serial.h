@@ -18,6 +18,9 @@
 
 // Returns the device control block associated with the serial port
 // struct dcb* com_get_dcb();
+void disable_interupt();
+
+void enable_interupt();
 
 void set_int(int bit, int on);
 

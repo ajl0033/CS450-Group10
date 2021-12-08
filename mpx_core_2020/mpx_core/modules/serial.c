@@ -15,6 +15,16 @@ struct dcb serial_dcb ={
 
 u32int original_idt_entry;
 
+//diables by loading 0 into interupt enable register
+void disable_interupt(){
+  outb(dev + 1, 0x0);
+}
+
+//enable by loading 0x01 int enable register
+void enable_interupt(){
+  outb(dev + 1, 0x01);
+}
+
 void set_int(int bit, int on){
   if(on == 1){
     outb(dev + 1, inb(dev + 1) | (1<<bit));
@@ -106,6 +116,18 @@ int com_open(int baud_rate){
 
 int com_close(void)
 {
+  if(!serial_dcb.open){
+    return CLOSE_PORT_NOT_OPEN;
+  }
+  serial_dcb.open = 0;
+  disable_interupt();
+  int pic_mask = inb(0x21) | 0x10;
+  outb(0x21,pic_mask);
+  enable_interupt();
+  //modem and
+  outb(dev + 6, 0);
+  outb(dev + 1, 0);
+  //restore originial saved interupt vector???? idk how
   return 0;
 }
 
