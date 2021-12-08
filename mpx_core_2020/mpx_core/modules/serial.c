@@ -54,9 +54,9 @@ void output_h(){
   //otherwise all characters have been transered aka Doing NOTHING
   else{
     serial_dcb.status = NOTHING;
-    serial_iocb.istatus = NOTHING;
+    serial_iocb->status = NOTHING;
     //set event flag
-    serial_iocb.ievents = 1;
+    serial_iocb->events = 1;
     //count equals index????? maybe
     (serial_dcb.out_count) = serial_dcb.out_x;
 //disable interupts, clear 1  bit in inturupt enable register
