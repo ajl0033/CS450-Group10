@@ -199,6 +199,7 @@ int com_read(char *buf_p, int *count_p){
   serial_dcb.status = NOTHING;
   serial_dcb.events = 1;
   //return the actual count?
+  return 0;
 }
 
 int com_write(char* buf_p, int* count_p)
@@ -258,7 +259,7 @@ void enqueue (iqueue *q, iocb *iocb){
     // and  finally the tail equal to the  pcb
     q->tail->next = iocb;
     pcb->previous = q->tail;
-    q->tail = pcb;
+    q->tail = iocb;
   }
   q->count++;
 }
