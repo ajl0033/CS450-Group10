@@ -174,6 +174,10 @@ int com_write(char* buf_p, int* count_p)
 
   serial_dcb.events = 0;
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 1423d232fb169f911e9ccbc827356a9dd590aab1
   return 0;
 }
