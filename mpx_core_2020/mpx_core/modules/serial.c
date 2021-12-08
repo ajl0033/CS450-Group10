@@ -262,7 +262,7 @@ void enqueue (iqueue *q, iocb *iocb){
   }
   q->count++;
 }
-iocb dequeue(iqueue *q){
+iocb* dequeue(iqueue *q){
   if(q->count == 0){
     return NULL;
   }
@@ -273,10 +273,9 @@ iocb dequeue(iqueue *q){
     q->count = 0;
     return iocb;
   }
-  else{
     iocb *iocb = q->head;
     q->head = q->head->next;
     q->size = q->size - 1;
     return iocb;
-  }
+
 }
