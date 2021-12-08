@@ -215,7 +215,7 @@ int com_write(char* buf_p, int* count_p)
     return WRITE_INVALID_BUFFER_ADDR;
   }
 
-  if (count_p == NULL || count_p <= 0)
+  if (count_p == NULL || *count_p <= 0)
   {
     return WRITE_INVALID_COUNT;
   }
@@ -228,7 +228,7 @@ int com_write(char* buf_p, int* count_p)
   serial_dcb.status = WRITING;
   serial_dcb.out_x=(int)buf_p;
   serial_dcb.out_s=(int)count_p;
-  serial_iocb.status = WRITING;
+  serial_iocb->status = WRITING;
 
   serial_dcb.events = 0;
 
