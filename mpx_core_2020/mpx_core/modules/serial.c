@@ -188,18 +188,16 @@ int com_write(char* buf_p, int* count_p)
     return WRITE_PORT_NOT_OPEN;
   }
 
-  // Need to validate the parameters
-  /*
-  if (buf_p == invalid)
+  // Need to validate the parameters...?
+  if (buf_p == NULL)
   {
     return WRITE_INVALID_BUFFER_ADDR;
   }
 
-  if (count_p == invalid)
+  if (count_p == NULL)
   {
     return WRITE_INVALID_COUNT;
   }
-  */
 
   if(serial_dcb.status != NOTHING)
   {
