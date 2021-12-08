@@ -27,6 +27,7 @@ struct dcb{
   unsigned char* out;
   int out_x; //current index
   int out_s; //size of out buffer
+  int out_count;
 
 //Rign buffer
 //Written to whenever the device triggers an interupt

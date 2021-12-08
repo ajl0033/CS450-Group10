@@ -36,4 +36,8 @@ int com_read(char* buf_p, int* count_p);
 
 int com_write(char* buf_p, int* count_p);
 
+void enqueue(queue *q, iocb *iocb);
+
+void dequeue(queue *q);
+
 #endif

@@ -5,6 +5,7 @@
 #include <core/tables.h>
 #include <string.h>
 #include "print.h"
+#include "iocb.h"
 
 u32int dev = COM1;
 int level = 4;
@@ -12,6 +13,7 @@ int level = 4;
 struct dcb serial_dcb ={
     .ring_s = sizeof(*(serial_dcb.ring)/sizeof(unsigned char))
 };
+iocb *serial_iocb;
 
 u32int original_idt_entry;
 
@@ -41,10 +43,28 @@ void input_h(){
 
 void output_h(){
   if(serial_dcb.status != WRITING){
-
-  }else{
-
+      return;
   }
+  if(serial_dcb.out_x < serial_dcb.out_s){
+      outb(dev, *(serial_dcb.out));//store in out index
+      serial_dcb.out =serial_dcb.out + 1;
+      (serial_dcb.out_x)++;
+      return;
+  }
+  //otherwise all characters have been transered aka Doing NOTHING
+  else{
+    serial_dcb.status = NOTHING;
+    serial_iocb.status = NOTHING;
+    //set event flag
+    serial_iocb.events = 1;
+    //count equals index????? maybe
+    *(serial_dcb.out_count) = serial_dcb.out_x;
+//disable interupts, clear 1  bit in inturupt enable register
+//
+    outb(COM1 + 1, (inb(COM1 + 1) & ~0x02));
+    return;
+  }
+
 
 }
 
@@ -219,4 +239,40 @@ int com_write(char* buf_p, int* count_p)
   outb(dev +1, 0x02 || inb(0x02));
 
   return 0;
+}
+// for iocb queue
+void enqueue (queue *q, iocb *iocb){
+  //if nothingg is in the queue yet, set the head and tail to the new pcb
+  if(q->count == 0){
+
+    q->head = iocb;
+    q->tail = iocb;
+  }
+
+  else{
+    //set the tail's next element equal to the pcb, and the pcb's previous element equal to the tail,
+    // and  finally the tail equal to the  pcb
+    q->tail->next = iocb;
+    pcb->previous = q->tail;
+    q->tail = pcb;
+  }
+  q->count++;
+}
+iocb dequeue(queue *q){
+  if(q->count == 0){
+    return NULL;
+  }
+  else if(q->count == 1){
+    iocb *iocb = q->head;
+    q->head = NULL;
+    q->tail = NULL;
+    q->count = 0;
+    return iocb;
+  }
+  else{
+    iocb *iocb = q->head;
+    q->head = q->head->next;
+    q->size = q->size - 1;
+    return iocb;
+  }
 }
