@@ -113,10 +113,10 @@ int com_read(char *buf_p, int *count_p){
   //need to validate the params
   //error checking for port and status below
   if(serial_dcb.open == 0){
-    return READ_PORT_NOT_OPEN -301
+    return READ_PORT_NOT_OPEN -301;
   }
-  if(serial_dcb.status != IDLE){
-    return READ_DEVICE_BUSY -304
+  if(serial_dcb.status != NOTHING){
+    return READ_DEVICE_BUSY -304;
   }
   //initialize the input buffers current index, size, and status
   serial_dcb.in_x = serial_dcb.ring_inx;
@@ -139,9 +139,12 @@ int com_read(char *buf_p, int *count_p){
     if(serial_dcb.ring[i] == CR){
       break;
     }
+    serial_dcb.ring[i] = NULL;
     i++;
   }
-
+  serial_dcb.status = NOTHING;
+  serial_dcb.events = 1;
+  //return the actual count??
 
 }
 
