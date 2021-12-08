@@ -256,7 +256,7 @@ void enqueue (iqueue *q, iocb *iocb){
     //set the tail's next element equal to the pcb, and the pcb's previous element equal to the tail,
     // and  finally the tail equal to the  pcb
     q->tail->next = iocb;
-    pcb->previous = q->tail;
+    iocb->previous = q->tail;
     q->tail = iocb;
   }
   q->count++;
