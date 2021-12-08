@@ -226,8 +226,7 @@ int com_write(char* buf_p, int* count_p)
   }
 
   serial_dcb.status = WRITING;
-  serial_dcb.out_x = buf_p;
-  serial_dcb.out_s = count_p;
+
 
   serial_dcb.events = 0;
 
@@ -236,8 +235,8 @@ int com_write(char* buf_p, int* count_p)
   //outb(dev + 0, 0b00000001);
 
   // i think this is right pulled from emilys output_h
-  outb(dev, *(serial_dcb.out));//store in out index
-  serial_dcb.out =serial_dcb.out + 1
+  //outb(dev, *(serial_dcb.out));//store in out index
+  //serial_dcb.out =serial_dcb.out + 1
 
   // Enable write interrupts
   outb(dev +1, 0x02 || inb(0x02));
