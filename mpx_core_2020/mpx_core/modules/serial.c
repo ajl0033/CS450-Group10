@@ -226,8 +226,8 @@ int com_write(char* buf_p, int* count_p)
   }
 
   serial_dcb.status = WRITING;
-  serial_dcb.out_x=buf_p;
-  serial_dcb.out_s=count_p;
+  serial_dcb.out_x=(int)buf_p;
+  serial_dcb.out_s=(int)count_p;
 
   serial_dcb.events = 0;
 
