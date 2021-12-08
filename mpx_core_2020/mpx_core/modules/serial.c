@@ -215,7 +215,7 @@ int com_write(char* buf_p, int* count_p)
     return WRITE_INVALID_BUFFER_ADDR;
   }
 
-  if (count_p == NULL)
+  if (count_p == NULL || count_p <= 0)
   {
     return WRITE_INVALID_COUNT;
   }
@@ -228,19 +228,27 @@ int com_write(char* buf_p, int* count_p)
   serial_dcb.status = WRITING;
   serial_dcb.out_x=(int)buf_p;
   serial_dcb.out_s=(int)count_p;
+  serial_iocb.status = WRITING;
 
   serial_dcb.events = 0;
 
   // Get first character from requestor's buffer and store it into output buffer.
-  char input = inb(buf_p);
-  outb(serial_dcb.out,input);
+  //char input = inb(buf_p)
+  //outb(serial_dcb.out,input);
+
+  outb(dev, serial_dcb.out_x);
+  serial_dcb.out_x = serial_dcb.out_x + 1;
+
 
   // i think this is right pulled from emilys output_h
   //outb(dev, *(serial_dcb.out));//store in out index
   //serial_dcb.out =serial_dcb.out + 1
 
   // Enable write interrupts
-  outb(dev +1, 0x02 || inb(0x02));
+  //outb(dev +1, 0x02 | inb(0x02));
+  int interuptE = inb(dev + 1);
+  interuptE = interuptE | 0x02;
+  outb(dev + 1, interuptE);
 
   return 0;
 }
