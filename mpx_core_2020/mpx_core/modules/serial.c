@@ -112,7 +112,7 @@ int com_open(int baud_rate){
   serial_iocb->events = 1;
   serial_iocb->status = NOTHING;
   serial_iocb->count = 0;
-  
+
   original_idt_entry = idt_get_gate(0x24);
   idt_set_gate(0x24, (u32int) top_handler, 0x08, 0x8e);
 
@@ -249,10 +249,7 @@ int com_write(char* buf_p, int* count_p)
   //serial_dcb.out =serial_dcb.out + 1
 
   // Enable write interrupts
-  //outb(dev +1, 0x02 | inb(0x02));
-  int interuptE = inb(dev + 1);
-  interuptE = interuptE | 0x02;
-  outb(dev + 1, interuptE);
+  outb(dev +1, inb(dev + 1) | 0x02);
 
   return 0;
 }
