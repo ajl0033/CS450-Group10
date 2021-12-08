@@ -275,7 +275,7 @@ iocb* dequeue(iqueue *q){
   }
     iocb *iocb = q->head;
     q->head = q->head->next;
-    q->size = q->size - 1;
+    q->count = q->count - 1;
     return iocb;
 
 }
