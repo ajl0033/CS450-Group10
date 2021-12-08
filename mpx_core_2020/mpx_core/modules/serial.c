@@ -39,6 +39,15 @@ void input_h(){
   outb(dev, i);
 }
 
+void output_h(){
+  if(serial_dcb.status != WRITING){
+
+  }else{
+
+  }
+
+}
+
 void top_handler(){
   if (serial_dcb.open == 1) {
     cli();
@@ -53,7 +62,7 @@ void top_handler(){
     inb(dev + 6);
   }
   else if(bit1 && !bit2){
-    //outputhandler
+    output_h();
   }
   else if(!bit1 && bit2){
     input_h();
