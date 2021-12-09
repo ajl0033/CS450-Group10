@@ -730,6 +730,25 @@ int comhand(){
     print("\033[37m");
   }
   sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
+  if (cmdBuffer[0] == 'c' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'a' && cmdBuffer[4] == 'r') {
+    int i;
+    int check = 1;
+    for (i=5; i<100; i++)
+    {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+    }
+    if (check == 1)
+    {
+       print("\e[1;1H\e[2J");
+    }
+  }
   }
   return 0;
 }
@@ -748,6 +767,7 @@ void help() {
   println("");
   println("-------------------------------------------------------------------------");
   println("version:     Prints the current version of MPX and the completion date");
+  println("clear:       Clears the terminal and prints the new command line at the top");
   println("getdate:     Retrieves the current date");
   println("setdate:     Sets the current date (MM/DD/YYYY)");
   println("gettime:     Retrieves the current time of day");
