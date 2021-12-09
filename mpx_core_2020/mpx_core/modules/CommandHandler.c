@@ -767,6 +767,7 @@ void help() {
   println("");
   println("-------------------------------------------------------------------------");
   println("version:     Prints the current version of MPX and the completion date");
+  println("clear:       Clears the terminal with the new command line at the top");
   println("getdate:     Retrieves the current date");
   println("setdate:     Sets the current date (MM/DD/YYYY)");
   println("gettime:     Retrieves the current time of day");
