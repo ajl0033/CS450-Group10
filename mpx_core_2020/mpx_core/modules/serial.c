@@ -233,7 +233,7 @@ int com_write(char* buf_p, int* count_p)
 
   // Get first character from requestor's buffer and store it into output buffer.
   char input = inb(buf_p);
-  outb(dev + 0, 0b00000001);
+  outb(serial_dcb.out,input);
 
   // i think this is right pulled from emilys output_h
   //outb(dev, *(serial_dcb.out));//store in out index
