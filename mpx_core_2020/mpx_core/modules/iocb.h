@@ -3,25 +3,7 @@
 
 #include <system.h>
 #include "PCB.h"
-#include "dcb.h"
 enum status {NOTHING, READING, WRITING};
-
-typedef struct iocb{
-  int count;
-  PCB *pcb;
-  dcb *dcb;
-  int events;
-  enum status status;
-  struct iocb *next;
-  struct iocb *previous;
-
-} iocb;
-
-typedef struct iqueue {
-    int count;
-    iocb *head;
-    iocb *tail;
-} iqueue;
 
 typedef struct dcb{
 
@@ -32,7 +14,7 @@ typedef struct dcb{
 //0 at beginning of operation, 1 at end.
   int events;
 
-  enum dcb_status status;
+  enum status status;
 
 //Input buffer
 //Stores info from device requested by application
@@ -54,6 +36,25 @@ typedef struct dcb{
   int rign_outx;
   int ring_s;
 } dcb;
+
+typedef struct iocb{
+  int count;
+  PCB *pcb;
+  dcb *dcb;
+  int events;
+  enum status status;
+  struct iocb *next;
+  struct iocb *previous;
+
+} iocb;
+
+typedef struct iqueue {
+    int count;
+    iocb *head;
+    iocb *tail;
+} iqueue;
+
+
 
 
 #endif
