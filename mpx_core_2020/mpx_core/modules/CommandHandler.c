@@ -730,6 +730,25 @@ int comhand(){
     print("\033[37m");
   }
   sys_req(IDLE, DEFAULT_DEVICE, NULL, NULL);
+  if (cmdBuffer[0] == 'c' && cmdBuffer[1] == 'l' && cmdBuffer[2] == 'e' && cmdBuffer[3] == 'a' && cmdBuffer[4] == 'r') {
+    int i;
+    int check = 1;
+    for (i=5; i<100; i++)
+    {
+      if (cmdBuffer[i] != ' ')
+      {
+        print("\033[31m");
+        println("\n\n**Invalid Command**\n");
+        print("\033[37m");
+        check = 0;
+        break;
+      }
+    }
+    if (check == 1)
+    {
+       print("\e[1;1H\e[2J");
+    }
+  }
   }
   return 0;
 }
