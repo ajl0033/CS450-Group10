@@ -32,10 +32,10 @@ void enable_interupt(){
   //  outb(dev + 1, inb(dev + 1) | (1<<bit));
 
   //}
-  else{
-    outb(dev + 1, inb(dev + 1) & ~(1<<bit));
-  }
-}
+//  else{
+//    outb(dev + 1, inb(dev + 1) & ~(1<<bit));
+//  }
+//}
 void input_h(){
   char i = inb(dev);
   outb(dev, i);
