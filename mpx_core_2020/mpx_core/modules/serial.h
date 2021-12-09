@@ -1,7 +1,7 @@
 #ifndef _SERIAL_DRIVER_H_
 #define _SERIAL_DRIVER_H_
 
-#include "dcb.h"
+//#include "dcb.h"
 #include "iocb.h"
 
 #define OPEN_INVALID_EVENT_FLAG -101
