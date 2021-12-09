@@ -179,7 +179,7 @@ int com_read(char *buf_p, int *count_p){
   serial_dcb.status = READING;
 
   //somehow clear callers event flag below -- proly not right
-  buf_p.events = 0; //null? and buf_p is not a dcb im lost.
+  serial_dcb.events = 0; //null? and buf_p is not a dcb im lost.
 
   //copy chars -- need to disable input interupts or all interupts
   int i = 0;
@@ -234,6 +234,10 @@ int com_write(char* buf_p, int* count_p)
   // Get first character from requestor's buffer and store it into output buffer.
   char input = inb(buf_p);
   outb(dev + 0, 0b00000001);
+
+  // i think this is right pulled from emilys output_h
+  //outb(dev, *(serial_dcb.out));//store in out index
+  //serial_dcb.out =serial_dcb.out + 1
 
   // Enable write interrupts
   outb(dev +1, 0x02 || inb(0x02));
