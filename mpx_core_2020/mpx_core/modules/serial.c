@@ -109,6 +109,10 @@ int com_open(int baud_rate){
   serial_dcb.events = 1;
   serial_dcb.status = NOTHING;
 
+  serial_iocb->events = 1;
+  serial_iocb->status = NOTHING;
+  serial_iocb->count = 0;
+  
   original_idt_entry = idt_get_gate(0x24);
   idt_set_gate(0x24, (u32int) top_handler, 0x08, 0x8e);
 
