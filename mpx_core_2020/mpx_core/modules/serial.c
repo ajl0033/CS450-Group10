@@ -54,11 +54,11 @@ void output_h(){
   //otherwise all characters have been transered aka Doing NOTHING
   else{
     serial_dcb.status = NOTHING;
-    serial_iocb.status = NOTHING;
+    serial_iocb.istatus = NOTHING;
     //set event flag
-    serial_iocb.events = 1;
+    serial_iocb.ievents = 1;
     //count equals index????? maybe
-    *(serial_dcb.out_count) = serial_dcb.out_x;
+    (serial_dcb.out_count) = serial_dcb.out_x;
 //disable interupts, clear 1  bit in inturupt enable register
 //
     outb(COM1 + 1, (inb(COM1 + 1) & ~0x02));
@@ -166,7 +166,7 @@ int com_read(char *buf_p, int *count_p){
   if(serial_dcb.open == 0){
     return READ_PORT_NOT_OPEN -301;
   }
-  if(serial_dcb.status != IDLE){
+  if(serial_dcb.status != NOTHING){
   return READ_DEVICE_BUSY -304;
   }
   //initialize the input buffers current index, size, and status
