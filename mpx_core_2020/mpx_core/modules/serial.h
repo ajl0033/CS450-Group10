@@ -23,7 +23,7 @@ void disable_interupt();
 
 void enable_interupt();
 
-void set_int(int bit, int on);
+//void set_int(int bit, int on);
 
 void input_h();
 

@@ -27,11 +27,11 @@ void enable_interupt(){
   outb(dev + 1, 0x01);
 }
 
-void set_int(int bit, int on){
-  if(on == 1){
-    outb(dev + 1, inb(dev + 1) | (1<<bit));
+//void set_int(int bit, int on){
+//  if(on == 1){
+  //  outb(dev + 1, inb(dev + 1) | (1<<bit));
 
-  }
+  //}
   else{
     outb(dev + 1, inb(dev + 1) & ~(1<<bit));
   }
