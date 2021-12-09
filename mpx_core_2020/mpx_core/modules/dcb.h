@@ -5,7 +5,7 @@
 
 enum dcb_status {NOTHING, READING, WRITING};
 
-struct dcb{
+typedef struct dcb{
 
 //indicates if open or closed
   int open;
@@ -35,5 +35,5 @@ struct dcb{
   int ring_inx;
   int rign_outx;
   int ring_s;
-};
+} dcb;
 #endif
