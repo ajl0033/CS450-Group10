@@ -2,6 +2,7 @@
 #define _SERIAL_DRIVER_H_
 
 #include "dcb.h"
+#include "iocb.h"
 
 #define OPEN_INVALID_EVENT_FLAG -101
 #define OPEN_INVALID_BAUD_RATE -102
@@ -36,8 +37,8 @@ int com_read(char* buf_p, int* count_p);
 
 int com_write(char* buf_p, int* count_p);
 
-void enqueue(queue *q, iocb *iocb);
+void enqueue( *q, iocb *iocb);
 
-void dequeue(queue *q);
+void dequeue(iqueue *q);
 
 #endif

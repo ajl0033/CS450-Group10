@@ -17,13 +17,12 @@ typedef struct iocb{
 
 } iocb;
 
-typedef struct queue {
+typedef struct iqueue {
     int count;
     iocb *head;
     iocb *tail;
-} queue;
+} iqueue;
 
-int isEmpty(queue *q);
 
 
 

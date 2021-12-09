@@ -244,9 +244,9 @@ int com_write(char* buf_p, int* count_p)
 
   return 0;
 }
-// for iocb queue
-void enqueue (queue *q, iocb *iocb){
-  //if nothingg is in the queue yet, set the head and tail to the new pcb
+// for iocb iqueue
+void enqueue (iqueue *q, iocb *iocb){
+  //if nothingg is in the iqueue yet, set the head and tail to the new pcb
   if(q->count == 0){
 
     q->head = iocb;
@@ -262,7 +262,7 @@ void enqueue (queue *q, iocb *iocb){
   }
   q->count++;
 }
-iocb dequeue(queue *q){
+iocb dequeue(iqueue *q){
   if(q->count == 0){
     return NULL;
   }
